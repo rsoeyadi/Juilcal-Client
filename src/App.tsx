@@ -6,7 +6,7 @@ const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 function App() {
-  const [events, setEvents] = useState([]);
+  const [events, setEvents] = useState<any[] | null>([]);
 
   useEffect(() => {
     getEvents();
@@ -19,7 +19,7 @@ function App() {
 
   return (
     <ul>
-      {events.map((event) => (
+      {events?.map((event) => (
         <li key={event.title}>{event.title}</li>
       ))}
     </ul>
