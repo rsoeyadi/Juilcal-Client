@@ -1,5 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import { useEffect, useState } from "react";
+import { DateTimePickerInput } from "./app/components/DateTimePickerInput";
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
@@ -18,11 +19,17 @@ function App() {
   }
 
   return (
-    <ul>
-      {events?.map((event) => (
-        <li key={event.title}>{event.title}</li>
-      ))}
-    </ul>
+    <>
+      <DateTimePickerInput title="Before Date" isDatePicker />
+      <DateTimePickerInput title="After Date" isDatePicker />
+      <DateTimePickerInput title="Before Time" isDatePicker={false} />
+      <DateTimePickerInput title="After Time" isDatePicker={false} />
+      <ul>
+        {events?.map((event) => (
+          <li key={event.title}>{event.title}</li>
+        ))}
+      </ul>
+    </>
   );
 }
 
