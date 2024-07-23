@@ -1,5 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+export enum Filters {
+  BEFORE_DATE = "Before Date",
+  AFTER_DATE = "After Date",
+  BEFORE_TIME = "Before Time",
+  AFTER_TIME = "After Time",
+  DAY = "Day",
+  PERFORMANCE_TYPE = "Performance Type",
+  MUSIC_GENRE = "Music Genre",
+  EVENT_FORMAT = "Event Format",
+  STREAMING = "Streaming",
+  EDUCATIONAL_FOCUS = "Educational Focus",
+  MISCELLANEOUS = "Miscellaneous"
+}
+
 export const filtersSlice = createSlice({
   name: "filters",
   initialState: {
