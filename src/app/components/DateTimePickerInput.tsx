@@ -8,6 +8,7 @@ import {
   setBeforeDate,
   setBeforeTime,
 } from "../../features/filters/filtersSlice";
+import { useAppDispatch } from "../hooks/useAppDispatch";
 
 type DateTimePickerInputProps = {
   title: string;
@@ -27,6 +28,8 @@ export const DateTimePickerInput = ({
   title,
   isDatePicker,
 }: DateTimePickerInputProps) => {
+  const dispatch = useAppDispatch()
+  
   if (isDatePicker) {
     return (
       <div>
@@ -34,7 +37,9 @@ export const DateTimePickerInput = ({
           defaultValue={today}
           label={title}
           views={["year", "month", "day"]}
-          onChange={() => {}}
+          onChange={() => {
+            dispatch(reducersMapping[ title ])
+          }}
         />
       </div>
     );
