@@ -11,7 +11,7 @@ export enum Filters {
   EVENT_FORMAT = "Event Format",
   STREAMING = "Streaming",
   EDUCATIONAL_FOCUS = "Educational Focus",
-  MISCELLANEOUS = "Miscellaneous"
+  MISCELLANEOUS = "Miscellaneous",
 }
 
 export const filtersSlice = createSlice({
