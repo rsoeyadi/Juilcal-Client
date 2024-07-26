@@ -14,21 +14,44 @@ export enum Filters {
   MISCELLANEOUS = "Miscellaneous",
 }
 
+type QueuedUpFilterType = {
+  payload: any,
+  action: string,
+}
+
+interface FiltersState {
+  beforeDate: string | null;
+  afterDate: string | null;
+  beforeTime: string | null;
+  afterTime: string | null;
+  day: string | null;
+  performanceType: string | null;
+  musicGenre: string | null;
+  eventFormat: string | null;
+  streaming: string | null;
+  educationalFocus: string | null;
+  miscellaneous: string | null;
+  queuedUpFilters: QueuedUpFilterType[];
+}
+
+const initialState: FiltersState = {
+  beforeDate: null,
+  afterDate: null,
+  beforeTime: null,
+  afterTime: null,
+  day: null,
+  performanceType: null,
+  musicGenre: null,
+  eventFormat: null,
+  streaming: null,
+  educationalFocus: null,
+  miscellaneous: null,
+  queuedUpFilters: [],
+};
+
 export const filtersSlice = createSlice({
   name: "filters",
-  initialState: {
-    beforeDate: null,
-    afterDate: null,
-    beforeTime: null,
-    afterTime: null,
-    day: null,
-    performanceType: null,
-    musicGenre: null,
-    eventFormat: null,
-    streaming: null,
-    educationalFocus: null,
-    miscellaneous: null,
-  },
+  initialState,
   reducers: {
     setBeforeDate: (state, action) => {
       state.beforeDate = action.payload;
@@ -63,6 +86,9 @@ export const filtersSlice = createSlice({
     setMiscellaneous: (state, action) => {
       state.miscellaneous = action.payload;
     },
+    addFilter: (state, action) => {
+      state.queuedUpFilters.push(action.payload);
+    },
   },
 });
 
@@ -78,6 +104,8 @@ export const {
   setStreaming,
   setEducationalFocus,
   setMiscellaneous,
+  addFilter,
 } = filtersSlice.actions;
 
+export type { FiltersState };
 export default filtersSlice.reducer;

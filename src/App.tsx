@@ -27,7 +27,7 @@ function App() {
       <DateTimePickerInput title={Filters.AFTER_TIME} isDatePicker={false} />
       <ul>
         {events?.map((event) => (
-          <li key={event.title}>{event.title}</li>
+          <li key={event.id}>{event.title}</li>
         ))}
       </ul>
     </>
