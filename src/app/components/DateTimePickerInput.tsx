@@ -1,26 +1,9 @@
 import dayjs, { Dayjs } from "dayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { TimePicker } from "@mui/x-date-pickers";
-import {
-  addFilter,
-  Filters,
-  setAfterDate,
-  setAfterTime,
-  setBeforeDate,
-  setBeforeTime,
-} from "../../features/filters/filtersSlice";
+import { addFilter } from "../../features/filters/filtersSlice";
 import { useAppDispatch } from "../hooks/useAppDispatch";
-import { useState } from "react";
-
-const reducersMapping = {
-  [Filters.BEFORE_DATE]: setBeforeDate,
-  [Filters.AFTER_DATE]: setAfterDate,
-  [Filters.BEFORE_TIME]: setBeforeTime,
-  [Filters.AFTER_TIME]: setAfterTime,
-};
-
-type ReducersMappingType = typeof reducersMapping;
-type ReducersMappingKeys = keyof ReducersMappingType;
+import { ReducersMappingKeys } from "../types";
 
 type DateTimePickerInputProps = {
   title: ReducersMappingKeys;
@@ -31,11 +14,6 @@ export const DateTimePickerInput = ({
   title,
   isDatePicker,
 }: DateTimePickerInputProps) => {
-  // const [beforeDate, setPreviewBeforeDate] = useState<Dayjs | null>(null);
-  // const [afterDate, setPreviewAfterDate] = useState<Dayjs | null>(null);
-  // const [beforeTime, setPreviewBeforeTime] = useState<Dayjs | null>(null);
-  // const [afterTime, setPreviewAfterTime] = useState<Dayjs | null>(null);
-
   const today = dayjs();
   const dispatch = useAppDispatch();
 
@@ -43,27 +21,7 @@ export const DateTimePickerInput = ({
     newValue: Dayjs | null,
     inputType: ReducersMappingKeys
   ) => {
-    dispatch(addFilter({newValue, inputType}))
-    // switch (inputType) {
-    //   case Filters.BEFORE_DATE:
-    //     setBeforeDate(newValue);
-    //     break;
-    //   case Filters.AFTER_DATE:
-    //     setAfterDate(newValue);
-    //     break;
-    //   case Filters.BEFORE_TIME:
-    //     setBeforeTime(newValue);
-    //     break;
-    //   case Filters.AFTER_TIME:
-    //     setAfterTime(newValue);
-    //     break;
-    //   default:
-    //     break;
-    // }
-
-    // if (newValue) {
-    //   dispatch(reducersMapping[title](newValue));
-    // }
+    dispatch(addFilter({ newValue, inputType }));
   };
 
   if (isDatePicker) {
