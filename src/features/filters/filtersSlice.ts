@@ -89,6 +89,20 @@ export const filtersSlice = createSlice({
           action.payload.newValue;
       }
     },
+    clearFilters: (state) => {
+      state.beforeDate = null;
+      state.afterDate = null;
+      state.beforeTime = null;
+      state.afterTime = null;
+      state.day = null;
+      state.performanceType = null;
+      state.musicGenre = null;
+      state.eventFormat = null;
+      state.streaming = null;
+      state.educationalFocus = null;
+      state.miscellaneous = null;
+      state.queuedUpFilters = {}; // prob not necessary but just because
+    },
   },
 });
 

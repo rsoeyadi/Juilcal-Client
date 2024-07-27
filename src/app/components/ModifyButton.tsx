@@ -14,7 +14,7 @@ import {
 } from "../../features/filters/filtersSlice";
 import { ReducersMappingKeys } from "../types";
 
-export const SaveButton = () => {
+export const ModifyButton = () => {
   const handleChange = (
     newValue: Dayjs | string | null,
     inputType: ReducersMappingKeys
