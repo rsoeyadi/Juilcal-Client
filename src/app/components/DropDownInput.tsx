@@ -13,7 +13,7 @@ export const DropDownInput = ({ title, values }: DropDownInputProps) => {
   const dispatch = useAppDispatch();
 
   const SelectInputBox = ({ title, values }: DropDownInputProps) => {
-    const [value, setValue] = useState<string | null>(null);
+    const [value, setValue] = useState<string>("None");
 
     const handleChange = (
       event: SelectChangeEvent,
@@ -27,7 +27,7 @@ export const DropDownInput = ({ title, values }: DropDownInputProps) => {
       <>
         <InputLabel>{title}</InputLabel>
         <Select
-          defaultValue={null}
+          defaultValue={"None"}
           value={value}
           label={title}
           onChange={(newValue: any) => handleChange(newValue, title)}
