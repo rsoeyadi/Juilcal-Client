@@ -13,7 +13,13 @@ import {
 } from "../features/filters/filtersSlice";
 
 export type Event = {
+  id: string;
   title: string;
+  dateTime: Date;
+  venue: string;
+  link: string;
+  tags: string;
+  imgLink: string;
 };
 
 export const reducersMapping = {
