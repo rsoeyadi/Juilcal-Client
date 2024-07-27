@@ -14,11 +14,6 @@ export enum Filters {
   MISCELLANEOUS = "Miscellaneous",
 }
 
-type QueuedUpFilterType = {
-  payload: any;
-  action: string;
-};
-
 interface FiltersState {
   beforeDate: string | null;
   afterDate: string | null;
@@ -31,7 +26,7 @@ interface FiltersState {
   streaming: string | null;
   educationalFocus: string | null;
   miscellaneous: string | null;
-  queuedUpFilters: QueuedUpFilterType[];
+  queuedUpFilters: Record<string, string | null>;
 }
 
 const initialState: FiltersState = {
@@ -46,7 +41,7 @@ const initialState: FiltersState = {
   streaming: null,
   educationalFocus: null,
   miscellaneous: null,
-  queuedUpFilters: [],
+  queuedUpFilters: {},
 };
 
 export const filtersSlice = createSlice({
@@ -87,7 +82,7 @@ export const filtersSlice = createSlice({
       state.miscellaneous = action.payload;
     },
     addFilter: (state, action) => {
-      state.queuedUpFilters.push(action.payload);
+      state.queuedUpFilters[action.payload.inputType] = action.payload.newValue;
     },
   },
 });
