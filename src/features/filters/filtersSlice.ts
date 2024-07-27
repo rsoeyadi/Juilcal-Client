@@ -82,7 +82,7 @@ export const filtersSlice = createSlice({
       state.miscellaneous = action.payload;
     },
     addFilter: (state, action) => {
-      if (action.payload.newValue === "None") {
+      if (action.payload.newValue === "None" || !action.payload.newValue) {
         delete state.queuedUpFilters[action.payload.inputType];
       } else {
         state.queuedUpFilters[action.payload.inputType] =

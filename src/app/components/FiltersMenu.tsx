@@ -72,6 +72,7 @@ export const FiltersMenu = () => {
           key={dateTimePickerInput.title} 
           title={dateTimePickerInput.title}
           isDatePicker={dateTimePickerInput.isDatePicker}
+          
         />
       ))}
       {dropDownInputs.map((dropDownInput) => (

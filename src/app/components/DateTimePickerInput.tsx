@@ -14,11 +14,10 @@ export const DateTimePickerInput = ({
   title,
   isDatePicker,
 }: DateTimePickerInputProps) => {
-  const today = dayjs();
   const dispatch = useAppDispatch();
 
   const handleChange = (
-    newValue: Dayjs | null,
+    newValue: Dayjs | string | null,
     inputType: ReducersMappingKeys
   ) => {
     dispatch(addFilter({ newValue, inputType }));
@@ -28,10 +27,18 @@ export const DateTimePickerInput = ({
     return (
       <div>
         <DatePicker
-          defaultValue={today}
+          defaultValue={null}
           label={title}
           views={["year", "month", "day"]}
           onChange={(newValue: Dayjs | null) => handleChange(newValue, title)}
+          slotProps={{
+            field: {
+              clearable: true,
+              onClear: () => {
+                handleChange("None", title);
+              },
+            },
+          }}
         />
       </div>
     );
@@ -39,7 +46,7 @@ export const DateTimePickerInput = ({
   return (
     <div>
       <TimePicker
-        defaultValue={today}
+        defaultValue={null}
         label={title}
         onChange={(newValue: Dayjs | null) => handleChange(newValue, title)}
       />
