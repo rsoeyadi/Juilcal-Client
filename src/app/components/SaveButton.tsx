@@ -16,7 +16,7 @@ import { ReducersMappingKeys } from "../types";
 
 export const SaveButton = () => {
   const handleChange = (
-    newValue: Dayjs | null,
+    newValue: Dayjs | string | null,
     inputType: ReducersMappingKeys
   ) => {
     switch (inputType) {

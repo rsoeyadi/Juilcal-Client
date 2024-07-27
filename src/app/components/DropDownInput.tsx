@@ -1,45 +1,46 @@
-import dayjs, { Dayjs } from "dayjs";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { TimePicker } from "@mui/x-date-pickers";
+import { useState } from "react";
 import { addFilter } from "../../features/filters/filtersSlice";
 import { useAppDispatch } from "../hooks/useAppDispatch";
 import { ReducersMappingKeys } from "../types";
+import { InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 
 type DropDownInputProps = {
   title: ReducersMappingKeys;
-  isDatePicker: boolean;
+  values: string[];
 };
 
-export const DateTimePickerInput = ({ title, isDatePicker }: DropDownInputProps) => {
-  const today = dayjs();
+export const DropDownInput = ({ title, values }: DropDownInputProps) => {
   const dispatch = useAppDispatch();
 
-  const handleChange = (
-    newValue: Dayjs | null,
-    inputType: ReducersMappingKeys
-  ) => {
-    dispatch(addFilter({ newValue, inputType }));
+  const SelectInputBox = ({ title, values }: DropDownInputProps) => {
+    const [value, setValue] = useState<string | null>(null);
+
+    const handleChange = (
+      event: SelectChangeEvent,
+      inputType: ReducersMappingKeys
+    ) => {
+      const newValue = event.target.value as string;
+      setValue(newValue);
+      dispatch(addFilter({ newValue, inputType }));
+    };
+    return (
+      <>
+        <InputLabel>{title}</InputLabel>
+        <Select
+          defaultValue={null}
+          value={value}
+          label={title}
+          onChange={(newValue: any) => handleChange(newValue, title)}
+        >
+          {values.map((type) => (
+            <MenuItem key={type} value={type}>
+              {type}
+            </MenuItem>
+          ))}
+        </Select>
+      </>
+    );
   };
 
-  if (isDatePicker) {
-    return (
-      <div>
-        <DatePicker
-          defaultValue={today}
-          label={title}
-          views={["year", "month", "day"]}
-          onChange={(newValue: Dayjs | null) => handleChange(newValue, title)}
-        />
-      </div>
-    );
-  }
-  return (
-    <div>
-      <TimePicker
-        defaultValue={today}
-        label={title}
-        onChange={(newValue: Dayjs | null) => handleChange(newValue, title)}
-      />
-    </div>
-  );
+  return <SelectInputBox title={title} values={values} />;
 };

@@ -15,9 +15,9 @@ export enum Filters {
 }
 
 type QueuedUpFilterType = {
-  payload: any,
-  action: string,
-}
+  payload: any;
+  action: string;
+};
 
 interface FiltersState {
   beforeDate: string | null;
