@@ -10,4 +10,4 @@ export const store = configureStore({
 })
 
 export type AppDispatch = typeof store.dispatch // This infers the type of the Redux store's dispatch function, which makes sure that the dispatched actions are correctly typed
-export type RootState = typeof store.getState // same deal here, but with my state
+export type RootState = ReturnType<typeof store.getState>; // same deal here, but with my state

@@ -4,6 +4,9 @@ import { TimePicker } from "@mui/x-date-pickers";
 import { addFilter } from "../../features/filters/filtersSlice";
 import { useAppDispatch } from "../hooks/useAppDispatch";
 import { ReducersMappingKeys } from "../types";
+import { useState, useEffect } from "react";
+import { RootState } from "../store";
+import { useSelector } from "react-redux";
 
 type DateTimePickerInputProps = {
   title: ReducersMappingKeys;
@@ -15,7 +18,18 @@ export const DateTimePickerInput = ({
   isDatePicker,
 }: DateTimePickerInputProps) => {
   const dispatch = useAppDispatch();
+  const filterValue = useSelector(
+    (state: RootState) => state.filters.queuedUpFilters[title]
+  );
+  const [value, setValue] = useState<Dayjs | null>(null);
 
+  useEffect(() => {
+    if (!filterValue || filterValue === "None") {
+      setValue(null);
+    } else {
+      setValue(dayjs(filterValue));
+    }
+  }, [filterValue]);
   const handleChange = (
     newValue: Dayjs | string | null,
     inputType: ReducersMappingKeys
@@ -28,6 +42,7 @@ export const DateTimePickerInput = ({
       <div>
         <DatePicker
           defaultValue={null}
+          value={value}
           label={title}
           views={["year", "month", "day"]}
           onChange={(newValue: Dayjs | null) => handleChange(newValue, title)}
@@ -47,6 +62,7 @@ export const DateTimePickerInput = ({
     <div>
       <TimePicker
         defaultValue={null}
+        value={value}
         label={title}
         onChange={(newValue: Dayjs | null) => handleChange(newValue, title)}
       />
