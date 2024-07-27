@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { useAppDispatch } from "../../app/hooks/useAppDispatch";
 
 export enum Filters {
   BEFORE_DATE = "Before Date",
@@ -119,6 +120,7 @@ export const {
   setEducationalFocus,
   setMiscellaneous,
   addFilter,
+  clearFilters,
 } = filtersSlice.actions;
 
 export type { FiltersState };

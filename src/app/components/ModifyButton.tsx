@@ -1,57 +1,40 @@
-import { Dayjs } from "dayjs";
+import { useSelector } from "react-redux";
+import { applySavedFilters } from "../filterUtils";
+import { useAppDispatch } from "../hooks/useAppDispatch";
 import {
-  Filters,
-  setAfterDate,
-  setAfterTime,
-  setBeforeDate,
-  setBeforeTime,
-  setEducationalFocus,
-  setEventFormat,
-  setMiscellaneous,
-  setMusicGenre,
-  setPerformanceType,
-  setStreaming,
+  clearFilters,
+  FiltersState,
 } from "../../features/filters/filtersSlice";
-import { ReducersMappingKeys } from "../types";
+import Button from "@mui/material/Button/Button";
 
-export const ModifyButton = () => {
-  const handleChange = (
-    newValue: Dayjs | string | null,
-    inputType: ReducersMappingKeys
-  ) => {
-    switch (inputType) {
-      case Filters.BEFORE_DATE:
-        setBeforeDate(newValue);
-        break;
-      case Filters.AFTER_DATE:
-        setAfterDate(newValue);
-        break;
-      case Filters.BEFORE_TIME:
-        setBeforeTime(newValue);
-        break;
-      case Filters.AFTER_TIME:
-        setAfterTime(newValue);
-        break;
-      case Filters.PERFORMANCE_TYPE:
-        setPerformanceType(newValue);
-        break;
-      case Filters.MUSIC_GENRE:
-        setMusicGenre(newValue);
-        break;
-      case Filters.EVENT_FORMAT:
-        setEventFormat(newValue);
-        break;
-      case Filters.STREAMING:
-        setStreaming(newValue);
-        break;
-      case Filters.EDUCATIONAL_FOCUS:
-        setEducationalFocus(newValue);
-        break;
-      case Filters.MISCELLANEOUS:
-        setMiscellaneous(newValue);
-        break;
-      default:
-        break;
+type ModifyButtonProps = {
+  isSaveButton: boolean;
+};
+
+export const ModifyButton = ({ isSaveButton }: ModifyButtonProps) => {
+  const dispatch = useAppDispatch();
+  const queuedUpFilters = useSelector(
+    // useSelector subscribes to the store and re-renders so we should use this instead of store.getState()...
+    (state: { filters: FiltersState }) => state.filters.queuedUpFilters
+  );
+  const handleClick = (isSaveButton: boolean) => {
+    if (isSaveButton) {
+      applySavedFilters(queuedUpFilters, dispatch);
+    } else {
+      dispatch(clearFilters());
     }
   };
+  if (isSaveButton) {
+    return (
+      <Button variant="outlined" onClick={() => handleClick(true)}>
+        Save
+      </Button>
+    );
+  }
+
+  return (
+    <Button variant="outlined" onClick={() => handleClick(false)}>
+      Clear
+    </Button>
+  );
 };
