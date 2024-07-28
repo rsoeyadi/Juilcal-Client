@@ -64,28 +64,44 @@ const dropDownInputs = [
     title: Filters.MISCELLANEOUS,
     values: ["None", "Membership Event", "Relaxed Performance", "Free"],
   },
+  {
+    title: Filters.VENUE,
+    values: [
+      "None",
+      "Weill Recital Hall",
+      "Room 305 - Ellen and James Marcus Vocal Arts Studio",
+      "ARRAY Creative Campus",
+      "Holy Trinity Lutheran Church",
+      "Glorya Kaufman Dance Studio",
+      "Rm 543 - Harris/Woolfson Orchestral Studio",
+      "Saint Thomas Church",
+      "Rm 309 - Bruno Walter Orchestral Studio",
+      "Christ and St. Stephen's Church",
+      "David Geffen Hall",
+      "Terrace Theater",
+      "Blue Note Jazz Club",
+      "Stephanie P. McClelland Theater",
+      "Morse Recital Hall",
+      "The Kennedy Center",
+      "Paul Hall",
+      "Morse Hall",
+      "Carnegie Hall",
+      "Dizzy's Club",
+      "Kaufman Dance Studio",
+      "Merkin Hall",
+      "Corpus Christi Church",
+      "Alice Tully Hall",
+      "Peter Jay Sharp Theater",
+      "Woolsey Hall at Yale University",
+      "Rosemary and Meredith Willson Theater",
+      "Good Shepherd-Faith Presbyterian Church",
+      "The Cathedral Church of St. John the Divine",
+      "Chelsea Factory",
+    ],
+  },
 ];
 
-type FiltersMenuProps = {
-  events: Event[] | null;
-};
-
-export const FiltersMenu = ({ events }: FiltersMenuProps) => {
-  const venues = events
-    ? Array.from(
-        new Set(
-          events
-            .map((event) => event.venue)
-            .filter((venue) => venue !== null && venue !== "")
-        )
-      )
-    : [];
-
-  const venueInput = {
-    title: Filters.VENUE,
-    values: ["None", ...venues],
-  };
-
+export const FiltersMenu = () => {
   return (
     <>
       {dateTimePickerInputs.map((dateTimePickerInput) => (
@@ -95,7 +111,7 @@ export const FiltersMenu = ({ events }: FiltersMenuProps) => {
           isDatePicker={dateTimePickerInput.isDatePicker}
         />
       ))}
-      {[...dropDownInputs, venueInput].map((dropDownInput) => (
+      {[...dropDownInputs].map((dropDownInput) => (
         <DropDownInput
           key={dropDownInput.title}
           title={dropDownInput.title}

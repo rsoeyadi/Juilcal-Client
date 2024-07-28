@@ -31,7 +31,7 @@ function App() {
   return (
     <>
       <SearchBarInput />
-      <FiltersMenu events={events} />
+      <FiltersMenu />
 
       <ul>
         {events?.map((event) => (
