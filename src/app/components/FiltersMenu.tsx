@@ -1,4 +1,5 @@
 import { Filters } from "../../features/filters/filtersSlice";
+import { Event } from "../types";
 import { DateTimePickerInput } from "./DateTimePickerInput";
 import { DropDownInput } from "./DropDownInput";
 import { ModifyButton } from "./ModifyButton";
@@ -65,7 +66,26 @@ const dropDownInputs = [
   },
 ];
 
-export const FiltersMenu = () => {
+type FiltersMenuProps = {
+  events: Event[] | null;
+};
+
+export const FiltersMenu = ({ events }: FiltersMenuProps) => {
+  const venues = events
+    ? Array.from(
+        new Set(
+          events
+            .map((event) => event.venue)
+            .filter((venue) => venue !== null && venue !== "")
+        )
+      )
+    : [];
+
+  const venueInput = {
+    title: Filters.VENUE,
+    values: ["None", ...venues],
+  };
+
   return (
     <>
       {dateTimePickerInputs.map((dateTimePickerInput) => (
@@ -75,13 +95,14 @@ export const FiltersMenu = () => {
           isDatePicker={dateTimePickerInput.isDatePicker}
         />
       ))}
-      {dropDownInputs.map((dropDownInput) => (
+      {[...dropDownInputs, venueInput].map((dropDownInput) => (
         <DropDownInput
           key={dropDownInput.title}
           title={dropDownInput.title}
           values={dropDownInput.values}
         />
       ))}
+
       <ModifyButton isSaveButton />
       <ModifyButton isSaveButton={false} />
     </>

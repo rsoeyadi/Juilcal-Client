@@ -11,6 +11,7 @@ import {
   setMusicGenre,
   setPerformanceType,
   setStreaming,
+  setVenue,
 } from "../features/filters/filtersSlice";
 
 export type Event = {
@@ -35,6 +36,7 @@ export const reducersMapping = {
   [Filters.STREAMING]: setStreaming,
   [Filters.EDUCATIONAL_FOCUS]: setEducationalFocus,
   [Filters.MISCELLANEOUS]: setMiscellaneous,
+  [Filters.VENUE]: setVenue,
 };
 
 type ReducersMappingType = typeof reducersMapping;

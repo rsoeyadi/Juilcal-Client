@@ -21,7 +21,7 @@ function App() {
 
   return (
     <>
-      <FiltersMenu />
+      <FiltersMenu events={events} />
 
       <ul>
         {events?.map((event) => (

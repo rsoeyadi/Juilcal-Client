@@ -12,6 +12,7 @@ import {
   setStreaming,
   setEducationalFocus,
   setMiscellaneous,
+  setVenue,
 } from "../features/filters/filtersSlice";
 
 export const applySavedFilters = (
@@ -52,6 +53,9 @@ export const applySavedFilters = (
         break;
       case Filters.MISCELLANEOUS:
         dispatch(setMiscellaneous(value));
+        break;
+      case Filters.VENUE:
+        dispatch(setVenue(value));
         break;
       default:
         break;

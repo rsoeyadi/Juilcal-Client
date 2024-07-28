@@ -12,6 +12,7 @@ export enum Filters {
   STREAMING = "Streaming",
   EDUCATIONAL_FOCUS = "Educational Focus",
   MISCELLANEOUS = "Miscellaneous",
+  VENUE = "Venue",
 }
 
 interface FiltersState {
@@ -26,6 +27,7 @@ interface FiltersState {
   streaming: string | null;
   educationalFocus: string | null;
   miscellaneous: string | null;
+  venue: string | null;
   queuedUpFilters: Record<string, string | null>;
 }
 
@@ -41,6 +43,7 @@ const initialState: FiltersState = {
   streaming: null,
   educationalFocus: null,
   miscellaneous: null,
+  venue: null,
   queuedUpFilters: {},
 };
 
@@ -81,6 +84,9 @@ export const filtersSlice = createSlice({
     setMiscellaneous: (state, action) => {
       state.miscellaneous = action.payload;
     },
+    setVenue: (state, action) => {
+      state.venue = action.payload;
+    },
     addFilter: (state, action) => {
       if (action.payload.newValue === "None" || !action.payload.newValue) {
         delete state.queuedUpFilters[action.payload.inputType];
@@ -101,6 +107,7 @@ export const filtersSlice = createSlice({
       state.streaming = null;
       state.educationalFocus = null;
       state.miscellaneous = null;
+      state.venue = null;
       state.queuedUpFilters = {}; // prob not necessary but just because
     },
   },
@@ -118,6 +125,7 @@ export const {
   setStreaming,
   setEducationalFocus,
   setMiscellaneous,
+  setVenue,
   addFilter,
   clearFilters,
 } = filtersSlice.actions;
