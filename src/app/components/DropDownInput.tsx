@@ -31,9 +31,9 @@ export const DropDownInput = ({ title, values }: DropDownInputProps) => {
       event: SelectChangeEvent,
       inputType: ReducersMappingKeys
     ) => {
-      const newValue = event.target.value as string;
-      setValue(newValue);
-      dispatch(addFilter({ newValue, inputType }));
+      const serializedValue = event.target.value as string;
+      setValue(serializedValue);
+      dispatch(addFilter({ serializedValue, inputType }));
     };
     return (
       <>
