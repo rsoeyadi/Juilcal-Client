@@ -1,5 +1,4 @@
 import { Filters } from "../../features/filters/filtersSlice";
-import { Event } from "../types";
 import { DateTimePickerInput } from "./DateTimePickerInput";
 import { DropDownInput } from "./DropDownInput";
 import { ModifyButton } from "./ModifyButton";
