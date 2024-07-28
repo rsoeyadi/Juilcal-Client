@@ -53,16 +53,31 @@ export const filtersSlice = createSlice({
   initialState,
   reducers: {
     setBeforeDate: (state, action) => {
-      state.beforeDate = action.payload;
+      if (action.payload === null) {
+        delete state.queuedUpFilters[Filters.BEFORE_DATE];
+        state.beforeDate = null;
+      } else {
+        state.beforeDate = action.payload;
+      }
     },
     setAfterDate: (state, action) => {
       state.afterDate = action.payload;
     },
     setBeforeTime: (state, action) => {
-      state.beforeTime = action.payload;
+      if (action.payload === "None") {
+        delete state.queuedUpFilters[Filters.BEFORE_TIME];
+        state.beforeTime = null;
+      } else {
+        state.beforeTime = action.payload;
+      }
     },
     setAfterTime: (state, action) => {
-      state.afterTime = action.payload;
+      if (action.payload === "None") {
+        delete state.queuedUpFilters[Filters.AFTER_TIME];
+        state.afterTime = null;
+      } else {
+        state.afterTime = action.payload;
+      }
     },
     setDay: (state, action) => {
       if (action.payload === "None") {

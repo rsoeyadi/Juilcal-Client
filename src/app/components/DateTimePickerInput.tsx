@@ -46,14 +46,6 @@ export const DateTimePickerInput = ({
           label={title}
           views={["year", "month", "day"]}
           onChange={(newValue: Dayjs | null) => handleChange(newValue, title)}
-          slotProps={{
-            field: {
-              clearable: true,
-              onClear: () => {
-                handleChange("None", title);
-              },
-            },
-          }}
         />
       </div>
     );
