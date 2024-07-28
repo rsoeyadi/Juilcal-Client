@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { RootState } from "../../app/store";
 
 export enum Filters {
   BEFORE_DATE = "Before Date",
@@ -52,43 +53,103 @@ export const filtersSlice = createSlice({
   initialState,
   reducers: {
     setBeforeDate: (state, action) => {
-      state.beforeDate = action.payload;
+      if (action.payload === "None") {
+        delete state.queuedUpFilters[Filters.BEFORE_DATE];
+        state.beforeDate = null;
+      } else {
+        state.beforeDate = action.payload;
+      }
     },
     setAfterDate: (state, action) => {
-      state.afterDate = action.payload;
+      if (action.payload === "None") {
+        delete state.queuedUpFilters[Filters.AFTER_DATE];
+        state.afterDate = null;
+      } else {
+        state.afterDate = action.payload;
+      }
     },
     setBeforeTime: (state, action) => {
-      state.beforeTime = action.payload;
+      if (action.payload === "None") {
+        delete state.queuedUpFilters[Filters.BEFORE_TIME];
+        state.beforeTime = null;
+      } else {
+        state.beforeTime = action.payload;
+      }
     },
     setAfterTime: (state, action) => {
-      state.afterTime = action.payload;
+      if (action.payload === "None") {
+        delete state.queuedUpFilters[Filters.AFTER_TIME];
+        state.afterTime = null;
+      } else {
+        state.afterTime = action.payload;
+      }
     },
     setDay: (state, action) => {
-      state.day = action.payload;
+      if (action.payload === "None") {
+        delete state.queuedUpFilters[Filters.DAY];
+        state.day = null;
+      } else {
+        state.day = action.payload;
+      }
     },
     setPerformanceType: (state, action) => {
-      state.performanceType = action.payload;
+      if (action.payload === "None") {
+        delete state.queuedUpFilters[Filters.PERFORMANCE_TYPE];
+        state.performanceType = null;
+      } else {
+        state.performanceType = action.payload;
+      }
     },
     setMusicGenre: (state, action) => {
-      state.musicGenre = action.payload;
+      if (action.payload === "None") {
+        delete state.queuedUpFilters[Filters.MUSIC_GENRE];
+        state.musicGenre = null;
+      } else {
+        state.musicGenre = action.payload;
+      }
     },
     setEventFormat: (state, action) => {
-      state.eventFormat = action.payload;
+      if (action.payload === "None") {
+        delete state.queuedUpFilters[Filters.EVENT_FORMAT];
+        state.eventFormat = null;
+      } else {
+        state.eventFormat = action.payload;
+      }
     },
     setStreaming: (state, action) => {
-      state.streaming = action.payload;
+      if (action.payload === "None") {
+        delete state.queuedUpFilters[Filters.STREAMING];
+        state.streaming = null;
+      } else {
+        state.streaming = action.payload;
+      }
     },
     setEducationalFocus: (state, action) => {
-      state.educationalFocus = action.payload;
+      if (action.payload === "None") {
+        delete state.queuedUpFilters[Filters.EDUCATIONAL_FOCUS];
+        state.educationalFocus = null;
+      } else {
+        state.educationalFocus = action.payload;
+      }
     },
     setMiscellaneous: (state, action) => {
-      state.miscellaneous = action.payload;
+      if (action.payload === "None") {
+        delete state.queuedUpFilters[Filters.MISCELLANEOUS];
+        state.miscellaneous = null;
+      } else {
+        state.miscellaneous = action.payload;
+      }
     },
     setVenue: (state, action) => {
-      state.venue = action.payload;
+      if (action.payload === "None") {
+        delete state.queuedUpFilters[Filters.VENUE];
+        state.venue = null;
+      } else {
+        state.venue = action.payload;
+      }
     },
     addFilter: (state, action) => {
-      if (action.payload.newValue === "None" || !action.payload.newValue) {
+      if (!action.payload.newValue) {
         delete state.queuedUpFilters[action.payload.inputType];
       } else {
         state.queuedUpFilters[action.payload.inputType] =
@@ -112,6 +173,11 @@ export const filtersSlice = createSlice({
     },
   },
 });
+
+export const selectFinalFilters = (state: RootState) => {
+  const { queuedUpFilters, ...finalFilters } = state.filters;
+  return finalFilters;
+};
 
 export const {
   setBeforeDate,
