@@ -61,7 +61,12 @@ export const filtersSlice = createSlice({
       }
     },
     setAfterDate: (state, action) => {
-      state.afterDate = action.payload;
+      if (action.payload === null) {
+        delete state.queuedUpFilters[Filters.AFTER_DATE];
+        state.afterDate = null;
+      } else {
+        state.afterDate = action.payload;
+      }
     },
     setBeforeTime: (state, action) => {
       if (action.payload === "None") {
@@ -144,11 +149,11 @@ export const filtersSlice = createSlice({
       }
     },
     addFilter: (state, action) => {
-      if (!action.payload.newValue) {
+      if (!action.payload.serializedValue) {
         delete state.queuedUpFilters[action.payload.inputType];
       } else {
         state.queuedUpFilters[action.payload.inputType] =
-          action.payload.newValue;
+          action.payload.serializedValue;
       }
     },
     clearFilters: (state) => {

@@ -26,7 +26,6 @@ function App() {
 
   const getEvents = useCallback(
     async (searchValue: string | null, filters: any) => {
-      console.log({ filters });
       let query = supabase.from("Events").select();
 
       if (searchValue) {

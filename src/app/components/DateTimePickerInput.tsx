@@ -34,7 +34,10 @@ export const DateTimePickerInput = ({
     newValue: Dayjs | string | null,
     inputType: ReducersMappingKeys
   ) => {
-    dispatch(addFilter({ newValue, inputType }));
+    const serializedValue = newValue?.toString();
+    if (serializedValue) {
+      dispatch(addFilter({ serializedValue, inputType }));
+    }
   };
 
   if (isDatePicker) {
