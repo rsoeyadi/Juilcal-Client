@@ -2,6 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 import { useEffect, useState } from "react";
 import { Event } from "./app/types";
 import { FiltersMenu } from "./app/components/FiltersMenu";
+import { SearchBarInput } from "./app/components/SearchBarInput";
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
@@ -21,6 +22,7 @@ function App() {
 
   return (
     <>
+      <SearchBarInput />
       <FiltersMenu events={events} />
 
       <ul>
