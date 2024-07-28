@@ -31,7 +31,7 @@ export const DropDownInput = ({ title, values }: DropDownInputProps) => {
       event: SelectChangeEvent,
       inputType: ReducersMappingKeys
     ) => {
-      const serializedValue = event.target.value as string;
+      const serializedValue = event.target.value as string; // technically not serialized but it's just the same I gave it bc of the date/time (dayjs) being serialized
       setValue(serializedValue);
       dispatch(addFilter({ serializedValue, inputType }));
     };
