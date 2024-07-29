@@ -8,11 +8,9 @@ import { Provider } from "react-redux";
 import { store } from "./app/store.ts";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <App />
-      </LocalizationProvider>
-    </Provider>
-  </React.StrictMode>
+  <Provider store={store}>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <App />
+    </LocalizationProvider>
+  </Provider>
 );
