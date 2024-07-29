@@ -30,8 +30,6 @@ const BookmarkButton = ({ eventId, dispatch }: BookmarkButtonProps) => {
         dispatch(removeEvent(eventId));
       }
 
-      console.log({ newBookmarked });
-
       return newBookmarked;
     });
   };
@@ -41,7 +39,8 @@ const BookmarkButton = ({ eventId, dispatch }: BookmarkButtonProps) => {
       aria-pressed={bookmarked}
       aria-label="Bookmark"
     >
-      {bookmarked}
+      <img src={bookmarked ? '/bookmark-filled.svg' : '/bookmark.svg'} alt="Icon" />
+    
     </button>
   );
 };
