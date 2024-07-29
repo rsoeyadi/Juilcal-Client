@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface BookmarkedEventsState {
   bookmarkedEvents: string[];
@@ -7,19 +7,18 @@ interface BookmarkedEventsState {
 const initialState: BookmarkedEventsState = {
   bookmarkedEvents: [],
 };
+
 export const bookmarkingSlice = createSlice({
   name: "bookmarks",
   initialState: initialState,
   reducers: {
-    addEvent: (state, action) => {
+    addEvent: (state, action: PayloadAction<string>) => {
       state.bookmarkedEvents.push(action.payload);
     },
-    removeEvent: (state, action) => {
-      const index = state.bookmarkedEvents.indexOf(action.payload);
-      if (index > -1) {
-        // only splice array when item is found
-        state.bookmarkedEvents.splice(index, 1); // 2nd parameter means remove one item only
-      }
+    removeEvent: (state, action: PayloadAction<string>) => {
+      state.bookmarkedEvents = state.bookmarkedEvents.filter(
+        (eventId) => eventId !== action.payload
+      );
     },
   },
 });
