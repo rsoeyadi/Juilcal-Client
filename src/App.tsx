@@ -3,9 +3,10 @@ import { useEffect, useState, useCallback, useMemo } from "react";
 import { useSelector } from "react-redux";
 import debounce from "lodash.debounce";
 import { Event } from "./app/types";
-import { FiltersMenu } from "./app/components/FiltersMenu";
-import { SearchBarInput } from "./app/components/SearchBarInput";
+import { FiltersMenu } from "./app/components/filters/FiltersMenu";
+import { SearchBarInput } from "./app/components/filters/SearchBarInput";
 import { RootState } from "./app/store";
+import { EventCard } from "./app/components/cards/EventCard";
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
@@ -71,7 +72,12 @@ function App() {
       <FiltersMenu />
       <ul>
         {events?.map((event) => (
-          <li key={event.id}>{event.title}</li>
+          <EventCard
+            title={event.title}
+            date={event.dateTime}
+            venue={event.venue}
+            link={event.link}
+          />
         ))}
       </ul>
     </>

@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
-import { applySavedFilters } from "../filterUtils";
-import { useAppDispatch } from "../hooks/useAppDispatch";
+import { applySavedFilters } from "../../filterUtils";
+import { useAppDispatch } from "../../hooks/useAppDispatch";
 import {
   clearFilters,
   FiltersState,
-} from "../../features/filters/filtersSlice";
+} from "../../../features/filters/filtersSlice";
 import Button from "@mui/material/Button/Button";
 
 type ModifyButtonProps = {

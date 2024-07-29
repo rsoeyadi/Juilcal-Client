@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { addFilter } from "../../features/filters/filtersSlice";
-import { useAppDispatch } from "../hooks/useAppDispatch";
-import { ReducersMappingKeys } from "../types";
+import { addFilter } from "../../../features/filters/filtersSlice";
+import { useAppDispatch } from "../../hooks/useAppDispatch";
+import { ReducersMappingKeys } from "../../types";
 import { InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import { useSelector } from "react-redux";
-import { RootState } from "../store";
+import { RootState } from "../../store";
 
 type DropDownInputProps = {
   title: ReducersMappingKeys;

@@ -17,7 +17,7 @@ import {
 export type Event = {
   id: string;
   title: string;
-  dateTime: Date;
+  dateTime: string;
   venue: string;
   link: string;
   tags: string;

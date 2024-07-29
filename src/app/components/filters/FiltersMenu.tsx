@@ -1,4 +1,4 @@
-import { Filters } from "../../features/filters/filtersSlice";
+import { Filters } from "../../../features/filters/filtersSlice";
 import { DateTimePickerInput } from "./DateTimePickerInput";
 import { DropDownInput } from "./DropDownInput";
 import { ModifyButton } from "./ModifyButton";

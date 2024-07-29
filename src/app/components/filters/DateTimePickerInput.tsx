@@ -1,10 +1,10 @@
 import dayjs, { Dayjs } from "dayjs";
 import { DateTimePicker } from "@mui/x-date-pickers";
-import { addFilter } from "../../features/filters/filtersSlice";
-import { useAppDispatch } from "../hooks/useAppDispatch";
-import { ReducersMappingKeys } from "../types";
+import { addFilter } from "../../../features/filters/filtersSlice";
+import { useAppDispatch } from "../../hooks/useAppDispatch";
+import { ReducersMappingKeys } from "../../types";
 import { useState, useEffect } from "react";
-import { RootState } from "../store";
+import { RootState } from "../../store";
 import { useSelector } from "react-redux";
 
 type DateTimePickerInputProps = {

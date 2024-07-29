@@ -1,7 +1,7 @@
 import { Button, TextField } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
-import { useAppDispatch } from "../hooks/useAppDispatch";
-import { setSearchbarValue } from "../../features/search/searchbarSlice";
+import { useAppDispatch } from "../../hooks/useAppDispatch";
+import { setSearchbarValue } from "../../../features/search/searchbarSlice";
 
 export const SearchBarInput = () => {
   const dispatch = useAppDispatch();
