@@ -1,11 +1,11 @@
 import { createClient } from "@supabase/supabase-js";
 import { useEffect, useState, useCallback, useMemo } from "react";
+import { useSelector } from "react-redux";
+import debounce from "lodash.debounce";
 import { Event } from "./app/types";
 import { FiltersMenu } from "./app/components/FiltersMenu";
 import { SearchBarInput } from "./app/components/SearchBarInput";
-import { useSelector } from "react-redux";
 import { RootState } from "./app/store";
-import debounce from "lodash.debounce";
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
@@ -13,6 +13,7 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 function App() {
   const [events, setEvents] = useState<Event[] | null>([]);
+
   const searchValue = useSelector(
     (state: RootState) => state.searchbarValue.searchbarValue
   );
@@ -20,7 +21,7 @@ function App() {
 
   const filtersSliceValuesExcludingQueuedUpFilters = useMemo(() => {
     return Object.entries(filtersSliceValues).filter(
-      ([key, value]) => key != "queuedUpFilters"
+      ([key, value]) => key !== "queuedUpFilters"
     );
   }, [filtersSliceValues]);
 
@@ -54,7 +55,7 @@ function App() {
     []
   );
 
-  const debouncedGetEvents = useCallback(debounce(getEvents, 300), [getEvents]); // using useCallback here to ensure that getEvents() is only re-created when its dependencies change
+  const debouncedGetEvents = useCallback(debounce(getEvents, 300), [getEvents]);
 
   useEffect(() => {
     debouncedGetEvents(searchValue, filtersSliceValuesExcludingQueuedUpFilters);
@@ -68,7 +69,6 @@ function App() {
     <>
       <SearchBarInput />
       <FiltersMenu />
-
       <ul>
         {events?.map((event) => (
           <li key={event.id}>{event.title}</li>
