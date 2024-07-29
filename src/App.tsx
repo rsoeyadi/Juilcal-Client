@@ -39,7 +39,7 @@ function App() {
           } else if (key === "afterDate") {
             query = query.gte("dateTime", value);
           } else if (key === "day") {
-            query = query.eq("EXTRACT(dow FROM dateTime)", value);
+            query = query.ilike("dayOfWeek", `%${value}%`);
           } else {
             query = query.or(`tags.ilike.%${value}%, title.ilike.%${value}%`);
           }
