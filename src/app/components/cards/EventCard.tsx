@@ -5,9 +5,11 @@ type EventCardProps = {
   link: string;
 };
 
-type BookmarkButtonProps = {
-}
+
 const BookmarkButton = () => {
+    const handleClick = () => {
+        
+    }
   return <button></button>;
 };
 export const EventCard = ({ title, date, venue, link }: EventCardProps) => {
