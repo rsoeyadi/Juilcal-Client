@@ -11,48 +11,49 @@ type DropDownInputProps = {
   values: string[];
 };
 
-export const DropDownInput = ({ title, values }: DropDownInputProps) => {
+const SelectInputBox = ({ title, values }: DropDownInputProps) => {
   const dispatch = useAppDispatch();
+  const [value, setValue] = useState<string>("None");
+  const filterValue = useSelector(
+    (state: RootState) => state.filters.queuedUpFilters[title]
+  );
 
-  const SelectInputBox = ({ title, values }: DropDownInputProps) => {
-    const [value, setValue] = useState<string>("None");
-    const filterValue = useSelector(
-      (state: RootState) => state.filters.queuedUpFilters[title]
-    );
-    useEffect(() => {
-      if (!filterValue || filterValue === "None") {
-        setValue("None");
-      } else {
-        setValue(filterValue);
-      }
-    }, [filterValue]);
+  useEffect(() => {
+    if (!filterValue || filterValue === "None") {
+      setValue("None");
+    } else {
+      setValue(filterValue);
+    }
+  }, [filterValue]);
 
-    const handleChange = (
-      event: SelectChangeEvent,
-      inputType: ReducersMappingKeys
-    ) => {
-      const serializedValue = event.target.value as string; // technically not serialized but it's just the same I gave it bc of the date/time (dayjs) being serialized
-      setValue(serializedValue);
-      dispatch(addFilter({ serializedValue, inputType }));
-    };
-    return (
-      <>
-        <InputLabel>{title}</InputLabel>
-        <Select
-          defaultValue={"None"}
-          value={value}
-          label={title}
-          onChange={(newValue: any) => handleChange(newValue, title)}
-        >
-          {values.map((type) => (
-            <MenuItem key={type} value={type}>
-              {type}
-            </MenuItem>
-          ))}
-        </Select>
-      </>
-    );
+  const handleChange = (
+    event: SelectChangeEvent,
+    inputType: ReducersMappingKeys
+  ) => {
+    const serializedValue = event.target.value as string; // technically not serialized but it's just the same I gave it bc of the date/time (dayjs) being serialized
+    setValue(serializedValue);
+    dispatch(addFilter({ serializedValue, inputType }));
   };
 
+  return (
+    <>
+      <InputLabel>{title}</InputLabel>
+      <Select
+        defaultValue={"None"}
+        value={value}
+        label={title}
+        onChange={(newValue: any) => handleChange(newValue, title)}
+      >
+        {values.map((type) => (
+          <MenuItem key={type} value={type}>
+            {type}
+          </MenuItem>
+        ))}
+      </Select>
+    </>
+  );
+};
+
+export const DropDownInput = ({ title, values }: DropDownInputProps) => {
   return <SelectInputBox title={title} values={values} />;
 };

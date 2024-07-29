@@ -29,6 +29,7 @@ export const DateTimePickerInput = ({
       setValue(dayjs(filterValue));
     }
   }, [filterValue]);
+
   const handleChange = (
     newValue: Dayjs | string | null,
     inputType: ReducersMappingKeys
