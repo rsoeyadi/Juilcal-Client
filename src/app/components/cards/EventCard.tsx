@@ -1,8 +1,13 @@
 import { useState } from "react";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { AppDispatch } from "../../store";
+import {
+  addEvent,
+  removeEvent,
+} from "../../../features/bookmarking/bookmarkingSlice";
 
 type EventCardProps = {
+  id: string;
   title: string;
   date: string;
   venue: string;
@@ -10,17 +15,37 @@ type EventCardProps = {
 };
 
 type BookmarkButtonProps = {
+  eventId: string;
   dispatch: AppDispatch;
 };
 
-const BookmarkButton = ({ dispatch }: BookmarkButtonProps) => {
+const BookmarkButton = ({ eventId, dispatch }: BookmarkButtonProps) => {
   const [bookmarked, setBookmarked] = useState<boolean>(false);
   const handleClick = () => {
-    setBookmarked(!bookmarked);
+    setBookmarked((previousBookmarked) => {
+      const newBookmarked = !previousBookmarked;
+      if (newBookmarked) {
+        dispatch(addEvent(eventId));
+      } else {
+        dispatch(removeEvent(eventId));
+      }
+
+      console.log({ newBookmarked });
+
+      return newBookmarked;
+    });
   };
-  return <button></button>;
+  return (
+    <button
+      onClick={handleClick}
+      aria-pressed={bookmarked}
+      aria-label="Bookmark"
+    >
+      {bookmarked}
+    </button>
+  );
 };
-export const EventCard = ({ title, date, venue, link }: EventCardProps) => {
+export const EventCard = ({ id, title, date, venue, link }: EventCardProps) => {
   const dispatch = useAppDispatch();
   return (
     <>
@@ -28,7 +53,7 @@ export const EventCard = ({ title, date, venue, link }: EventCardProps) => {
       <p>{date}</p>
       <p> {venue}</p>
       <p> {link}</p>
-      <BookmarkButton dispatch={dispatch} />
+      <BookmarkButton eventId={id} dispatch={dispatch} />
     </>
   );
 };

@@ -73,6 +73,7 @@ function App() {
       <ul>
         {events?.map((event) => (
           <EventCard
+            id={event.id}
             title={event.title}
             date={event.dateTime}
             venue={event.venue}

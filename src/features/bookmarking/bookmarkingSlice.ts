@@ -14,7 +14,7 @@ export const bookmarkingSlice = createSlice({
     addEvent: (state, action) => {
       state.bookmarkedEvents.push(action.payload);
     },
-    deleteEvent: (state, action) => {
+    removeEvent: (state, action) => {
       const index = state.bookmarkedEvents.indexOf(action.payload);
       if (index > -1) {
         // only splice array when item is found
@@ -24,7 +24,7 @@ export const bookmarkingSlice = createSlice({
   },
 });
 
-export const { addEvent, deleteEvent } = bookmarkingSlice.actions;
+export const { addEvent, removeEvent } = bookmarkingSlice.actions;
 
 export type { BookmarkedEventsState };
 export default bookmarkingSlice.reducer;
