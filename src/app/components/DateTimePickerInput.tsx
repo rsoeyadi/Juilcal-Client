@@ -1,6 +1,5 @@
 import dayjs, { Dayjs } from "dayjs";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { TimePicker } from "@mui/x-date-pickers";
+import { DateTimePicker } from "@mui/x-date-pickers";
 import { addFilter } from "../../features/filters/filtersSlice";
 import { useAppDispatch } from "../hooks/useAppDispatch";
 import { ReducersMappingKeys } from "../types";
@@ -43,24 +42,13 @@ export const DateTimePickerInput = ({
   if (isDatePicker) {
     return (
       <div>
-        <DatePicker
+        <DateTimePicker
           defaultValue={null}
           value={value}
           label={title}
-          views={["year", "month", "day"]}
           onChange={(newValue: Dayjs | null) => handleChange(newValue, title)}
         />
       </div>
     );
   }
-  return (
-    <div>
-      <TimePicker
-        defaultValue={null}
-        value={value}
-        label={title}
-        onChange={(newValue: Dayjs | null) => handleChange(newValue, title)}
-      />
-    </div>
-  );
 };

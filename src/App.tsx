@@ -34,7 +34,15 @@ function App() {
 
       filters.forEach(([key, value]: [string, string]) => {
         if (value && value !== "None") {
-          query = query.or(`tags.ilike.%${value}%, title.ilike.%${value}%`);
+          if (key === "beforeDate") {
+            query = query.lte("dateTime", value);
+          } else if (key === "afterDate") {
+            query = query.gte("dateTime", value);
+          } else if (key === "day") {
+            query = query.eq("EXTRACT(dow FROM dateTime)", value);
+          } else {
+            query = query.or(`tags.ilike.%${value}%, title.ilike.%${value}%`);
+          }
         }
       });
 
