@@ -40,6 +40,8 @@ function App() {
             query = query.gte("dateTime", value);
           } else if (key === "day") {
             query = query.ilike("dayOfWeek", `%${value}%`);
+          } else if (key === "venue") {
+            query = query.ilike("venue", `%${value}%`);
           } else {
             query = query.or(`tags.ilike.%${value}%, title.ilike.%${value}%`);
           }
