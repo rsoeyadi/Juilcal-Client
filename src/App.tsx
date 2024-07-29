@@ -21,7 +21,7 @@ function App() {
 
   const filtersSliceValuesExcludingQueuedUpFilters = useMemo(() => {
     return Object.entries(filtersSliceValues).filter(
-      ([key, value]) => key !== "queuedUpFilters"
+      ([key]) => key !== "queuedUpFilters"
     );
   }, [filtersSliceValues]);
 
