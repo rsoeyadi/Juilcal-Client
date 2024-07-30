@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
-import { AppDispatch } from "../../store";
+import { AppDispatch, RootState } from "../../store";
 import {
   addEvent,
   removeEvent,
 } from "../../../features/bookmarking/bookmarkingSlice";
+import { useSelector } from "react-redux";
 
 type EventCardProps = {
   id: string;
@@ -20,7 +21,14 @@ type BookmarkButtonProps = {
 };
 
 const BookmarkButton = ({ eventId, dispatch }: BookmarkButtonProps) => {
-  const [bookmarked, setBookmarked] = useState<boolean>(false);
+  const bookmarks = useSelector(
+    (state: RootState) => state.bookmarks.bookmarkedEvents
+  );
+
+  const [bookmarked, setBookmarked] = useState<boolean>(
+    bookmarks.includes(eventId)
+  );
+
   const handleClick = () => {
     setBookmarked((previousBookmarked) => {
       const newBookmarked = !previousBookmarked;
@@ -39,8 +47,10 @@ const BookmarkButton = ({ eventId, dispatch }: BookmarkButtonProps) => {
       aria-pressed={bookmarked}
       aria-label="Bookmark"
     >
-      <img src={bookmarked ? '/bookmark-filled.svg' : '/bookmark.svg'} alt="Icon" />
-    
+      <img
+        src={bookmarked ? "/bookmark-filled.svg" : "/bookmark.svg"}
+        alt="Icon"
+      />
     </button>
   );
 };
