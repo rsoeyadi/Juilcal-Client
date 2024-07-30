@@ -1,5 +1,5 @@
 import { Pagination } from "@mui/material";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent } from "react";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { setRange } from "../../../features/pagination/paginationSlice";
 
