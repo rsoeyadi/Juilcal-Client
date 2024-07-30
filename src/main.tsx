@@ -4,12 +4,15 @@ import "./index.css";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Provider } from "react-redux";
-import { store } from "./app/store.ts";
+import { persistor, store } from "./app/store.ts";
+import { PersistGate } from "redux-persist/integration/react";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <Provider store={store}>
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <App />
+      <PersistGate loading={null} persistor={persistor}>
+        <App />
+      </PersistGate>
     </LocalizationProvider>
   </Provider>
 );
