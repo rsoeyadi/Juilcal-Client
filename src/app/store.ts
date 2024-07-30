@@ -2,8 +2,19 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import searchbarReducer from "../features/search/searchbarSlice";
 import filtersReducer from "../features/filters/filtersSlice";
 import bookmarkReducer from "../features/bookmarking/bookmarkingSlice";
+import paginationReducer from "../features/pagination/paginationSlice";
+
 import storage from "redux-persist/lib/storage";
-import { FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, REHYDRATE } from "redux-persist";
+import {
+  FLUSH,
+  PAUSE,
+  PERSIST,
+  persistReducer,
+  persistStore,
+  PURGE,
+  REGISTER,
+  REHYDRATE,
+} from "redux-persist";
 
 const persistConfig = {
   key: "root",
@@ -11,9 +22,10 @@ const persistConfig = {
 };
 
 const allReducers = combineReducers({
-  searchbarValue: searchbarReducer,
+  searchbar: searchbarReducer,
   filters: filtersReducer,
   bookmarks: bookmarkReducer,
+  pagination: paginationReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, allReducers);

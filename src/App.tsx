@@ -7,6 +7,7 @@ import { FiltersMenu } from "./app/components/filters/FiltersMenu";
 import { SearchBarInput } from "./app/components/filters/SearchBarInput";
 import { RootState } from "./app/store";
 import { EventCard } from "./app/components/cards/EventCard";
+import { PaginationButton } from "./app/components/pagination/PaginationButton";
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
@@ -16,8 +17,11 @@ function App() {
   const [events, setEvents] = useState<Event[] | null>([]);
 
   const searchValue = useSelector(
-    (state: RootState) => state.searchbarValue.searchbarValue
+    (state: RootState) => state.searchbar.searchbarValue
   );
+
+  const paginationValue = useSelector((state: RootState) => state.pagination);
+
   const filtersSliceValues = useSelector((state: RootState) => state.filters);
 
   const filtersSliceValuesExcludingQueuedUpFilters = useMemo(() => {
@@ -50,10 +54,13 @@ function App() {
         }
       });
 
-      const { data } = await query;
+      const { data } = await query.range(
+        paginationValue.start,
+        paginationValue.stop
+      );
       setEvents(data);
     },
-    []
+    [paginationValue]
   );
 
   const debouncedGetEvents = useCallback(debounce(getEvents, 300), [getEvents]);
@@ -81,6 +88,7 @@ function App() {
           />
         ))}
       </ul>
+      <PaginationButton />
     </>
   );
 }
