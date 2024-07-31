@@ -13,11 +13,11 @@ export const paginationSlice = createSlice({
       state.stop = action.payload * 9;
     },
     setTotalPages: (state, action) => {
-      state.totalPages = action.payload / 9;
+      state.totalPages = Math.floor(action.payload / 9);
     },
   },
 });
 
-export const { setRange } = paginationSlice.actions;
+export const { setRange, setTotalPages } = paginationSlice.actions;
 
 export default paginationSlice.reducer;

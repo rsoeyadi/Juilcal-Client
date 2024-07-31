@@ -15,7 +15,10 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 function App() {
   const [events, setEvents] = useState<Event[] | null>([]);
-
+  const [totalEventsCount, setTotalEventsCount] = useState<number | null>(0);
+  const [totalFilteredEventsCount, setTotalFilteredEventsCount] = useState<
+    number | null
+  >(0);
   const searchValue = useSelector(
     (state: RootState) => state.searchbar.searchbarValue
   );
@@ -32,6 +35,7 @@ function App() {
 
   const getEvents = useCallback(
     async (searchValue: string | null, filters: any) => {
+      const table = supabase.from("Events");
       let query = supabase.from("Events").select();
 
       if (searchValue) {
@@ -54,6 +58,8 @@ function App() {
         }
       });
 
+      const { count } = await table.select("*", { count: "exact", head: true });
+
       const { data } = await query.range(
         paginationValue.start,
         paginationValue.stop
@@ -63,15 +69,30 @@ function App() {
     [paginationValue]
   );
 
+  const getCount = useCallback(async () => {
+    const { count } = await supabase
+      .from("Events")
+      .select("*", { count: "exact", head: true });
+
+    setTotalEventsCount(count);
+  }, [paginationValue]);
+
   const debouncedGetEvents = useCallback(debounce(getEvents, 300), [getEvents]);
+  const debouncedGetCount = useCallback(debounce(getCount, 300), [getCount]);
 
   useEffect(() => {
     debouncedGetEvents(searchValue, filtersSliceValuesExcludingQueuedUpFilters);
+    debouncedGetCount();
   }, [
     searchValue,
     filtersSliceValuesExcludingQueuedUpFilters,
     debouncedGetEvents,
+    debouncedGetCount,
   ]);
+
+  useEffect(() => {
+    debouncedGetCount();
+  }, [debouncedGetCount]);
 
   return (
     <>
