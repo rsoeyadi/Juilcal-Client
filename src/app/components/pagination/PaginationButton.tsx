@@ -1,5 +1,5 @@
 import { Pagination } from "@mui/material";
-import { ChangeEvent } from "react";
+import { ChangeEvent, useEffect } from "react";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { setRange } from "../../../features/pagination/paginationSlice";
 
@@ -8,6 +8,9 @@ type PaginationButtonProps = {};
 export const PaginationButton = ({}: PaginationButtonProps) => {
   const dispatch = useAppDispatch();
 
+  useEffect(() => { // set them to page 1 initially
+    dispatch(setRange(1));
+  }, [])
   const handleClick = (page: number) => {
     dispatch(setRange(page));
   };
