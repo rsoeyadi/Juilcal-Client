@@ -8,6 +8,8 @@ import { SearchBarInput } from "./app/components/filters/SearchBarInput";
 import { RootState } from "./app/store";
 import { EventCard } from "./app/components/cards/EventCard";
 import { PaginationButton } from "./app/components/pagination/PaginationButton";
+import { useAppDispatch } from "./app/hooks/useAppDispatch";
+import { setTotalFilteredEventsCount } from "./features/pagination/paginationSlice";
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
@@ -15,10 +17,11 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 function App() {
   const [events, setEvents] = useState<Event[] | null>([]);
-  const [totalEventsCount, setTotalEventsCount] = useState<number | null>(0);
-  const [totalFilteredEventsCount, setTotalFilteredEventsCount] = useState<
-    number | null
-  >(0);
+  const dispatch = useAppDispatch();
+  const [totalEventsCount, setTotalEventsCount] = useState<
+    number | undefined
+  >();
+
   const searchValue = useSelector(
     (state: RootState) => state.searchbar.searchbarValue
   );
@@ -65,6 +68,7 @@ function App() {
         paginationValue.stop
       );
       setEvents(data);
+      dispatch(setTotalFilteredEventsCount(count));
     },
     [paginationValue]
   );
@@ -74,7 +78,7 @@ function App() {
       .from("Events")
       .select("*", { count: "exact", head: true });
 
-    setTotalEventsCount(count);
+    setTotalEventsCount(count!);
   }, [paginationValue]);
 
   const debouncedGetEvents = useCallback(debounce(getEvents, 300), [getEvents]);
@@ -109,7 +113,12 @@ function App() {
           />
         ))}
       </ul>
-      <PaginationButton />
+      <PaginationButton
+        totalEventsCount={totalEventsCount}
+        filtersSliceValuesExcludingQueuedUpFilters={
+          filtersSliceValuesExcludingQueuedUpFilters
+        }
+      />
     </>
   );
 }

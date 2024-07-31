@@ -6,6 +6,7 @@ export const paginationSlice = createSlice({
     start: 0,
     stop: 9,
     totalPages: 0,
+    totalFilteredEventsCount: 0,
   },
   reducers: {
     setRange: (state, action) => {
@@ -15,9 +16,13 @@ export const paginationSlice = createSlice({
     setTotalPages: (state, action) => {
       state.totalPages = Math.floor(action.payload / 9);
     },
+    setTotalFilteredEventsCount: (state, action) => {
+      state.totalFilteredEventsCount = action.payload;
+    },
   },
 });
 
-export const { setRange, setTotalPages } = paginationSlice.actions;
+export const { setRange, setTotalPages, setTotalFilteredEventsCount } =
+  paginationSlice.actions;
 
 export default paginationSlice.reducer;
