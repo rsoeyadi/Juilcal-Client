@@ -6,36 +6,32 @@ import {
   removeEvent,
 } from "../../../features/bookmarking/bookmarkingSlice";
 import { useSelector } from "react-redux";
+import { Event } from "../../types";
 
 type EventCardProps = {
-  id: string;
-  title: string;
-  date: string;
-  venue: string;
-  link: string;
+  event: Event;
 };
 
 type BookmarkButtonProps = {
-  eventId: string;
+  event: Event;
   dispatch: AppDispatch;
 };
 
-const BookmarkButton = ({ eventId, dispatch }: BookmarkButtonProps) => {
+const BookmarkButton = ({ event, dispatch }: BookmarkButtonProps) => {
   const bookmarks = useSelector(
     (state: RootState) => state.bookmarks.bookmarkedEvents
   );
 
   const [bookmarked, setBookmarked] = useState<boolean>(
-    bookmarks.includes(eventId)
+    bookmarks.includes(event.id)
   );
-
   const handleClick = () => {
     setBookmarked((previousBookmarked) => {
       const newBookmarked = !previousBookmarked;
       if (newBookmarked) {
-        dispatch(addEvent(eventId));
+        dispatch(addEvent(event));
       } else {
-        dispatch(removeEvent(eventId));
+        dispatch(removeEvent(event));
       }
 
       return newBookmarked;
@@ -54,15 +50,15 @@ const BookmarkButton = ({ eventId, dispatch }: BookmarkButtonProps) => {
     </button>
   );
 };
-export const EventCard = ({ id, title, date, venue, link }: EventCardProps) => {
+export const EventCard = ({ event }: EventCardProps) => {
   const dispatch = useAppDispatch();
   return (
     <>
-      <h1>{title}</h1>
-      <p>{date}</p>
-      <p> {venue}</p>
-      <p> {link}</p>
-      <BookmarkButton eventId={id} dispatch={dispatch} />
+      <h1>{event.title}</h1>
+      <p>{event.dateTime}</p>
+      <p> {event.venue}</p>
+      <p> {event.link}</p>
+      <BookmarkButton event={event} dispatch={dispatch} />
     </>
   );
 };

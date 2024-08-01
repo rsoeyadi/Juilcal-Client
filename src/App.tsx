@@ -119,13 +119,7 @@ function App() {
         <h1>{totalResultsCount} results</h1>
         <ul>
           {events?.map((event) => (
-            <EventCard
-              id={event.id}
-              title={event.title}
-              date={event.dateTime}
-              venue={event.venue}
-              link={event.link}
-            />
+            <EventCard event={event} />
           ))}
         </ul>
       </div>

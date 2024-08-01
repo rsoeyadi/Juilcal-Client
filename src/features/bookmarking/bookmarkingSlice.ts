@@ -1,24 +1,37 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Event as EventType } from "../../app/types";
 
 interface BookmarkedEventsState {
   bookmarkedEvents: string[];
+  actualEventsInformation: {
+    [id: string]: EventType;
+  };
 }
 
 const initialState: BookmarkedEventsState = {
   bookmarkedEvents: [],
+  actualEventsInformation: {},
 };
 
 export const bookmarkingSlice = createSlice({
   name: "bookmarks",
   initialState: initialState,
   reducers: {
-    addEvent: (state, action: PayloadAction<string>) => {
-      state.bookmarkedEvents.push(action.payload);
+    addEvent: (state, action: PayloadAction<EventType>) => {
+      const event = action.payload;
+      state.bookmarkedEvents.push(event.id);
+      state.actualEventsInformation[event.id] = event;
     },
-    removeEvent: (state, action: PayloadAction<string>) => {
+    removeEvent: (state, action: PayloadAction<EventType>) => {
+      const event = action.payload;
       state.bookmarkedEvents = state.bookmarkedEvents.filter(
-        (eventId) => eventId !== action.payload
+        (eventId) => eventId !== event.id
       );
+      delete state.actualEventsInformation[event.id];
+    },
+    setEventInformation: (state, action: PayloadAction<EventType>) => {
+      const event = action.payload;
+      state.actualEventsInformation[event.id] = event;
     },
   },
 });
