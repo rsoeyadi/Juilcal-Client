@@ -65,7 +65,6 @@ function App() {
         paginationValue.stop
       );
       setEvents(data);
-      console.log( { count})
       dispatch(setTotalFilteredEventsCount(count));
     },
     [paginationValue]
