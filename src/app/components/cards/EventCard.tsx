@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
-import { AppDispatch, RootState } from "../../store";
+import { RootState } from "../../store";
 import {
   addEvent,
   removeEvent,
@@ -14,29 +14,24 @@ type EventCardProps = {
 
 type BookmarkButtonProps = {
   event: Event;
-  dispatch: AppDispatch;
 };
 
-const BookmarkButton = ({ event, dispatch }: BookmarkButtonProps) => {
+export const BookmarkButton = ({ event }: BookmarkButtonProps) => {
+  const dispatch = useAppDispatch();
   const bookmarks = useSelector(
     (state: RootState) => state.bookmarks.bookmarkedEvents
   );
 
-  const [bookmarked, setBookmarked] = useState<boolean>(
-    bookmarks.includes(event.id)
-  );
-  const handleClick = () => {
-    setBookmarked((previousBookmarked) => {
-      const newBookmarked = !previousBookmarked;
-      if (newBookmarked) {
-        dispatch(addEvent(event));
-      } else {
-        dispatch(removeEvent(event));
-      }
+  const bookmarked = bookmarks.includes(event.id);
 
-      return newBookmarked;
-    });
+  const handleClick = () => {
+    if (bookmarked) {
+      dispatch(removeEvent(event));
+    } else {
+      dispatch(addEvent(event));
+    }
   };
+
   return (
     <button
       onClick={handleClick}
@@ -50,15 +45,15 @@ const BookmarkButton = ({ event, dispatch }: BookmarkButtonProps) => {
     </button>
   );
 };
+
 export const EventCard = ({ event }: EventCardProps) => {
-  const dispatch = useAppDispatch();
   return (
-    <>
+    <div>
       <h1>{event.title}</h1>
       <p>{event.dateTime}</p>
-      <p> {event.venue}</p>
-      <p> {event.link}</p>
-      <BookmarkButton event={event} dispatch={dispatch} />
-    </>
+      <p>{event.venue}</p>
+      <p>{event.link}</p>
+      <BookmarkButton event={event} />
+    </div>
   );
 };
