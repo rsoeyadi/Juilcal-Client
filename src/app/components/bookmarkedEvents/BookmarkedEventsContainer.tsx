@@ -1,8 +1,30 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
+import { Event } from "../../types";
+
+type BookmarkedEventCardProps = {
+  eventId: string;
+  bookmarkedEvents: {
+    [id: string]: Event;
+  };
+};
+
+const BookmarkedEventCard = ({
+  eventId,
+  bookmarkedEvents,
+}: BookmarkedEventCardProps) => {
+  return (
+    <div>
+      <h1>{bookmarkedEvents[eventId].title}</h1>
+      <p>{bookmarkedEvents[eventId].dateTime}</p>
+      <p> {bookmarkedEvents[eventId].venue}</p>
+      <p> {bookmarkedEvents[eventId].link}</p>
+    </div>
+  );
+};
 
 export const BookmarkedEventsContainer = () => {
-  const bookmarkedEventsIds = useSelector( 
+  const bookmarkedEventsIds = useSelector(
     (state: RootState) => state.bookmarks.bookmarkedEvents
   );
   const bookmarkedEvents = useSelector(
@@ -15,12 +37,10 @@ export const BookmarkedEventsContainer = () => {
       <ul>
         {bookmarkedEventsIds.map((id: string) => {
           return (
-            <div>
-              <h1>{bookmarkedEvents[id].title}</h1>
-              <p>{bookmarkedEvents[id].dateTime}</p>
-              <p> {bookmarkedEvents[id].venue}</p>
-              <p> {bookmarkedEvents[id].link}</p>
-            </div>
+            <BookmarkedEventCard
+              eventId={id}
+              bookmarkedEvents={bookmarkedEvents}
+            />
           );
         })}
       </ul>
