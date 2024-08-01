@@ -45,7 +45,7 @@ export const PaginationButton = ({
           : totalFilteredEventsCount
       )
     );
-  });
+  }, [totalEventsCount, totalFilteredEventsCount]);
 
   useEffect(() => {
     // set them to page 1 initially
