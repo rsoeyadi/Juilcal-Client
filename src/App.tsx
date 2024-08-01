@@ -38,7 +38,6 @@ function App() {
 
   const getEvents = useCallback(
     async (searchValue: string | null, filters: any) => {
-      const table = supabase.from("Events");
       let query = supabase.from("Events").select("*", { count: "exact" });
 
       if (searchValue) {
@@ -61,11 +60,12 @@ function App() {
         }
       });
 
-      const { data, count, error } = await query.range(
+      const { data, count } = await query.range(
         paginationValue.start,
         paginationValue.stop
       );
       setEvents(data);
+      console.log( { count})
       dispatch(setTotalFilteredEventsCount(count));
     },
     [paginationValue]

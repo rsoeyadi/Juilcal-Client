@@ -29,11 +29,15 @@ export const PaginationButton = ({
   const totalPages = useSelector(
     (state: RootState) => state.pagination.totalPages
   );
+  const searchValue = useSelector(
+    (state: RootState) => state.searchbar.searchbarValue
+  );
 
   useEffect(() => {
     dispatch(
       setTotalPages(
-        areAllFiltersCleared(filtersSliceValuesExcludingQueuedUpFilters)
+        areAllFiltersCleared(filtersSliceValuesExcludingQueuedUpFilters) &&
+          !searchValue
           ? totalEventsCount
           : totalFilteredEventsCount
       )
