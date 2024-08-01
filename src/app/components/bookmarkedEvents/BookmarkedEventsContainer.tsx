@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 
 export const BookmarkedEventsContainer = () => {
-  const bookmarkedEventsIds = useSelector(
+  const bookmarkedEventsIds = useSelector( 
     (state: RootState) => state.bookmarks.bookmarkedEvents
   );
   const bookmarkedEvents = useSelector(

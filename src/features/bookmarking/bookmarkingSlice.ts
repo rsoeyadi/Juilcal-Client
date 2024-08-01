@@ -2,8 +2,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Event as EventType } from "../../app/types";
 
 interface BookmarkedEventsState {
-  bookmarkedEvents: string[];
-  actualEventsInformation: {
+  bookmarkedEvents: string[]; // so this is an array of ids and it'll be in order since it's an array, which is good
+  actualEventsInformation: { // then we can just index into this... which will actually have all the information we need. And we also don't need to query the db again :D
     [id: string]: EventType;
   };
 }
