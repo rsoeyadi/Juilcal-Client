@@ -2,7 +2,7 @@ import { Pagination } from "@mui/material";
 import { ChangeEvent, useEffect } from "react";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import {
-  setRange,
+  setCurrentPage,
   setTotalPages,
 } from "../../../features/pagination/paginationSlice";
 import { useSelector } from "react-redux";
@@ -32,6 +32,9 @@ export const PaginationButton = ({
   const searchValue = useSelector(
     (state: RootState) => state.searchbar.searchbarValue
   );
+  const currentPage = useSelector(
+    (state: RootState) => state.pagination.currentPage
+  );
 
   useEffect(() => {
     dispatch(
@@ -46,17 +49,20 @@ export const PaginationButton = ({
 
   useEffect(() => {
     // set them to page 1 initially
-    dispatch(setRange(1));
+    dispatch(setCurrentPage(1));
   }, []);
 
   const handleClick = (page: number) => {
-    dispatch(setRange(page));
+    dispatch(setCurrentPage(page));
   };
 
   return (
     <>
       <Pagination
+        variant="outlined"
+        color="primary"
         count={totalPages}
+        page={currentPage}
         onChange={(event: ChangeEvent<unknown>, page: number) =>
           handleClick(page)
         }

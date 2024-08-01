@@ -6,6 +6,7 @@ import {
   FiltersState,
 } from "../../../features/filters/filtersSlice";
 import Button from "@mui/material/Button/Button";
+import { setCurrentPage } from "../../../features/pagination/paginationSlice";
 
 type ModifyButtonProps = {
   isSaveButton: boolean;
@@ -23,6 +24,7 @@ export const ModifyButton = ({ isSaveButton }: ModifyButtonProps) => {
     } else {
       dispatch(clearFilters());
     }
+    dispatch(setCurrentPage(1));
   };
   if (isSaveButton) {
     return (
