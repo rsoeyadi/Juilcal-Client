@@ -2,7 +2,13 @@ import { useEffect, useState } from "react";
 import { addFilter } from "../../../features/filters/filtersSlice";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { ReducersMappingKeys } from "../../types";
-import { InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
+import {
+  Box,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 
@@ -37,14 +43,25 @@ const SelectInputBox = ({ title, values, className }: DropDownInputProps) => {
   };
 
   return (
-    <>
-      <InputLabel>{title}</InputLabel>
+    <Box
+      sx={{
+        padding: "0 0.5em",
+      }}
+    >
+      <InputLabel
+        sx={{
+          margin: "1em 0 0.5em 0",
+        }}
+      >
+        {title}
+      </InputLabel>
       <Select
         defaultValue={"None"}
         value={value}
         label={title}
         onChange={(newValue: any) => handleChange(newValue, title)}
         className={className}
+        sx={{ width: 1 }}
       >
         {values.map((type) => (
           <MenuItem key={type} value={type}>
@@ -52,7 +69,7 @@ const SelectInputBox = ({ title, values, className }: DropDownInputProps) => {
           </MenuItem>
         ))}
       </Select>
-    </>
+    </Box>
   );
 };
 

@@ -116,7 +116,6 @@ export const FiltersMenu = () => {
           key={dropDownInput.title}
           title={dropDownInput.title}
           values={dropDownInput.values}
-          className={styles["filters-menu__dropdown--full-width"]}
         />
       ))}
 
