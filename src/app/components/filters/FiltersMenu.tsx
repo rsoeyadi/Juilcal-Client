@@ -2,6 +2,7 @@ import { Filters } from "../../../features/filters/filtersSlice";
 import { DateTimePickerInput } from "./DateTimePickerInput";
 import { DropDownInput } from "./DropDownInput";
 import { ModifyButton } from "./ModifyButton";
+import styles from "./FiltersMenu.module.css"; // Import the CSS module
 
 const dateTimePickerInputs = [
   { title: Filters.BEFORE_DATE, isDatePicker: true },
@@ -102,7 +103,7 @@ const dropDownInputs = [
 
 export const FiltersMenu = () => {
   return (
-    <>
+    <div className={styles["filters-menu"]}>
       {dateTimePickerInputs.map((dateTimePickerInput) => (
         <DateTimePickerInput
           key={dateTimePickerInput.title}
@@ -120,6 +121,6 @@ export const FiltersMenu = () => {
 
       <ModifyButton isSaveButton />
       <ModifyButton isSaveButton={false} />
-    </>
+    </div>
   );
 };
