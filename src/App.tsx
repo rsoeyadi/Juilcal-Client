@@ -10,6 +10,7 @@ import { EventCard } from "./app/components/cards/EventCard";
 import { PaginationButton } from "./app/components/pagination/PaginationButton";
 import { useAppDispatch } from "./app/hooks/useAppDispatch";
 import { setTotalFilteredEventsCount } from "./features/pagination/paginationSlice";
+import { BookmarkedEventsContainer } from "./app/components/bookmarkedEvents/BookmarkedEventsContainer";
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
@@ -113,6 +114,7 @@ function App() {
 
   return (
     <>
+      <BookmarkedEventsContainer />
       <SearchBarInput />
       <FiltersMenu />
       <div>
