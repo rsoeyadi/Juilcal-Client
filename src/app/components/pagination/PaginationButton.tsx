@@ -63,9 +63,7 @@ export const PaginationButton = ({
         color="primary"
         count={totalPages}
         page={currentPage}
-        onChange={(event: ChangeEvent<unknown>, page: number) =>
-          handleClick(page)
-        }
+        onChange={(_, page: number) => handleClick(page)}
       />
     </>
   );
