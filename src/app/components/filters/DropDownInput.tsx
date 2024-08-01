@@ -9,9 +9,10 @@ import { RootState } from "../../store";
 type DropDownInputProps = {
   title: ReducersMappingKeys;
   values: string[];
+  className?: string;
 };
 
-const SelectInputBox = ({ title, values }: DropDownInputProps) => {
+const SelectInputBox = ({ title, values, className }: DropDownInputProps) => {
   const dispatch = useAppDispatch();
   const [value, setValue] = useState<string>("None");
   const filterValue = useSelector(
@@ -43,6 +44,7 @@ const SelectInputBox = ({ title, values }: DropDownInputProps) => {
         value={value}
         label={title}
         onChange={(newValue: any) => handleChange(newValue, title)}
+        className={className}
       >
         {values.map((type) => (
           <MenuItem key={type} value={type}>
@@ -54,6 +56,10 @@ const SelectInputBox = ({ title, values }: DropDownInputProps) => {
   );
 };
 
-export const DropDownInput = ({ title, values }: DropDownInputProps) => {
-  return <SelectInputBox title={title} values={values} />;
+export const DropDownInput = ({
+  title,
+  values,
+  className,
+}: DropDownInputProps) => {
+  return <SelectInputBox title={title} values={values} className={className} />;
 };
