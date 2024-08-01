@@ -17,11 +17,14 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 function App() {
   const [events, setEvents] = useState<Event[] | null>([]);
-  const dispatch = useAppDispatch();
   const [totalEventsCount, setTotalEventsCount] = useState<
     number | undefined
   >();
-  const [totalResultsCount, setTotalResultsCount] = useState<number | undefined>(0);
+  const [totalResultsCount, setTotalResultsCount] = useState<
+    number | undefined
+  >(0);
+
+  const dispatch = useAppDispatch();
 
   const totalFilteredEventsCount = useSelector(
     (state: RootState) => state.pagination.totalFilteredEventsCount
