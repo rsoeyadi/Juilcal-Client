@@ -14,7 +14,7 @@ export const paginationSlice = createSlice({
       state.stop = action.payload * 9;
     },
     setTotalPages: (state, action) => {
-      state.totalPages = Math.floor(action.payload / 9);
+      state.totalPages = Math.ceil(action.payload / 9);
     },
     setTotalFilteredEventsCount: (state, action) => {
       state.totalFilteredEventsCount = action.payload;

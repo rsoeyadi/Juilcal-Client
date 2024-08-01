@@ -48,7 +48,7 @@ export const PaginationButton = ({
   const handleClick = (page: number) => {
     dispatch(setRange(page));
   };
-  console.log(totalPages)
+  console.log(totalPages);
 
   return (
     <>
