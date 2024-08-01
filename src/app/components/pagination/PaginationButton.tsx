@@ -1,5 +1,5 @@
 import { Pagination } from "@mui/material";
-import { ChangeEvent, useEffect } from "react";
+import { useEffect } from "react";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import {
   setCurrentPage,
