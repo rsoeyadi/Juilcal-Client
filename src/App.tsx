@@ -21,6 +21,11 @@ function App() {
   const [totalEventsCount, setTotalEventsCount] = useState<
     number | undefined
   >();
+  const [totalResultsCount, setTotalResultsCount] = useState<number | undefined>(0);
+
+  const totalFilteredEventsCount = useSelector(
+    (state: RootState) => state.pagination.totalFilteredEventsCount
+  );
 
   const searchValue = useSelector(
     (state: RootState) => state.searchbar.searchbarValue
@@ -35,6 +40,14 @@ function App() {
       ([key]) => key !== "queuedUpFilters"
     );
   }, [filtersSliceValues]);
+
+  useEffect(() => {
+    setTotalResultsCount(totalEventsCount);
+  }, [totalEventsCount]);
+
+  useEffect(() => {
+    setTotalResultsCount(totalFilteredEventsCount);
+  }, [totalFilteredEventsCount]);
 
   const getEvents = useCallback(
     async (searchValue: string | null, filters: any) => {
@@ -99,17 +112,20 @@ function App() {
     <>
       <SearchBarInput />
       <FiltersMenu />
-      <ul>
-        {events?.map((event) => (
-          <EventCard
-            id={event.id}
-            title={event.title}
-            date={event.dateTime}
-            venue={event.venue}
-            link={event.link}
-          />
-        ))}
-      </ul>
+      <div>
+        <h1>{totalResultsCount} results</h1>
+        <ul>
+          {events?.map((event) => (
+            <EventCard
+              id={event.id}
+              title={event.title}
+              date={event.dateTime}
+              venue={event.venue}
+              link={event.link}
+            />
+          ))}
+        </ul>
+      </div>
       <PaginationButton
         totalEventsCount={totalEventsCount}
         filtersSliceValuesExcludingQueuedUpFilters={
