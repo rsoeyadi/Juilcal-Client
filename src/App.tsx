@@ -33,6 +33,10 @@ function App() {
     (state: RootState) => state.componentDisplaying.isBookmarkedEventsMenuOpen
   );
 
+  const isOnDesktop = useSelector(
+    (state: RootState) => state.componentDisplaying.isOnDesktop
+  );
+
   const dispatch = useAppDispatch();
 
   const totalFilteredEventsCount = useSelector(
@@ -130,32 +134,34 @@ function App() {
     debouncedGetCount();
   }, [debouncedGetCount]);
 
-  return (
-    <>
-      {/* <SearchBarInput /> */}
-      <Header />
-      {isFilterMenuOpen && <FiltersMenu />}
-      {isBookmarkedEventsMenuOpen && <BookmarkedEventsContainer />}
-      {!isFilterMenuOpen && !isBookmarkedEventsMenuOpen && (
-        <>
-          <div>
-            <h1>{totalResultsCount} results</h1>
-            <ul>
-              {events?.map((event) => (
-                <EventCard event={event} key={event.id} />
-              ))}
-            </ul>
-          </div>
-          <PaginationButton
-            totalEventsCount={totalEventsCount}
-            filtersSliceValuesExcludingQueuedUpFilters={
-              filtersSliceValuesExcludingQueuedUpFilters
-            }
-          />
-        </>
-      )}
-    </>
-  );
+  if (!isOnDesktop) {
+    return (
+      <>
+        {/* <SearchBarInput /> */}
+        <Header />
+        {isFilterMenuOpen && <FiltersMenu />}
+        {isBookmarkedEventsMenuOpen && <BookmarkedEventsContainer />}
+        {!isFilterMenuOpen && !isBookmarkedEventsMenuOpen && (
+          <>
+            <div>
+              <h1>{totalResultsCount} results</h1>
+              <ul>
+                {events?.map((event) => (
+                  <EventCard event={event} key={event.id} />
+                ))}
+              </ul>
+            </div>
+            <PaginationButton
+              totalEventsCount={totalEventsCount}
+              filtersSliceValuesExcludingQueuedUpFilters={
+                filtersSliceValuesExcludingQueuedUpFilters
+              }
+            />
+          </>
+        )}
+      </>
+    );
+  }
 }
 
 export default App;
