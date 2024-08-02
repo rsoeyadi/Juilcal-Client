@@ -1,0 +1,18 @@
+.header {
+  height: 40px;
+}
+
+.header__title {
+  display: inline-flex;
+}
+
+.header__button-container {
+  display: inline-flex;
+  float: right;
+}
+
+.header__button {
+}
+
+.header__button--back {
+}

@@ -4,13 +4,9 @@ import { useSelector } from "react-redux";
 import debounce from "lodash.debounce";
 import { Event } from "./app/types";
 import { FiltersMenu } from "./app/components/filters/FiltersMenu";
-import { SearchBarInput } from "./app/components/filters/SearchBarInput";
 import { RootState } from "./app/store";
-import { EventCard } from "./app/components/cards/EventCard";
-import { PaginationButton } from "./app/components/pagination/PaginationButton";
 import { useAppDispatch } from "./app/hooks/useAppDispatch";
 import { setTotalFilteredEventsCount } from "./features/pagination/paginationSlice";
-import { BookmarkedEventsContainer } from "./app/components/bookmarkedEvents/BookmarkedEventsContainer";
 import { setIsOnDesktop } from "./features/componentDisplaying/componentDisplaying";
 import { Header } from "./app/components/Header";
 

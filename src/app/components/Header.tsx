@@ -31,21 +31,30 @@ export const Header = () => {
   };
 
   return (
-    <div className={styles["header"]}>
-      <div>
+    <div className={styles.header}>
+      <div className={styles.header__title}>
         {isFilterMenuOpen || isBookmarkedEventsMenuOpen ? (
-          <button onClick={() => handleClick("back")}>
+          <button
+            onClick={() => handleClick("back")}
+            className={`${styles.header__button} ${styles["header__button--back"]}`}
+          >
             <img src="./arrow_back.svg" alt="Back arrow" />
           </button>
         ) : (
           "Juilcal"
         )}
       </div>
-      <div>
-        <button onClick={() => handleClick("filter")}>
+      <div className={styles["header__button-container"]}>
+        <button
+          onClick={() => handleClick("filter")}
+          className={styles.header__button}
+        >
           <img src="./filter_list.svg" alt="Filter list" />
         </button>
-        <button onClick={() => handleClick("bookmark")}>
+        <button
+          onClick={() => handleClick("bookmark")}
+          className={styles.header__button}
+        >
           <img src="./bookmark_list.svg" alt="Bookmark list" />
         </button>
       </div>
