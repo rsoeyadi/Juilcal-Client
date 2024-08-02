@@ -12,6 +12,7 @@ import { useAppDispatch } from "./app/hooks/useAppDispatch";
 import { setTotalFilteredEventsCount } from "./features/pagination/paginationSlice";
 import { BookmarkedEventsContainer } from "./app/components/bookmarkedEvents/BookmarkedEventsContainer";
 import { setIsOnDesktop } from "./features/componentDisplaying/componentDisplaying";
+import { Header } from "./app/components/Header";
 
 // Supabase initialization
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
@@ -126,10 +127,11 @@ function App() {
 
   return (
     <>
-      <BookmarkedEventsContainer />
-      <SearchBarInput />
+      {/* <BookmarkedEventsContainer />
+      <SearchBarInput /> */}
+      <Header />
       <FiltersMenu />
-      <div>
+      {/* <div>
         <h1>{totalResultsCount} results</h1>
         <ul>
           {events?.map((event) => (
@@ -142,7 +144,7 @@ function App() {
         filtersSliceValuesExcludingQueuedUpFilters={
           filtersSliceValuesExcludingQueuedUpFilters
         }
-      />
+      /> */}
     </>
   );
 }
