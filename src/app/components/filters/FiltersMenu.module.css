@@ -1,39 +1,38 @@
-.filters-menu {
+.filters-menu-card {
   display: grid;
   grid-template-columns: 0.6fr 2fr;
-
-  width: 100%;
-  max-width: 500px;
-  height: 128px;
-
-  /* Gray/25 */
+  height: 130px;
   background: #fcfcfd;
-  /* Gray/400 */
   border: 1px solid #98a2b3;
-  /* Shadow/sm */
   box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1),
     0px 1px 2px rgba(16, 24, 40, 0.06);
   border-radius: 12px;
-
-  /* Inside auto layout */
-  flex: none;
-  order: 0;
-  align-self: stretch;
-  flex-grow: 0;
+  padding: 0.6em;
 }
 
-.filters-menu__content {
+.filters-menu-card__content {
+  margin-top: 1em;
+  padding-right: 1.8em;
+  font-family: "Plus Jakarta Sans";
 }
 
-.filters-menu__icon {
-  margin-top: 1.2em;
+.filters-menu-card__icon {
+  margin-top: 0.9em;
 }
 
-.filters-menu__title {
-  margin-bottom: 0;
-  font-size: 28px;
-  font-weight: bold;
+.filters-menu-card__title {
+  margin: 0;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 28px;
+  color: #101828;
 }
 
-.filters-menu__description {
+.filters-menu-card__description {
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  font-size: 17px;
+  color: #667085;
 }

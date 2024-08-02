@@ -104,15 +104,15 @@ const dropDownInputs = [
 
 const FiltersMenuHeadingCard = () => {
   return (
-    <div className={styles["filters-menu"]}>
+    <div className={styles["filters-menu-card"]}>
       <img
-        className={styles["filters-menu__icon"]}
+        className={styles["filters-menu-card__icon"]}
         src={"./filters-icon.svg"}
         alt="Filter Icon"
       />
-      <div className={styles["filters-menu__content"]}>
-        <p className={styles["filters-menu__title"]}>Filter your search</p>
-        <p className={styles["filters-menu__description"]}>
+      <div className={styles["filters-menu-card__content"]}>
+        <p className={styles["filters-menu-card__title"]}>Filter your search</p>
+        <p className={styles["filters-menu-card__description"]}>
           Search Juilliard's performance calendar using search terms and
           advanced filters
         </p>
