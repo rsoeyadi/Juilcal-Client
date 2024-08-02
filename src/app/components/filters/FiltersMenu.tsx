@@ -154,8 +154,16 @@ export const FiltersMenu = () => {
         ))}
       </Box>
 
-      <ModifyButton isSaveButton />
-      <ModifyButton isSaveButton={false} />
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: "repeat(2, 1fr)",
+          gridGap: "0.5em",
+        }}
+      >
+        <ModifyButton isSaveButton />
+        <ModifyButton isSaveButton={false} />
+      </Box>
     </Box>
   );
 };
