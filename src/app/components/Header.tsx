@@ -5,14 +5,10 @@ import {
   setIsBookmarkedEventsMenuOpen,
   setIsFilterMenuOpen,
 } from "../../features/componentDisplaying/componentDisplaying";
-import { useState } from "react";
+import styles from "./Header.module.css";
 
 export const Header = () => {
   const dispatch = useAppDispatch();
-  const [isLocalFilterMenuOpen, setIsLocalFilterMenuOpen] =
-    useState<boolean>(false);
-  const [isLocalBookmarkMenuOpen, setIsLocalBookmarkMenuOpen] =
-    useState<boolean>(false);
 
   const isFilterMenuOpen = useSelector(
     (state: RootState) => state.componentDisplaying.isFilterMenuOpen
@@ -23,33 +19,19 @@ export const Header = () => {
 
   const handleClick = (buttonType: string) => {
     if (buttonType === "filter") {
-      setIsLocalBookmarkMenuOpen(false);
       dispatch(setIsBookmarkedEventsMenuOpen(false));
-
-      setIsLocalFilterMenuOpen((prevValue: boolean) => {
-        const newValue = !prevValue;
-        dispatch(setIsFilterMenuOpen(newValue));
-        return newValue;
-      });
+      dispatch(setIsFilterMenuOpen(!isFilterMenuOpen));
     } else if (buttonType === "bookmark") {
-      setIsLocalFilterMenuOpen(false);
       dispatch(setIsFilterMenuOpen(false));
-
-      setIsLocalBookmarkMenuOpen((prevValue: boolean) => {
-        const newValue = !prevValue;
-        dispatch(setIsBookmarkedEventsMenuOpen(newValue));
-        return newValue;
-      });
+      dispatch(setIsBookmarkedEventsMenuOpen(!isBookmarkedEventsMenuOpen));
     } else if (buttonType === "back") {
-      setIsLocalFilterMenuOpen(false);
-      setIsLocalBookmarkMenuOpen(false);
       dispatch(setIsFilterMenuOpen(false));
       dispatch(setIsBookmarkedEventsMenuOpen(false));
     }
   };
 
   return (
-    <div>
+    <div className={styles["header"]}>
       <div>
         {isFilterMenuOpen || isBookmarkedEventsMenuOpen ? (
           <button onClick={() => handleClick("back")}>
