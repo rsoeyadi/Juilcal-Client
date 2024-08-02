@@ -43,28 +43,16 @@ const SelectInputBox = ({ title, values, className }: DropDownInputProps) => {
   };
 
   return (
-    <Box>
-      <InputLabel
-        sx={{
-          marginTop: "1em",
-        }}
-      >
-        {title}
-      </InputLabel>
+    <Box sx={{ marginTop: "1em", width: "100%" }}>
+      <InputLabel>{title}</InputLabel>
       <Select
-        defaultValue={"None"}
         value={value}
         label={title}
-        onChange={(newValue: any) => handleChange(newValue, title)}
+        onChange={(newValue: SelectChangeEvent) =>
+          handleChange(newValue, title)
+        }
         className={className}
-        sx={{
-          width: 1,
-          anchorOrigin: {
-            vertical: "bottom",
-            horizontal: "left",
-          },
-          marginThreshold: 0,
-        }}
+        fullWidth
       >
         {values.map((type) => (
           <MenuItem key={type} value={type}>
