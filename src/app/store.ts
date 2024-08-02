@@ -15,6 +15,7 @@ import {
   REGISTER,
   REHYDRATE,
 } from "redux-persist";
+import componentDisplayingReducer from "../features/componentDisplaying/componentDisplaying";
 
 const persistConfig = {
   key: "root",
@@ -26,6 +27,7 @@ const allReducers = combineReducers({
   filters: filtersReducer,
   bookmarks: bookmarkReducer,
   pagination: paginationReducer,
+  componentDisplaying: componentDisplayingReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, allReducers);
