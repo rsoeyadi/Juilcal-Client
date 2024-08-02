@@ -11,7 +11,9 @@ import { PaginationButton } from "./app/components/pagination/PaginationButton";
 import { useAppDispatch } from "./app/hooks/useAppDispatch";
 import { setTotalFilteredEventsCount } from "./features/pagination/paginationSlice";
 import { BookmarkedEventsContainer } from "./app/components/bookmarkedEvents/BookmarkedEventsContainer";
+import { setIsOnDesktop } from "./features/componentDisplaying/componentDisplaying";
 
+// Supabase initialization
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
@@ -30,13 +32,10 @@ function App() {
   const totalFilteredEventsCount = useSelector(
     (state: RootState) => state.pagination.totalFilteredEventsCount
   );
-
   const searchValue = useSelector(
     (state: RootState) => state.searchbar.searchbarValue
   );
-
   const paginationValue = useSelector((state: RootState) => state.pagination);
-
   const filtersSliceValues = useSelector((state: RootState) => state.filters);
 
   const filtersSliceValuesExcludingQueuedUpFilters = useMemo(() => {
@@ -52,6 +51,20 @@ function App() {
   useEffect(() => {
     setTotalResultsCount(totalFilteredEventsCount);
   }, [totalFilteredEventsCount]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      dispatch(
+        setIsOnDesktop(window.matchMedia("(min-width: 1024px)").matches)
+      );
+    };
+
+    // Initial check
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, [dispatch]);
 
   const getEvents = useCallback(
     async (searchValue: string | null, filters: any) => {
@@ -91,7 +104,6 @@ function App() {
     const { count } = await supabase
       .from("Events")
       .select("*", { count: "exact", head: true });
-
     setTotalEventsCount(count!);
   }, [paginationValue]);
 
@@ -121,7 +133,7 @@ function App() {
         <h1>{totalResultsCount} results</h1>
         <ul>
           {events?.map((event) => (
-            <EventCard event={event} />
+            <EventCard event={event} key={event.id} />
           ))}
         </ul>
       </div>
