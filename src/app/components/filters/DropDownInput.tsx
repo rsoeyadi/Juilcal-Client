@@ -4,6 +4,7 @@ import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { ReducersMappingKeys } from "../../types";
 import {
   Box,
+  FormControl,
   InputLabel,
   MenuItem,
   Select,
@@ -43,23 +44,29 @@ const SelectInputBox = ({ title, values, className }: DropDownInputProps) => {
   };
 
   return (
-    <Box sx={{ marginTop: "1em", width: "100%" }}>
-      <InputLabel>{title}</InputLabel>
-      <Select
-        value={value}
-        label={title}
-        onChange={(newValue: SelectChangeEvent) =>
-          handleChange(newValue, title)
-        }
-        className={className}
-        fullWidth
-      >
-        {values.map((type) => (
-          <MenuItem key={type} value={type}>
-            {type}
-          </MenuItem>
-        ))}
-      </Select>
+    <Box sx={{ minWidth: 120 }}>
+      <FormControl fullWidth>
+        <InputLabel>{title}</InputLabel>
+        <Select
+          autoWidth
+          value={value}
+          label={title}
+          onChange={(newValue: SelectChangeEvent) =>
+            handleChange(newValue, title)
+          }
+          className={className}
+          fullWidth
+        >
+          {values.map((type) => (
+            <MenuItem key={type} value={type}>
+              {" "}
+              <div style={{ overflow: "hidden", textOverflow: "ellipsis" }}>
+                {type}
+              </div>
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
     </Box>
   );
 };

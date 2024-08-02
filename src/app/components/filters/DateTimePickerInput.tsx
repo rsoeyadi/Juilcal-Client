@@ -43,10 +43,7 @@ export const DateTimePickerInput = ({
 
   if (isDatePicker) {
     return (
-      <Box
-        sx={{
-        }}
-      >
+      <Box>
         <DateTimePicker
           defaultValue={null}
           value={value}
