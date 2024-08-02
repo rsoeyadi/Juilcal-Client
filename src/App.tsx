@@ -9,6 +9,9 @@ import { useAppDispatch } from "./app/hooks/useAppDispatch";
 import { setTotalFilteredEventsCount } from "./features/pagination/paginationSlice";
 import { setIsOnDesktop } from "./features/componentDisplaying/componentDisplaying";
 import { Header } from "./app/components/Header";
+import { BookmarkedEventsContainer } from "./app/components/bookmarkedEvents/BookmarkedEventsContainer";
+import { PaginationButton } from "./app/components/pagination/PaginationButton";
+import { EventCard } from "./app/components/cards/EventCard";
 
 // Supabase initialization
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
@@ -23,6 +26,12 @@ function App() {
   const [totalResultsCount, setTotalResultsCount] = useState<
     number | undefined
   >(0);
+  const isFilterMenuOpen = useSelector(
+    (state: RootState) => state.componentDisplaying.isFilterMenuOpen
+  );
+  const isBookmarkedEventsMenuOpen = useSelector(
+    (state: RootState) => state.componentDisplaying.isBookmarkedEventsMenuOpen
+  );
 
   const dispatch = useAppDispatch();
 
@@ -123,24 +132,28 @@ function App() {
 
   return (
     <>
-      {/* <BookmarkedEventsContainer />
-      <SearchBarInput /> */}
+      {/* <SearchBarInput /> */}
       <Header />
-      <FiltersMenu />
-      {/* <div>
-        <h1>{totalResultsCount} results</h1>
-        <ul>
-          {events?.map((event) => (
-            <EventCard event={event} key={event.id} />
-          ))}
-        </ul>
-      </div>
-      <PaginationButton
-        totalEventsCount={totalEventsCount}
-        filtersSliceValuesExcludingQueuedUpFilters={
-          filtersSliceValuesExcludingQueuedUpFilters
-        }
-      /> */}
+      {isFilterMenuOpen && <FiltersMenu />}
+      {isBookmarkedEventsMenuOpen && <BookmarkedEventsContainer />}
+      {!isFilterMenuOpen && !isBookmarkedEventsMenuOpen && (
+        <>
+          <div>
+            <h1>{totalResultsCount} results</h1>
+            <ul>
+              {events?.map((event) => (
+                <EventCard event={event} key={event.id} />
+              ))}
+            </ul>
+          </div>
+          <PaginationButton
+            totalEventsCount={totalEventsCount}
+            filtersSliceValuesExcludingQueuedUpFilters={
+              filtersSliceValuesExcludingQueuedUpFilters
+            }
+          />
+        </>
+      )}
     </>
   );
 }
