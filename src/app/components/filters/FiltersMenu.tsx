@@ -129,13 +129,21 @@ export const FiltersMenu = () => {
       }}
     >
       <FiltersMenuHeadingCard />
-      {dateTimePickerInputs.map((dateTimePickerInput) => (
-        <DateTimePickerInput
-          key={dateTimePickerInput.title}
-          title={dateTimePickerInput.title}
-          isDatePicker={dateTimePickerInput.isDatePicker}
-        />
-      ))}
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: "repeat(2, 1fr)",
+          gridGap: "0.5em",
+        }}
+      >
+        {dateTimePickerInputs.map((dateTimePickerInput) => (
+          <DateTimePickerInput
+            key={dateTimePickerInput.title}
+            title={dateTimePickerInput.title}
+            isDatePicker={dateTimePickerInput.isDatePicker}
+          />
+        ))}
+      </Box>
       <Box>
         {[...dropDownInputs].map((dropDownInput) => (
           <DropDownInput

@@ -6,7 +6,7 @@ import { ReducersMappingKeys } from "../../types";
 import { useState, useEffect } from "react";
 import { RootState } from "../../store";
 import { useSelector } from "react-redux";
-import { Box, TextField } from "@mui/material";
+import { Box } from "@mui/material";
 
 type DateTimePickerInputProps = {
   title: ReducersMappingKeys;
@@ -43,7 +43,9 @@ export const DateTimePickerInput = ({
 
   if (isDatePicker) {
     return (
-      <Box>
+      <Box
+       
+      >
         <DateTimePicker
           defaultValue={null}
           value={value}
