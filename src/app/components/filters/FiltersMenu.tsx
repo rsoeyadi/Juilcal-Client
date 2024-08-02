@@ -104,26 +104,30 @@ const dropDownInputs = [
 
 export const FiltersMenu = () => {
   return (
-    <div className={styles["filters-menu"]}>
+    <Box
+      sx={{
+        padding: "0 1em",
+      }}
+    >
+      {dateTimePickerInputs.map((dateTimePickerInput) => (
+        <DateTimePickerInput
+          key={dateTimePickerInput.title}
+          title={dateTimePickerInput.title}
+          isDatePicker={dateTimePickerInput.isDatePicker}
+        />
+      ))}
       <Box>
-        {dateTimePickerInputs.map((dateTimePickerInput) => (
-          <DateTimePickerInput
-            key={dateTimePickerInput.title}
-            title={dateTimePickerInput.title}
-            isDatePicker={dateTimePickerInput.isDatePicker}
+        {[...dropDownInputs].map((dropDownInput) => (
+          <DropDownInput
+            key={dropDownInput.title}
+            title={dropDownInput.title}
+            values={dropDownInput.values}
           />
         ))}
       </Box>
-      {[...dropDownInputs].map((dropDownInput) => (
-        <DropDownInput
-          key={dropDownInput.title}
-          title={dropDownInput.title}
-          values={dropDownInput.values}
-        />
-      ))}
 
       <ModifyButton isSaveButton />
       <ModifyButton isSaveButton={false} />
-    </div>
+    </Box>
   );
 };
