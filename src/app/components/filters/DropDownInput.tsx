@@ -43,14 +43,10 @@ const SelectInputBox = ({ title, values, className }: DropDownInputProps) => {
   };
 
   return (
-    <Box
-      sx={{
-        padding: "0 0.5em",
-      }}
-    >
+    <Box>
       <InputLabel
         sx={{
-          margin: "1em 0 0.5em 0",
+          marginTop: "1em",
         }}
       >
         {title}
@@ -61,7 +57,14 @@ const SelectInputBox = ({ title, values, className }: DropDownInputProps) => {
         label={title}
         onChange={(newValue: any) => handleChange(newValue, title)}
         className={className}
-        sx={{ width: 1 }}
+        sx={{
+          width: 1,
+          anchorOrigin: {
+            vertical: "bottom",
+            horizontal: "left",
+          },
+          marginThreshold: 0,
+        }}
       >
         {values.map((type) => (
           <MenuItem key={type} value={type}>

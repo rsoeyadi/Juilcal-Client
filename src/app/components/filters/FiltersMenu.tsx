@@ -105,12 +105,13 @@ const dropDownInputs = [
 export const FiltersMenu = () => {
   return (
     <div className={styles["filters-menu"]}>
-      <Box sx={
-        {
-          display: 'grid',
-          gridTemplateColumns: 'repeat(2, 1fr)'
-        }
-      }>
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: "repeat(2, 1fr)",
+          gridGap: "1em"
+        }}
+      >
         {dateTimePickerInputs.map((dateTimePickerInput) => (
           <DateTimePickerInput
             key={dateTimePickerInput.title}
