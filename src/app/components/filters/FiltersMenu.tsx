@@ -2,8 +2,8 @@ import { Filters } from "../../../features/filters/filtersSlice";
 import { DateTimePickerInput } from "./DateTimePickerInput";
 import { DropDownInput } from "./DropDownInput";
 import { ModifyButton } from "./ModifyButton";
-import styles from "./FiltersMenu.module.css"; // Import the CSS module
 import { Box } from "@mui/material";
+import styles from "./FiltersMenu.module.css";
 
 const dateTimePickerInputs = [
   { title: Filters.BEFORE_DATE, isDatePicker: true },
@@ -102,6 +102,25 @@ const dropDownInputs = [
   },
 ];
 
+const FiltersMenuHeadingCard = () => {
+  return (
+    <div className={styles["filters-menu"]}>
+      <img
+        className={styles["filters-menu__icon"]}
+        src={"./filters-icon.svg"}
+        alt="Filter Icon"
+      />
+      <div className={styles["filters-menu__content"]}>
+        <p className={styles["filters-menu__title"]}>Filter your search</p>
+        <p className={styles["filters-menu__description"]}>
+          Search Juilliard's performance calendar using search terms and
+          advanced filters
+        </p>
+      </div>
+    </div>
+  );
+};
+
 export const FiltersMenu = () => {
   return (
     <Box
@@ -109,6 +128,7 @@ export const FiltersMenu = () => {
         padding: "0 1em",
       }}
     >
+      <FiltersMenuHeadingCard />
       {dateTimePickerInputs.map((dateTimePickerInput) => (
         <DateTimePickerInput
           key={dateTimePickerInput.title}

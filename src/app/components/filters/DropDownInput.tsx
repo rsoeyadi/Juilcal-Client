@@ -44,7 +44,7 @@ const SelectInputBox = ({ title, values, className }: DropDownInputProps) => {
   };
 
   return (
-    <Box sx={{ minWidth: 120, margin: '1.5em 0'}}>
+    <Box sx={{ minWidth: 120, margin: "1.5em 0" }}>
       <FormControl fullWidth>
         <InputLabel>{title}</InputLabel>
         <Select
@@ -59,7 +59,6 @@ const SelectInputBox = ({ title, values, className }: DropDownInputProps) => {
         >
           {values.map((type) => (
             <MenuItem key={type} value={type}>
-              {" "}
               <div style={{ overflow: "hidden", textOverflow: "ellipsis" }}>
                 {type}
               </div>
