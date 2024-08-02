@@ -3,6 +3,7 @@ import { DateTimePickerInput } from "./DateTimePickerInput";
 import { DropDownInput } from "./DropDownInput";
 import { ModifyButton } from "./ModifyButton";
 import styles from "./FiltersMenu.module.css"; // Import the CSS module
+import { Box } from "@mui/material";
 
 const dateTimePickerInputs = [
   { title: Filters.BEFORE_DATE, isDatePicker: true },
@@ -104,13 +105,20 @@ const dropDownInputs = [
 export const FiltersMenu = () => {
   return (
     <div className={styles["filters-menu"]}>
-      {dateTimePickerInputs.map((dateTimePickerInput) => (
-        <DateTimePickerInput
-          key={dateTimePickerInput.title}
-          title={dateTimePickerInput.title}
-          isDatePicker={dateTimePickerInput.isDatePicker}
-        />
-      ))}
+      <Box sx={
+        {
+          display: 'grid',
+          gridTemplateColumns: 'repeat(2, 1fr)'
+        }
+      }>
+        {dateTimePickerInputs.map((dateTimePickerInput) => (
+          <DateTimePickerInput
+            key={dateTimePickerInput.title}
+            title={dateTimePickerInput.title}
+            isDatePicker={dateTimePickerInput.isDatePicker}
+          />
+        ))}
+      </Box>
       {[...dropDownInputs].map((dropDownInput) => (
         <DropDownInput
           key={dropDownInput.title}
