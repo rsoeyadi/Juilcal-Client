@@ -6,7 +6,7 @@ import { Event } from "./app/types";
 import { FiltersMenu } from "./app/components/filters/FiltersMenu";
 import { RootState } from "./app/store";
 import { useAppDispatch } from "./app/hooks/useAppDispatch";
-import { setTotalFilteredEventsCount } from "./features/pagination/paginationSlice";
+import { setCurrentPage, setTotalFilteredEventsCount } from "./features/pagination/paginationSlice";
 import { setIsOnDesktop } from "./features/componentDisplaying/componentDisplaying";
 import { Header } from "./app/components/Header";
 import { BookmarkedEventsContainer } from "./app/components/bookmarkedEvents/BookmarkedEventsContainer";
@@ -133,6 +133,11 @@ function App() {
   useEffect(() => {
     debouncedGetCount();
   }, [debouncedGetCount]);
+
+  useEffect(() => {
+    // set them to page 1 initially
+    dispatch(setCurrentPage(1));
+  }, []);
 
   if (!isOnDesktop) {
     return (

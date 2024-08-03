@@ -47,11 +47,6 @@ export const PaginationButton = ({
     );
   }, [totalEventsCount, totalFilteredEventsCount]);
 
-  // useEffect(() => {
-  //   // set them to page 1 initially
-  //   dispatch(setCurrentPage(1));
-  // }, []);
-
   const handleClick = (page: number) => {
     dispatch(setCurrentPage(page));
   };
