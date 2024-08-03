@@ -1,6 +1,6 @@
 .header {
   height: 40px;
-  padding: 0.6em;
+  padding: 1em 1em 0;
 }
 
 .header__title {
@@ -13,6 +13,7 @@
 }
 
 .header__button {
+  margin-left: 10px;
 }
 
 .header__button--back {
