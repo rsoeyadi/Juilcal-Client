@@ -1,5 +1,6 @@
 .header {
   height: 40px;
+  padding: 0.6em;
 }
 
 .header__title {

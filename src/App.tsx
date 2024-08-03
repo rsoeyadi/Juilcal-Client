@@ -6,12 +6,16 @@ import { Event } from "./app/types";
 import { FiltersMenu } from "./app/components/filters/FiltersMenu";
 import { RootState } from "./app/store";
 import { useAppDispatch } from "./app/hooks/useAppDispatch";
-import { setCurrentPage, setTotalFilteredEventsCount } from "./features/pagination/paginationSlice";
+import {
+  setCurrentPage,
+  setTotalFilteredEventsCount,
+} from "./features/pagination/paginationSlice";
 import { setIsOnDesktop } from "./features/componentDisplaying/componentDisplaying";
 import { Header } from "./app/components/Header";
 import { BookmarkedEventsContainer } from "./app/components/bookmarkedEvents/BookmarkedEventsContainer";
 import { PaginationButton } from "./app/components/pagination/PaginationButton";
 import { EventCard } from "./app/components/cards/EventCard";
+import "./App.css";
 
 // Supabase initialization
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
@@ -148,20 +152,20 @@ function App() {
         {isBookmarkedEventsMenuOpen && <BookmarkedEventsContainer />}
         {!isFilterMenuOpen && !isBookmarkedEventsMenuOpen && (
           <>
-            <div>
+            <div className="events__container">
               <h1>{totalResultsCount} results</h1>
               <ul>
                 {events?.map((event) => (
                   <EventCard event={event} key={event.id} />
                 ))}
               </ul>
+              <PaginationButton
+                totalEventsCount={totalEventsCount}
+                filtersSliceValuesExcludingQueuedUpFilters={
+                  filtersSliceValuesExcludingQueuedUpFilters
+                }
+              />
             </div>
-            <PaginationButton
-              totalEventsCount={totalEventsCount}
-              filtersSliceValuesExcludingQueuedUpFilters={
-                filtersSliceValuesExcludingQueuedUpFilters
-              }
-            />
           </>
         )}
       </>
