@@ -48,7 +48,16 @@ export const Header = () => {
             </button>
           </Box>
         ) : (
-          "Juilcal"
+          <Box
+            sx={{
+              fontStyle: "normal",
+              fontWeight: 700,
+              fontSize: "30px",
+              color: "#0171BB",
+            }}
+          >
+            Juilcal
+          </Box>
         )}
       </div>
       <div className={styles["header__button-container"]}>
