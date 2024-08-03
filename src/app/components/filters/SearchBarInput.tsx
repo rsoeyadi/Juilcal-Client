@@ -59,6 +59,12 @@ export const SearchBarInput = () => {
             "& .MuiInputBase-input": {
               padding: "16px 14px",
             },
+            "& .MuiInputLabel-root": {
+              left: "9px",
+            },
+            "& .MuiInputLabel-shrink": {
+              left: "1px",
+            },
           }}
         />
       </Box>
