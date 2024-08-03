@@ -10,7 +10,7 @@ export const SearchBarInput = () => {
 
   useEffect(() => {
     dispatch(setSearchbarValue(value));
-  }, [value]);
+  }, [value, dispatch]);
 
   const handleButtonClick = () => {
     if (textInputRef.current) {
@@ -25,52 +25,71 @@ export const SearchBarInput = () => {
   };
 
   return (
-    <div>
-      <Box
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        px: 1,
+        fontSize: 20,
+      }}
+    >
+      <TextField
+        id="outlined-basic"
+        label="Search"
+        variant="outlined"
+        inputRef={textInputRef}
+        onKeyDown={handleKeyPress}
         sx={{
-          px: 2,
-          justifyContent: "normal",
-          fontSize: 20,
-          color: "blue",
-          margin: 1,
-          borderWidth: "10px",
+          flex: 1,
+          "& .MuiOutlinedInput-root": {
+            borderRadius: "30px",
+            "& fieldset": {
+              borderWidth: "2px",
+            },
+            "&:hover fieldset": {
+              borderColor: "gray",
+            },
+            "&.Mui-focused fieldset": {
+              borderColor: "blue",
+            },
+          },
+          "& .MuiInputBase-input": {
+            padding: "16px 14px",
+          },
+          "& .MuiInputLabel-root": {
+            left: "9px",
+          },
+          "& .MuiInputLabel-shrink": {
+            left: "1px",
+          },
+        }}
+      />
+      <Button
+        variant="contained"
+        onClick={handleButtonClick}
+        sx={{
+          marginLeft: "10px",
+          backgroundColor: "#f5f5f5",
+          color: "#707070",
+          fontSize: "15px",
+          padding: "10px 20px",
+          borderRadius: "30px",
+          border: "none",
+          "&:hover": {
+            backgroundColor: "#e0e0e0",
+            border: "1px solid #c8c8c8",
+            color: "#707070",
+          },
+          "&:focus": {
+            border: "1px solid #c8c8c8",
+            backgroundColor: "#f5f5f5",
+            color: "#707070",
+          },
         }}
       >
-        <TextField
-          id="outlined-basic"
-          label="Search"
-          variant="outlined"
-          inputRef={textInputRef}
-          onKeyDown={handleKeyPress}
-          sx={{
-            width: "100%",
-            "& .MuiOutlinedInput-root": {
-              borderRadius: "30px",
-              "& fieldset": {
-                borderWidth: "2px",
-              },
-              "&:hover fieldset": {
-                borderColor: "gray",
-              },
-              "&.Mui-focused fieldset": {
-                borderColor: "blue",
-              },
-            },
-            "& .MuiInputBase-input": {
-              padding: "16px 14px",
-            },
-            "& .MuiInputLabel-root": {
-              left: "9px",
-            },
-            "& .MuiInputLabel-shrink": {
-              left: "1px",
-            },
-          }}
-        />
-      </Box>
-      <Button variant="contained" onClick={handleButtonClick}>
         Search
       </Button>
-    </div>
+    </Box>
   );
 };
