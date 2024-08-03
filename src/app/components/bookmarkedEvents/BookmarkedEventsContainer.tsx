@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { Event } from "../../types";
 import { BookmarkButton } from "../cards/EventCard";
+import { formatDate } from "../../utils";
 
 type BookmarkedEventCardProps = {
   event: Event;
@@ -11,7 +12,7 @@ const BookmarkedEventCard = ({ event }: BookmarkedEventCardProps) => {
   return (
     <div>
       <h1>{event.title}</h1>
-      <p>{event.dateTime}</p>
+      <p>{formatDate(event.dateTime)}</p>
       <p>{event.venue}</p>
       <p>{event.link}</p>
       <BookmarkButton event={event} />

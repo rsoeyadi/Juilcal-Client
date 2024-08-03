@@ -6,6 +6,7 @@ import {
 } from "../../../features/bookmarking/bookmarkingSlice";
 import { useSelector } from "react-redux";
 import { Event } from "../../types";
+import { formatDate } from "../../utils";
 
 type EventCardProps = {
   event: Event;
@@ -49,7 +50,7 @@ export const EventCard = ({ event }: EventCardProps) => {
   return (
     <div>
       <h1>{event.title}</h1>
-      <p>{event.dateTime}</p>
+      <p>{formatDate(event.dateTime)}</p>
       <p>{event.venue}</p>
       <p>{event.link}</p>
       <BookmarkButton event={event} />

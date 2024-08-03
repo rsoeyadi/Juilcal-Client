@@ -14,6 +14,7 @@ import {
   setMiscellaneous,
   setVenue,
 } from "../features/filters/filtersSlice";
+import { DateTime } from "luxon";
 
 export const applySavedFilters = (
   queuedUpFilters: Record<string, string | null>,
@@ -61,4 +62,17 @@ export const applySavedFilters = (
         break;
     }
   });
+};
+
+export const formatDate = (dateTime: string) => {
+  let eventDateTime = DateTime.fromISO(dateTime, { zone: "utc" });
+
+  // the dateTime is stored incorrectly from the web scraper so adding 4h here......
+  const adjustedDateTime = eventDateTime.plus({ hours: 4 });
+
+  const localDateTime = adjustedDateTime
+    .setZone("America/New_York")
+    .toFormat("cccc, LLL dd, yyyy, h:mma");
+
+  return localDateTime;
 };

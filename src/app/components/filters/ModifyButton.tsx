@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { applySavedFilters } from "../../filterUtils";
+import { applySavedFilters } from "../../utils";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import {
   clearFilters,
