@@ -6,6 +6,7 @@ import {
   setIsFilterMenuOpen,
 } from "../../features/componentDisplaying/componentDisplaying";
 import styles from "./Header.module.css";
+import { Box } from "@mui/material";
 
 export const Header = () => {
   const dispatch = useAppDispatch();
@@ -51,19 +52,25 @@ export const Header = () => {
         >
           <img src="./filter_list.svg" alt="Filter list" />
         </button>
-        <button
-          onClick={() => handleClick("bookmark")}
-          className={styles.header__button}
+        <Box
+          sx={{
+            marginLeft: "0.7em",
+          }}
         >
-          <img
-            src={
-              isBookmarkedEventsMenuOpen
-                ? "/bookmark-filled.svg"
-                : "/bookmark.svg"
-            }
-            alt="Icon"
-          />
-        </button>
+          <button
+            onClick={() => handleClick("bookmark")}
+            className={styles.header__button}
+          >
+            <img
+              src={
+                isBookmarkedEventsMenuOpen
+                  ? "/bookmark-filled.svg"
+                  : "/bookmark.svg"
+              }
+              alt="Icon"
+            />
+          </button>
+        </Box>
       </div>
     </div>
   );
