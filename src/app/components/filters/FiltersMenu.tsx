@@ -3,7 +3,7 @@ import { DateTimePickerInput } from "./DateTimePickerInput";
 import { DropDownInput } from "./DropDownInput";
 import { ModifyButton } from "./ModifyButton";
 import { Box } from "@mui/material";
-import styles from "./FiltersMenu.module.css";
+import MenuHeaderCard from "../MenuHeaderCard";
 
 const dateTimePickerInputs = [
   { title: Filters.BEFORE_DATE, isDatePicker: true },
@@ -102,25 +102,6 @@ const dropDownInputs = [
   },
 ];
 
-const FiltersMenuHeadingCard = () => {
-  return (
-    <div className={styles["filters-menu-card"]}>
-      <img
-        className={styles["filters-menu-card__icon"]}
-        src={"./filters-icon.svg"}
-        alt="Filter Icon"
-      />
-      <div className={styles["filters-menu-card__content"]}>
-        <p className={styles["filters-menu-card__title"]}>Filter your search</p>
-        <p className={styles["filters-menu-card__description"]}>
-          Search Juilliard's performance calendar using search terms and
-          advanced filters
-        </p>
-      </div>
-    </div>
-  );
-};
-
 export const FiltersMenu = () => {
   return (
     <Box
@@ -128,7 +109,11 @@ export const FiltersMenu = () => {
         padding: "0 1em 2em",
       }}
     >
-      <FiltersMenuHeadingCard />
+      <MenuHeaderCard
+        iconSrc="./filters-icon.svg"
+        title="Filter your search"
+        description="Search Juilliard's performance calendar using search terms and advanced filters"
+      />
       <Box
         sx={{
           display: "grid",
@@ -145,7 +130,7 @@ export const FiltersMenu = () => {
         ))}
       </Box>
       <Box>
-        {[...dropDownInputs].map((dropDownInput) => (
+        {dropDownInputs.map((dropDownInput) => (
           <DropDownInput
             key={dropDownInput.title}
             title={dropDownInput.title}
@@ -153,7 +138,6 @@ export const FiltersMenu = () => {
           />
         ))}
       </Box>
-
       <Box
         sx={{
           display: "grid",
@@ -167,3 +151,5 @@ export const FiltersMenu = () => {
     </Box>
   );
 };
+
+export default FiltersMenu;

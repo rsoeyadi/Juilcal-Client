@@ -1,4 +1,4 @@
-.filters-menu-card {
+.menu-header-card {
   display: grid;
   grid-template-columns: 0.6fr 2fr;
   height: 130px;
@@ -11,15 +11,15 @@
   margin: 1em 0;
 }
 
-.filters-menu-card__content {
+.menu-header-card__content {
   margin-top: 1em;
 }
 
-.filters-menu-card__icon {
+.menu-header-card__icon {
   margin-top: 0.9em;
 }
 
-.filters-menu-card__title {
+.menu-header-card__title {
   margin: 0;
   font-style: normal;
   font-weight: 700;
@@ -28,7 +28,7 @@
   color: #101828;
 }
 
-.filters-menu-card__description {
+.menu-header-card__description {
   font-style: normal;
   font-weight: 400;
   line-height: 20px;
