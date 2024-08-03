@@ -16,6 +16,8 @@ import { BookmarkedEventsContainer } from "./app/components/bookmarkedEvents/Boo
 import { PaginationButton } from "./app/components/pagination/PaginationButton";
 import { EventCard } from "./app/components/cards/EventCard";
 import "./App.css";
+import { SearchBarInput } from "./app/components/filters/SearchBarInput";
+import { Box } from "@mui/material";
 
 // Supabase initialization
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
@@ -146,14 +148,15 @@ function App() {
   if (!isOnDesktop) {
     return (
       <>
-        {/* <SearchBarInput /> */}
         <Header />
         {isFilterMenuOpen && <FiltersMenu />}
         {isBookmarkedEventsMenuOpen && <BookmarkedEventsContainer />}
         {!isFilterMenuOpen && !isBookmarkedEventsMenuOpen && (
           <>
             <div className="events__container">
-              <h1>{totalResultsCount} results</h1>
+              
+                <SearchBarInput />
+              <p>{totalResultsCount} results</p>
               <ul>
                 {events?.map((event) => (
                   <EventCard event={event} key={event.id} />

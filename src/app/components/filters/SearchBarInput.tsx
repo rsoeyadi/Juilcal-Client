@@ -1,4 +1,4 @@
-import { Button, TextField } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { setSearchbarValue } from "../../../features/search/searchbarSlice";
@@ -26,13 +26,42 @@ export const SearchBarInput = () => {
 
   return (
     <div>
-      <TextField
-        id="outlined-basic"
-        label="Search"
-        variant="outlined"
-        inputRef={textInputRef}
-        onKeyDown={handleKeyPress}
-      />
+      <Box
+        sx={{
+          px: 2,
+          justifyContent: "normal",
+          fontSize: 20,
+          color: "blue",
+          margin: 1,
+          borderWidth: "10px",
+        }}
+      >
+        <TextField
+          id="outlined-basic"
+          label="Search"
+          variant="outlined"
+          inputRef={textInputRef}
+          onKeyDown={handleKeyPress}
+          sx={{
+            width: "100%",
+            "& .MuiOutlinedInput-root": {
+              borderRadius: "30px",
+              "& fieldset": {
+                borderWidth: "2px",
+              },
+              "&:hover fieldset": {
+                borderColor: "gray",
+              },
+              "&.Mui-focused fieldset": {
+                borderColor: "blue",
+              },
+            },
+            "& .MuiInputBase-input": {
+              padding: "16px 14px",
+            },
+          }}
+        />
+      </Box>
       <Button variant="contained" onClick={handleButtonClick}>
         Search
       </Button>
