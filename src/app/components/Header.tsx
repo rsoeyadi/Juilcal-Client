@@ -35,12 +35,18 @@ export const Header = () => {
     <div className={styles.header}>
       <div className={styles.header__title}>
         {isFilterMenuOpen || isBookmarkedEventsMenuOpen ? (
-          <button
-            onClick={() => handleClick("back")}
-            className={`${styles.header__button} ${styles["header__button--back"]}`}
+          <Box
+            sx={{
+              marginTop: "5px",
+            }}
           >
-            <img src="./arrow_back.svg" alt="Back arrow" />
-          </button>
+            <button
+              onClick={() => handleClick("back")}
+              className={`${styles.header__button} ${styles["header__button--back"]}`}
+            >
+              <img src="./arrow_back.svg" alt="Back arrow" />
+            </button>
+          </Box>
         ) : (
           "Juilcal"
         )}
