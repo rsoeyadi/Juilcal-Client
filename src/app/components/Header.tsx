@@ -55,7 +55,14 @@ export const Header = () => {
           onClick={() => handleClick("bookmark")}
           className={styles.header__button}
         >
-          <img src="./bookmark_list.svg" alt="Bookmark list" />
+          <img
+            src={
+              isBookmarkedEventsMenuOpen
+                ? "/bookmark-filled.svg"
+                : "/bookmark.svg"
+            }
+            alt="Icon"
+          />
         </button>
       </div>
     </div>
