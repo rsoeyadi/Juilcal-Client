@@ -125,7 +125,7 @@ export const FiltersMenu = () => {
   return (
     <Box
       sx={{
-        padding: "0 1em",
+        padding: "0 1em 2em",
       }}
     >
       <FiltersMenuHeadingCard />
