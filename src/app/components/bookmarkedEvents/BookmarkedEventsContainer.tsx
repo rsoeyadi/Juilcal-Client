@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { EventCard } from "../cards/EventCard";
-
+import MenuHeaderCard from "../MenuHeaderCard";
+import { Box } from "@mui/material";
 
 export const BookmarkedEventsContainer = () => {
   const bookmarkedEventsIds = useSelector(
@@ -12,8 +13,16 @@ export const BookmarkedEventsContainer = () => {
   );
 
   return (
-    <div>
-      <h1>Bookmarked Events</h1>
+    <Box
+      sx={{
+        padding: "0 1em 2em",
+      }}
+    >
+      <MenuHeaderCard
+        iconSrc="./bookmarked-header-icon.svg"
+        title="Saved Events"
+        description="Here are your bookmarked events. To remove a bookmark, click the bookmark icon on the event."
+      />
       <ul>
         {bookmarkedEventsIds.map((id: string) => {
           const event = bookmarkedEvents[id];
@@ -23,6 +32,6 @@ export const BookmarkedEventsContainer = () => {
           return null;
         })}
       </ul>
-    </div>
+    </Box>
   );
 };
