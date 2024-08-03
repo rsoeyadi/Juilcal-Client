@@ -78,11 +78,9 @@ export const SearchBarInput = () => {
           border: "none",
           "&:hover": {
             backgroundColor: "#e0e0e0",
-            border: "1px solid #c8c8c8",
             color: "#707070",
           },
           "&:focus": {
-            border: "1px solid #c8c8c8",
             backgroundColor: "#f5f5f5",
             color: "#707070",
           },
