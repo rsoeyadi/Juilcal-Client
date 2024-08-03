@@ -1,4 +1,4 @@
-import { Pagination } from "@mui/material";
+import { Box, Pagination } from "@mui/material";
 import { useEffect } from "react";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import {
@@ -52,14 +52,28 @@ export const PaginationButton = ({
   };
 
   return (
-    <>
+    <Box
+      my={2}
+      display="flex"
+      justifyContent="center"
+      sx={{
+        width: "100%",
+      }}
+    >
       <Pagination
-        variant="outlined"
         color="primary"
+        shape="rounded"
         count={totalPages}
         page={currentPage}
         onChange={(_, page: number) => handleClick(page)}
+        siblingCount={0} // number of page items to show before and after the current page
+        boundaryCount={1} // the number of page items to show at the start and end of the pagination
+        sx={{
+          "& .MuiPagination-ul": {
+            justifyContent: "center",
+          },
+        }}
       />
-    </>
+    </Box>
   );
 };
