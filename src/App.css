@@ -363,6 +363,67 @@ input[type="reset"] {
   outline: inherit;
 }
 
+ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+/* Reset default anchor styles */
+a {
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Inherit color from parent element */
+  font-style: normal; /* Reset font style */
+  font-weight: normal; /* Reset font weight */
+  font-size: inherit; /* Inherit font size from parent element */
+  line-height: inherit; /* Inherit line height from parent element */
+  border: none; /* Remove border */
+  background: none; /* Remove background */
+  padding: 0; /* Reset padding */
+  margin: 0; /* Reset margin */
+  display: inline; /* Ensure display is inline */
+  vertical-align: baseline; /* Align with text */
+  cursor: pointer; /* Change cursor to pointer */
+  transition: none; /* Remove any transition */
+  outline: none; /* Remove outline */
+}
+
+/* Reset visited, hover, active, and focus states */
+a:visited,
+a:hover,
+a:active,
+a:focus {
+  color: inherit; /* Inherit color from parent element */
+  text-decoration: none; /* Remove underline */
+  outline: none; /* Remove outline */
+}
+
+/* Additional reset for links in different contexts */
+a:link {
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Inherit color from parent element */
+}
+
+a:link:hover,
+a:link:focus,
+a:link:active {
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Inherit color from parent element */
+  outline: none; /* Remove outline */
+}
+
+/* For buttons styled as links */
+a.button,
+a.button:visited,
+a.button:hover,
+a.button:focus,
+a.button:active {
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Inherit color from parent element */
+  outline: none; /* Remove outline */
+  cursor: pointer; /* Change cursor to pointer */
+}
+
+
 .events__container {
   padding: 0.6em;
 }

@@ -80,3 +80,42 @@ export const formatDate = (dateTime: string) => {
 
   return localDateTime;
 };
+
+const venuePhotos: { [key: string]: string } = {
+  "Morse Recital Hall": "./venue-photos/morse-hall.jpg",
+  "Saint Thomas Church": "./venue-photos/saint-thomas-church.jpg",
+  "Weill Recital Hall": "./venue-photos/Weill-Recital-Hall.jpg",
+  "Rm 309 - Bruno Walter Orchestral Studio": "./venue-photos/309.jpg",
+  "Christ and St. Stephen's Church": "./venue-photos/christ-st-stephen.jpg",
+  "Room 305 - Ellen and James Marcus Vocal Arts Studio":
+    "./venue-photos/503.jpg",
+  "David Geffen Hall": "./venue-photos/david-geffen.jpg",
+  "ARRAY Creative Campus": "./venue-photos/juilliard.jpg",
+  "Kaufman Dance Studio": "./venue-photos/kaufman-dance.jpg",
+  "Terrace Theater, The Kennedy Center": "./venue-photos/kennedy.jpg",
+  "Merkin Hall": "./venue-photos/merkin-hall.jpg",
+  "Corpus Christi Church": "./venue-photos/corpus-christi-church.jpg",
+  "Paul Hall": "./venue-photos/paul-hall.jpg",
+  "Alice Tully Hall": "./venue-photos/alice-tully-hall.jpg",
+  "Peter Jay Sharp Theater": "./venue-photos/peter-jay-sharp.jpg",
+  "Morse Hall": "./venue-photos/morse-hall.jpg",
+  "Carnegie Hall": "./venue-photos/carnegie-hall.jpg",
+  "Dizzy's Club": "./venue-photos/dizzys-club.jpg",
+  "Woolsey Hall at Yale University": "./venue-photos/woolsey-hall-yale.jpg",
+  "Holy Trinity Lutheran Church": "./venue-photos/holy-trinity-church.jpg",
+  "Blue Note Jazz Club": "./venue-photos/blue-note.jpg",
+  "Rosemary and Meredith Willson Theater":
+    "./venue-photos/rosemary-meredith-willson-theater.jpg",
+  "Stephanie P. McClelland Theater": "./venue-photos/juilliard.jpg",
+  "Good Shepherd-Faith Presbyterian Church":
+    "./venue-photos/good-shepherd-faith.jpg",
+  "The Cathedral Church of St. John the Divine":
+    "./venue-photos/st-john-divine.jpg",
+  "Glorya Kaufman Dance Studio": "./venue-photos/kaufman-dance.jpg",
+  "Chelsea Factory": "./venue-photos/chelsea-factory.jpg",
+  "Rm 543 - Harris/Woolfson Orchestral Studio": "./venue-photos/juilliard.jpg",
+};
+
+export const getVenuePhoto = (venue: string | null): string => {
+  return venue ? venuePhotos[venue] || "juilliard.jpg" : "juilliard.jpg";
+};

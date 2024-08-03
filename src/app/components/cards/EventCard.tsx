@@ -6,7 +6,8 @@ import {
 } from "../../../features/bookmarking/bookmarkingSlice";
 import { useSelector } from "react-redux";
 import { Event } from "../../types";
-import { formatDate } from "../../utils";
+import { formatDate, getVenuePhoto } from "../../utils";
+import { Box } from "@mui/material"; // Ensure this is imported
 
 type EventCardProps = {
   event: Event;
@@ -33,27 +34,123 @@ export const BookmarkButton = ({ event }: BookmarkButtonProps) => {
   };
 
   return (
-    <button
+    <Box
+      component="button"
       onClick={handleClick}
       aria-pressed={bookmarked}
       aria-label="Bookmark"
+      sx={{}}
     >
       <img
         src={bookmarked ? "/bookmark-filled.svg" : "/bookmark.svg"}
         alt="Icon"
       />
-    </button>
+    </Box>
   );
 };
 
 export const EventCard = ({ event }: EventCardProps) => {
+  const venuePhoto = getVenuePhoto(event.venue);
+
   return (
-    <div>
-      <h1>{event.title}</h1>
-      <p>{formatDate(event.dateTime)}</p>
-      <p>{event.venue}</p>
-      <p>{event.link}</p>
-      <BookmarkButton event={event} />
-    </div>
+    <Box
+      sx={{
+        padding: "0 0.6em",
+        marginBottom: "2.5em",
+      }}
+    >
+      <Box
+        component="img"
+        src={venuePhoto}
+        alt={event.venue || "Default venue"}
+        sx={{
+          width: "100%",
+          height: "auto",
+          marginTop: "1em",
+          borderRadius: "12px",
+        }}
+      />
+      <Box
+        component="h1"
+        sx={{
+          fontStyle: "normal",
+          fontWeight: 400,
+          fontSize: "24px",
+          lineHeight: "30px",
+        }}
+      >
+        {event.title}
+      </Box>
+      <Box
+        component="p"
+        sx={{
+          fontStyle: "normal",
+          fontWeight: 400,
+          fontSize: "16px",
+          lineHeight: "20px",
+          color: "#474C58",
+          marginBottom: "0",
+        }}
+      >
+        {formatDate(event.dateTime)}
+      </Box>
+      <Box
+        component="p"
+        sx={{
+          fontStyle: "normal",
+          fontWeight: 400,
+          fontSize: "16px",
+          lineHeight: "20px",
+          color: "#999FAA",
+          flex: "none",
+          order: 1,
+          alignSelf: "stretch",
+          flexGrow: 0,
+          width: "349px",
+          height: "20px",
+          margin: "0.2em 0 0",
+        }}
+      >
+        {event.venue}
+      </Box>
+      <Box
+        sx={{
+          marginTop: "1em",
+          position: "relative",
+        }}
+      >
+        <Box
+          component="a"
+          href={event.link}
+          target="__blank"
+          sx={{
+            fontStyle: "normal",
+            fontWeight: 400,
+            fontSize: "16px",
+            lineHeight: "20px",
+            color: "#474C58",
+            textDecoration: "none",
+            display: "inline-block",
+            padding: "8px 16px",
+            borderRadius: "4px",
+            border: "1px solid #474C58",
+            "&:hover": {
+              backgroundColor: "#f0f0f0",
+            },
+          }}
+        >
+          View more info
+        </Box>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "0",
+            right: "0",
+          }}
+        >
+          <BookmarkButton event={event} />
+        </Box>
+      </Box>
+    </Box>
   );
 };
