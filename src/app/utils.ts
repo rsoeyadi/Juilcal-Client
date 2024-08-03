@@ -67,8 +67,12 @@ export const applySavedFilters = (
 export const formatDate = (dateTime: string) => {
   let eventDateTime = DateTime.fromISO(dateTime, { zone: "utc" });
 
-  // the dateTime is stored incorrectly from the web scraper so adding 4h here......
-  const adjustedDateTime = eventDateTime.plus({ hours: 4 });
+  // Check if the event date is in daylight savings and adjust the hours... should fix this later on bc it's hacky
+  const isDST = eventDateTime.setZone("America/New_York").isInDST;
+
+  const hoursToAdd = isDST ? 4 : 5;
+
+  const adjustedDateTime = eventDateTime.plus({ hours: hoursToAdd });
 
   const localDateTime = adjustedDateTime
     .setZone("America/New_York")
