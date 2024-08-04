@@ -56,15 +56,8 @@ export const SearchBarInput = () => {
               borderColor: "blue",
             },
           },
-          "& .MuiInputBase-input": {
-            padding: "16px 14px",
-          },
-          "& .MuiInputLabel-root": {
-            left: "9px",
-          },
-          "& .MuiInputLabel-shrink": {
-            left: "2px",
-          },
+          
+          
         }}
       />
       <Button
