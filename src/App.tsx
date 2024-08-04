@@ -17,7 +17,7 @@ import { PaginationButton } from "./app/components/pagination/PaginationButton";
 import { EventCard } from "./app/components/cards/EventCard";
 import "./App.css";
 import { SearchBarInput } from "./app/components/filters/SearchBarInput";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 // Supabase initialization
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
@@ -172,7 +172,14 @@ function App() {
           >
             <div className="events__container">
               <SearchBarInput />
-              <p>{totalResultsCount} results</p>
+              <Box
+                sx={{
+                  marginTop: '1em',
+             
+                }}
+              >
+                {totalResultsCount} results
+              </Box>
               <ul>
                 {events?.map((event) => (
                   <EventCard event={event} key={event.id} />
@@ -190,6 +197,8 @@ function App() {
       </>
     );
   }
+
+  return null;
 }
 
 export default App;

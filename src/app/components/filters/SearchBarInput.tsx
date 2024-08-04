@@ -33,7 +33,6 @@ export const SearchBarInput = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        px: 1,
         fontSize: 20,
       }}
     >
@@ -66,7 +65,7 @@ export const SearchBarInput = () => {
           marginLeft: "10px",
           backgroundColor: "#f5f5f5",
           color: "#707070",
-          fontSize: "15px",
+          fontSize: "12px",
           padding: "10px 20px",
           borderRadius: "30px",
           border: "none",
