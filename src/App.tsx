@@ -184,7 +184,6 @@ function App() {
               <SearchBarInput />
               <Box
                 sx={{
-                  marginTop: "1em",
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
@@ -202,7 +201,14 @@ function App() {
                   }}
                 >
                   <FormControl component="fieldset" variant="standard">
-                    <FormLabel component="legend">Sort desc.</FormLabel>
+                    <FormLabel
+                      sx={{
+                        paddingTop: "1em",
+                      }}
+                      component="legend"
+                    >
+                      Sort desc.
+                    </FormLabel>
                     <Switch onChange={handleSwitchClick} />
                   </FormControl>
                 </Box>

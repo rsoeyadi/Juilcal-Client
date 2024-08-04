@@ -59,7 +59,7 @@ export const SearchBarInput = () => {
           },
         }}
       />
-      <Button
+      {/* <Button
         variant="contained"
         onClick={handleButtonClick}
         sx={{
@@ -78,7 +78,7 @@ export const SearchBarInput = () => {
         }}
       >
         Search
-      </Button>
+      </Button> */}
     </Box>
   );
 };
