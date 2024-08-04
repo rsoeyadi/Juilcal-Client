@@ -190,7 +190,10 @@ function App() {
                   alignItems: "center",
                 }}
               >
-                <Box component="p" sx={{ display: "inline-block" }}>
+                <Box
+                  component="p"
+                  sx={{ display: "inline-block", marginTop: "0" }}
+                >
                   {totalResultsCount} results
                 </Box>
                 <Box
