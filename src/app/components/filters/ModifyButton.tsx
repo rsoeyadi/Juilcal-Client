@@ -90,7 +90,7 @@ export const ModifyButton = ({ isSaveButton }: ModifyButtonProps) => {
   };
 
   const handleClose = (
-    event: React.SyntheticEvent | Event,
+    _event: React.SyntheticEvent | Event,
     reason?: SnackbarCloseReason
   ) => {
     if (reason === "clickaway") {
