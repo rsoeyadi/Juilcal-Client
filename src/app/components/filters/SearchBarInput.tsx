@@ -63,7 +63,7 @@ export const SearchBarInput = () => {
             left: "9px",
           },
           "& .MuiInputLabel-shrink": {
-            left: "1px",
+            left: "2px",
           },
         }}
       />
