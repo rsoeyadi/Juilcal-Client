@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
-import { formatTitle } from "../../utils"; // Import the utility function
+import { formatTitle } from "../../utils";
 
 type DropDownInputProps = {
   title: ReducersMappingKeys;

@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import { RootState } from "../../store";
 import { useSelector } from "react-redux";
 import { Box } from "@mui/material";
-import { formatTitle } from "../../utils"; // Import the utility function
+import { formatTitle } from "../../utils"; 
 
 type DateTimePickerInputProps = {
   title: ReducersMappingKeys;

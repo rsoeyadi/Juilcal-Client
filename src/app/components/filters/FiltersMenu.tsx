@@ -1,17 +1,16 @@
 // FiltersMenu.tsx
 import { Filters } from "../../../features/filters/filtersSlice";
-import { DateTimePickerInput } from "./DateTimePickerInput";
 import { DropDownInput } from "./DropDownInput";
 import { ModifyButton } from "./ModifyButton";
 import { Box } from "@mui/material";
 import MenuHeaderCard from "../MenuHeaderCard";
 
-const dateTimePickerInputs = [
-  { title: Filters.BEFORE_DATE, isDatePicker: true },
-  { title: Filters.AFTER_DATE, isDatePicker: true },
-  { title: Filters.BEFORE_TIME, isDatePicker: false },
-  { title: Filters.AFTER_TIME, isDatePicker: false },
-];
+// const dateTimePickerInputs = [
+//   { title: Filters.BEFORE_DATE, isDatePicker: true },
+//   { title: Filters.AFTER_DATE, isDatePicker: true },
+//   { title: Filters.BEFORE_TIME, isDatePicker: false },
+//   { title: Filters.AFTER_TIME, isDatePicker: false },
+// ];
 
 const dropDownInputs = [
   {

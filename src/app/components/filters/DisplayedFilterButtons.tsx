@@ -4,7 +4,6 @@ import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { RootState } from "../../store";
 import { Box, Button } from "@mui/material";
 import { ReducersMappingKeys, reducersMapping } from "../../types";
-import { Filters } from "../../../features/filters/filtersSlice"; // Ensure this import is correct
 
 type DisplayedFilterButtonProps = {
   filterType: ReducersMappingKeys;
