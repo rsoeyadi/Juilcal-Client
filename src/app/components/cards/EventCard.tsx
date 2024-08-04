@@ -68,6 +68,7 @@ export const EventCard = ({ event }: EventCardProps) => {
           height: "auto",
           marginTop: "1em",
           borderRadius: "12px",
+          maxHeight: '350px',
         }}
       />
       <Box

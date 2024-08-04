@@ -84,7 +84,7 @@ function App() {
   useEffect(() => {
     const handleResize = () => {
       dispatch(
-        setIsOnDesktop(window.matchMedia("(min-width: 1024px)").matches)
+        setIsOnDesktop(window.matchMedia("(min-width: 768px)").matches)
       );
     };
 
