@@ -1,5 +1,5 @@
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
-
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 /* Document
    ========================================================================== */
 
@@ -11,7 +11,8 @@
 html {
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
-  font-family: "Plus Jakarta Sans";
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
 }
 
 /* Sections
@@ -422,7 +423,6 @@ a.button:active {
   outline: none; /* Remove outline */
   cursor: pointer; /* Change cursor to pointer */
 }
-
 
 .events__container {
   padding: 0.6em;
