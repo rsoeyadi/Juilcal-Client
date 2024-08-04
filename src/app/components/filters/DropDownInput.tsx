@@ -22,24 +22,24 @@ type DropDownInputProps = {
 
 const SelectInputBox = ({ title, values, className }: DropDownInputProps) => {
   const dispatch = useAppDispatch();
-  const [value, setValue] = useState<string>(title);
+  const [value, setValue] = useState<string>("");
   const filterValue = useSelector(
     (state: RootState) => state.filters.queuedUpFilters[title]
   );
 
   useEffect(() => {
-    if (!filterValue || filterValue === title) {
-      setValue(title);
+    if (!filterValue) {
+      setValue("");
     } else {
       setValue(filterValue);
     }
-  }, [filterValue, title]);
+  }, [filterValue]);
 
   const handleChange = (
     event: SelectChangeEvent,
     inputType: ReducersMappingKeys
   ) => {
-    const serializedValue = event.target.value as string; // technically not serialized but it's just the same I gave it bc of the date/time (dayjs) being serialized
+    const serializedValue = event.target.value as string;
     setValue(serializedValue);
     dispatch(addFilter({ serializedValue, inputType }));
   };
@@ -57,14 +57,9 @@ const SelectInputBox = ({ title, values, className }: DropDownInputProps) => {
           }
           className={className}
           fullWidth
-          sx={{
-            "& .MuiSelect-select": {
-              fontStyle: value === title ? "italic" : "normal",
-            },
-          }}
         >
-          <MenuItem value={title}>
-            <em>{title}</em>
+          <MenuItem value="" disabled>
+            <em>Select a {title.toLowerCase()}</em>
           </MenuItem>
           {values.map((type) => (
             <MenuItem key={type} value={type}>
