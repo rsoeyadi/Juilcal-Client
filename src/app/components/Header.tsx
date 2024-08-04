@@ -15,6 +15,9 @@ import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 
 export const Header = () => {
   const dispatch = useAppDispatch();
+  const isOnDesktop = useSelector(
+    (state: RootState) => state.componentDisplaying.isOnDesktop
+  );
 
   const isFilterMenuOpen = useSelector(
     (state: RootState) => state.componentDisplaying.isFilterMenuOpen
@@ -62,6 +65,7 @@ export const Header = () => {
           </Box>
         )}
       </div>
+      
       <div className={styles["header__button-container"]}>
         <IconButton onClick={() => handleClick("filter")} aria-label="filter">
           {isFilterMenuOpen ? <FilterListOffIcon /> : <FilterListIcon />}

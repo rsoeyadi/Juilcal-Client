@@ -16,7 +16,7 @@ export const paginationSlice = createSlice({
     setCurrentPage: (state, action) => {
       state.currentPage = action.payload;
       state.start = state.currentPage * 9 - 9;
-      state.stop = state.currentPage * 9;
+      state.stop = state.currentPage * 9 - 1;
     },
     setTotalFilteredEventsCount: (state, action) => {
       state.totalFilteredEventsCount = action.payload;

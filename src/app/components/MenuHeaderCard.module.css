@@ -44,3 +44,9 @@
     height: 100px;
   }
 }
+
+@media (min-width: 1024px) {
+  .menu-header-card {
+    height: 150px;
+  }
+}

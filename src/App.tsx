@@ -19,6 +19,7 @@ import "./App.css";
 import { SearchBarInput } from "./app/components/filters/SearchBarInput";
 import { Box, FormControl, FormLabel, Switch } from "@mui/material";
 import { DisplayedFilterButtons } from "./app/components/filters/DisplayedFilterButtons";
+import DesktopLayout from "./app/components/DesktopLayout";
 
 // Supabase initialization
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
@@ -169,72 +170,83 @@ function App() {
     });
   };
 
-  if (!isOnDesktop) {
+  if (isOnDesktop) {
     return (
-      <>
-        <Header />
-        {isFilterMenuOpen && <FiltersMenu />}
-        {isBookmarkedEventsMenuOpen && <BookmarkedEventsContainer />}
-        {!isFilterMenuOpen && !isBookmarkedEventsMenuOpen && (
-          <Box
-            sx={{
-              padding: "0 0.6em",
-            }}
-          >
-            <div className="events__container">
-              <SearchBarInput />
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
-              >
-                <Box
-                  component="p"
-                  sx={{ display: "inline-block", marginTop: "0" }}
-                >
-                  {totalResultsCount} results
-                </Box>
-                <Box
-                  sx={{
-                    float: "right",
-                  }}
-                >
-                  <FormControl component="fieldset" variant="standard">
-                    <FormLabel
-                      sx={{
-                        paddingTop: "1em",
-                      }}
-                      component="legend"
-                    >
-                      Sort desc.
-                    </FormLabel>
-                    <Switch onChange={handleSwitchClick} />
-                  </FormControl>
-                </Box>
-              </Box>
-              <DisplayedFilterButtons />
-
-              <ul>
-                {events?.map((event) => (
-                  <EventCard event={event} key={event.id} />
-                ))}
-              </ul>
-              <PaginationButton
-                totalEventsCount={totalEventsCount}
-                filtersSliceValuesExcludingQueuedUpFilters={
-                  filtersSliceValuesExcludingQueuedUpFilters
-                }
-              />
-            </div>
-          </Box>
-        )}
-      </>
+      <DesktopLayout
+        events={events}
+        totalResultsCount={totalResultsCount}
+        totalEventsCount={totalEventsCount}
+        filtersSliceValuesExcludingQueuedUpFilters={
+          filtersSliceValuesExcludingQueuedUpFilters
+        }
+        handleSwitchClick={handleSwitchClick}
+        isSortedByDescending={isSortedByDescending}
+      />
     );
   }
 
-  return null;
+  return (
+    <>
+      <Header />
+      {isFilterMenuOpen && <FiltersMenu />}
+      {isBookmarkedEventsMenuOpen && <BookmarkedEventsContainer />}
+      {!isFilterMenuOpen && !isBookmarkedEventsMenuOpen && (
+        <Box
+          sx={{
+            padding: "0 0.6em",
+          }}
+        >
+          <div className="events__container">
+            <SearchBarInput />
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <Box
+                component="p"
+                sx={{ display: "inline-block", marginTop: "0" }}
+              >
+                {totalResultsCount} results
+              </Box>
+              <Box
+                sx={{
+                  float: "right",
+                }}
+              >
+                <FormControl component="fieldset" variant="standard">
+                  <FormLabel
+                    sx={{
+                      paddingTop: "1em",
+                    }}
+                    component="legend"
+                  >
+                    Sort desc.
+                  </FormLabel>
+                  <Switch onChange={handleSwitchClick} />
+                </FormControl>
+              </Box>
+            </Box>
+            <DisplayedFilterButtons />
+
+            <ul>
+              {events?.map((event) => (
+                <EventCard event={event} key={event.id} />
+              ))}
+            </ul>
+            <PaginationButton
+              totalEventsCount={totalEventsCount}
+              filtersSliceValuesExcludingQueuedUpFilters={
+                filtersSliceValuesExcludingQueuedUpFilters
+              }
+            />
+          </div>
+        </Box>
+      )}
+    </>
+  );
 }
 
 export default App;
