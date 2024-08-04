@@ -1,4 +1,3 @@
-// DropDownInput.tsx
 import { useEffect, useState } from "react";
 import { addFilter } from "../../../features/filters/filtersSlice";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
@@ -13,6 +12,7 @@ import {
 } from "@mui/material";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
+import { formatTitle } from "../../utils"; // Import the utility function
 
 type DropDownInputProps = {
   title: ReducersMappingKeys;
@@ -47,11 +47,11 @@ const SelectInputBox = ({ title, values, className }: DropDownInputProps) => {
   return (
     <Box sx={{ minWidth: 120, margin: "1.5em 0" }}>
       <FormControl fullWidth>
-        <InputLabel>{title}</InputLabel>
+        <InputLabel>{formatTitle(title)}</InputLabel>
         <Select
           autoWidth
           value={value}
-          label={title}
+          label={formatTitle(title)}
           onChange={(newValue: SelectChangeEvent) =>
             handleChange(newValue, title)
           }
@@ -59,7 +59,7 @@ const SelectInputBox = ({ title, values, className }: DropDownInputProps) => {
           fullWidth
         >
           <MenuItem value="" disabled>
-            <em>Select {title.toLowerCase()}</em>
+            <em>Select {formatTitle(title).toLowerCase()}</em>
           </MenuItem>
           {values.map((type) => (
             <MenuItem key={type} value={type}>

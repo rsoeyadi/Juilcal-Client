@@ -18,6 +18,7 @@ import { EventCard } from "./app/components/cards/EventCard";
 import "./App.css";
 import { SearchBarInput } from "./app/components/filters/SearchBarInput";
 import { Box, FormControl, FormLabel, Switch } from "@mui/material";
+import { DisplayedFilterButtons } from "./app/components/filters/DisplayedFilterButtons";
 
 // Supabase initialization
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
@@ -213,6 +214,7 @@ function App() {
                   </FormControl>
                 </Box>
               </Box>
+              <DisplayedFilterButtons />
 
               <ul>
                 {events?.map((event) => (

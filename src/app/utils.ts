@@ -119,3 +119,9 @@ const venuePhotos: { [key: string]: string } = {
 export const getVenuePhoto = (venue: string | null): string => {
   return venue ? venuePhotos[venue] || "juilliard.jpg" : "juilliard.jpg";
 };
+
+export const formatTitle = (title: string) => {
+  return title
+    .replace(/([A-Z])/g, " $1") // Add a space before each uppercase letter
+    .replace(/^./, (str) => str.toUpperCase()); // Capitalize the first letter
+};
