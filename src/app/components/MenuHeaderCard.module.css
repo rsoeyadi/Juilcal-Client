@@ -1,7 +1,7 @@
 .menu-header-card {
   display: grid;
   grid-template-columns: 0.6fr 2fr;
-  height: 130px;
+  height: 160px;
   background: #fcfcfd;
   border: 1px solid #98a2b3;
   box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1),
