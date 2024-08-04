@@ -110,7 +110,7 @@ export const FiltersMenu = () => {
       }}
     >
       <MenuHeaderCard
-        iconSrc="./filters-icon.svg"
+        iconSrc="./filters-header-icon.svg"
         title="Filter your search"
         description="Search Juilliard's performance calendar using search terms and advanced filters"
       />

@@ -65,7 +65,14 @@ export const Header = () => {
           onClick={() => handleClick("filter")}
           className={styles.header__button}
         >
-          <img src="./filter_list.svg" alt="Filter list" />
+          <img
+            src={
+              isFilterMenuOpen
+                ? "/filters-icon-filled.svg"
+                : "/filters-icon.svg"
+            }
+            alt="Filter list"
+          />
         </button>
         <Box
           sx={{
