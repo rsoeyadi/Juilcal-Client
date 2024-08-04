@@ -42,7 +42,11 @@ export const BookmarkedEventsContainer = () => {
         {bookmarkedEventsIds.map((id: string) => {
           const event = bookmarkedEvents[id];
           if (event) {
-            return <EventCard key={id} event={event} />;
+            return (
+              <Box sx={{ marginBottom: 5 }}>
+                <EventCard key={id} event={event} />
+              </Box>
+            );
           }
           return null;
         })}
