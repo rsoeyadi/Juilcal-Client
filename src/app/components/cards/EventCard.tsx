@@ -48,7 +48,16 @@ export const EventCard = ({ event }: EventCardProps) => {
   return (
     <Box
       sx={{
-        marginBottom: "2.5em",
+        width: "100%",
+        maxWidth: "380px", 
+        margin: "0 auto",
+        border: "1px solid #e0e0e0",
+        borderRadius: "12px",
+        overflow: "hidden",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        height: "500px", 
       }}
     >
       <Box
@@ -57,89 +66,88 @@ export const EventCard = ({ event }: EventCardProps) => {
         alt={event.venue || "Default venue"}
         sx={{
           width: "100%",
-          height: "auto",
-          marginTop: "1em",
-          borderRadius: "12px",
-          maxHeight: "350px",
+          height: "200px",
+          objectFit: "cover",
         }}
       />
       <Box
-        component="h1"
         sx={{
-          fontStyle: "normal",
-          fontWeight: 400,
-          fontSize: "24px",
-          lineHeight: "30px",
+          padding: "1em",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          flexGrow: 1,
         }}
       >
-        {event.title}
-      </Box>
-      <Box
-        component="p"
-        sx={{
-          fontStyle: "normal",
-          fontWeight: 400,
-          fontSize: "16px",
-          lineHeight: "20px",
-          color: "#474C58",
-          marginBottom: "0",
-        }}
-      >
-        {formatDate(event.dateTime)}
-      </Box>
-      <Box
-        component="p"
-        sx={{
-          fontStyle: "normal",
-          fontWeight: 400,
-          fontSize: "16px",
-          lineHeight: "20px",
-          color: "#999FAA",
-          flex: "none",
-          order: 1,
-          alignSelf: "stretch",
-          flexGrow: 0,
-
-          margin: "0.2em 0 0",
-        }}
-      >
-        {event.venue}
-      </Box>
-      <Box
-        sx={{
-          marginTop: "1em",
-          position: "relative",
-        }}
-      >
-        <Box
-          component="a"
-          href={event.link}
-          target="__blank"
-          sx={{
-            fontStyle: "normal",
-            fontWeight: 400,
-            fontSize: "16px",
-            lineHeight: "20px",
-            color: "#474C58",
-            textDecoration: "none",
-            display: "inline-block",
-            padding: "8px 16px",
-            borderRadius: "4px",
-            border: "1px solid #474C58",
-            "&:hover": {
-              backgroundColor: "#f0f0f0",
-            },
-          }}
-        >
-          View more info
+        <Box>
+          <Box
+            component="h1"
+            sx={{
+              fontStyle: "normal",
+              fontWeight: 400,
+              fontSize: "24px",
+              lineHeight: "30px",
+              marginBottom: "0.5em",
+            }}
+          >
+            {event.title}
+          </Box>
+          <Box
+            component="p"
+            sx={{
+              fontStyle: "normal",
+              fontWeight: 400,
+              fontSize: "16px",
+              lineHeight: "20px",
+              color: "#474C58",
+              marginBottom: "0.5em",
+            }}
+          >
+            {formatDate(event.dateTime)}
+          </Box>
+          <Box
+            component="p"
+            sx={{
+              fontStyle: "normal",
+              fontWeight: 400,
+              fontSize: "16px",
+              lineHeight: "20px",
+              color: "#999FAA",
+              marginBottom: "0.5em",
+            }}
+          >
+            {event.venue}
+          </Box>
         </Box>
         <Box
           sx={{
-            position: "absolute",
-            top: "0",
-            right: "0",
+            marginTop: "auto",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
           }}
         >
+          <Box
+            component="a"
+            href={event.link}
+            target="__blank"
+            sx={{
+              fontStyle: "normal",
+              fontWeight: 400,
+              fontSize: "16px",
+              lineHeight: "20px",
+              color: "#474C58",
+              textDecoration: "none",
+              padding: "8px 16px",
+              borderRadius: "4px",
+              border: "1px solid #474C58",
+              "&:hover": {
+                backgroundColor: "#f0f0f0",
+              },
+            }}
+          >
+            View more info
+          </Box>
           <BookmarkButton event={event} />
         </Box>
       </Box>

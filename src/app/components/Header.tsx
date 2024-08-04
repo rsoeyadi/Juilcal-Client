@@ -42,7 +42,7 @@ export const Header = () => {
   return (
     <div className={styles.header}>
       <div className={styles.header__title}>
-        {isFilterMenuOpen || isBookmarkedEventsMenuOpen ? (
+        {!isOnDesktop && (isFilterMenuOpen || isBookmarkedEventsMenuOpen) ? (
           <Box
             sx={{
               marginTop: "5px",
@@ -65,7 +65,7 @@ export const Header = () => {
           </Box>
         )}
       </div>
-      
+
       <div className={styles["header__button-container"]}>
         <IconButton onClick={() => handleClick("filter")} aria-label="filter">
           {isFilterMenuOpen ? <FilterListOffIcon /> : <FilterListIcon />}
