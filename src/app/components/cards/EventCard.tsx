@@ -59,6 +59,7 @@ export const BookmarkButton = ({ event }: BookmarkButtonProps) => {
       <Snackbar
         open={snackbarOpen}
         autoHideDuration={6000}
+        // @ts-ignore
         onClose={handleSnackbarClose}
         message={snackbarMessage}
         anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
