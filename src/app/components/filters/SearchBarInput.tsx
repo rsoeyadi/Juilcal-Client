@@ -56,8 +56,6 @@ export const SearchBarInput = () => {
               borderColor: "blue",
             },
           },
-          
-          
         }}
       />
       <Button
