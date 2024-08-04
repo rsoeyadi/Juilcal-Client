@@ -59,7 +59,7 @@ const SelectInputBox = ({ title, values, className }: DropDownInputProps) => {
           fullWidth
         >
           <MenuItem value="" disabled>
-            <em>Select a {title.toLowerCase()}</em>
+            <em>Select {title.toLowerCase()}</em>
           </MenuItem>
           {values.map((type) => (
             <MenuItem key={type} value={type}>
