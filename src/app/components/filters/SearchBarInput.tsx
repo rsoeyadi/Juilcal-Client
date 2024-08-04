@@ -34,6 +34,7 @@ export const SearchBarInput = () => {
         alignItems: "center",
         justifyContent: "center",
         fontSize: 20,
+        padding: "10px",
       }}
     >
       <TextField
@@ -63,19 +64,16 @@ export const SearchBarInput = () => {
         onClick={handleButtonClick}
         sx={{
           marginLeft: "10px",
-          backgroundColor: "#f5f5f5",
-          color: "#707070",
+          backgroundColor: "#0171BB",
+          color: "#fff",
           fontSize: "12px",
           padding: "10px 20px",
           borderRadius: "30px",
-          border: "none",
           "&:hover": {
-            backgroundColor: "#e0e0e0",
-            color: "#707070",
+            backgroundColor: "#005f8b",
           },
           "&:focus": {
-            backgroundColor: "#f5f5f5",
-            color: "#707070",
+            backgroundColor: "#0171BB",
           },
         }}
       >
