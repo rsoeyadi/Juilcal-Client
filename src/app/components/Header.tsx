@@ -6,7 +6,7 @@ import {
   setIsFilterMenuOpen,
 } from "../../features/componentDisplaying/componentDisplaying";
 import styles from "./Header.module.css";
-import { Box } from "@mui/material";
+import { Box, TableSortLabel } from "@mui/material";
 
 export const Header = () => {
   const dispatch = useAppDispatch();

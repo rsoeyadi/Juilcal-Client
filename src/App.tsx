@@ -17,7 +17,7 @@ import { PaginationButton } from "./app/components/pagination/PaginationButton";
 import { EventCard } from "./app/components/cards/EventCard";
 import "./App.css";
 import { SearchBarInput } from "./app/components/filters/SearchBarInput";
-import { Box, Typography } from "@mui/material";
+import { Box, FormControl, FormLabel, Switch } from "@mui/material";
 
 // Supabase initialization
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
@@ -55,6 +55,9 @@ function App() {
   const searchValue = useSelector(
     (state: RootState) => state.searchbar.searchbarValue
   );
+  const [isSortedByDescending, setIsSortedByDescending] =
+    useState<boolean>(false);
+
   const paginationValue = useSelector((state: RootState) => state.pagination);
   const filtersSliceValues = useSelector((state: RootState) => state.filters);
 
@@ -83,9 +86,7 @@ function App() {
 
   useEffect(() => {
     const handleResize = () => {
-      dispatch(
-        setIsOnDesktop(window.matchMedia("(min-width: 768px)").matches)
-      );
+      dispatch(setIsOnDesktop(window.matchMedia("(min-width: 768px)").matches));
     };
 
     // Initial check
@@ -97,7 +98,10 @@ function App() {
 
   const getEvents = useCallback(
     async (searchValue: string | null, filters: any) => {
-      let query = supabase.from("Events").select("*", { count: "exact" });
+      let query = supabase
+        .from("Events")
+        .select("*", { count: "exact" })
+        .order("dateTime", { ascending: !isSortedByDescending });
 
       if (searchValue) {
         query = query.ilike("title", `%${searchValue}%`);
@@ -126,7 +130,7 @@ function App() {
       setEvents(data);
       dispatch(setTotalFilteredEventsCount(count));
     },
-    [paginationValue]
+    [paginationValue, isSortedByDescending]
   );
 
   const getCount = useCallback(async () => {
@@ -158,6 +162,12 @@ function App() {
     dispatch(setCurrentPage(1));
   }, []);
 
+  const handleSwitchClick = () => {
+    setIsSortedByDescending((prevValue) => {
+      return !prevValue;
+    });
+  };
+
   if (!isOnDesktop) {
     return (
       <>
@@ -174,12 +184,27 @@ function App() {
               <SearchBarInput />
               <Box
                 sx={{
-                  marginTop: '1em',
-             
+                  marginTop: "1em",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
                 }}
               >
-                {totalResultsCount} results
+                <Box component="p" sx={{ display: "inline-block" }}>
+                  {totalResultsCount} results
+                </Box>
+                <Box
+                  sx={{
+                    float: "right",
+                  }}
+                >
+                  <FormControl component="fieldset" variant="standard">
+                    <FormLabel component="legend">Sort desc.</FormLabel>
+                    <Switch onChange={handleSwitchClick} />
+                  </FormControl>
+                </Box>
               </Box>
+
               <ul>
                 {events?.map((event) => (
                   <EventCard event={event} key={event.id} />
