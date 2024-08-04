@@ -13,6 +13,7 @@ import {
   setEducationalFocus,
   setMiscellaneous,
   setVenue,
+  FiltersState,
 } from "../features/filters/filtersSlice";
 import { DateTime } from "luxon";
 
@@ -124,4 +125,11 @@ export const formatTitle = (title: string) => {
   return title
     .replace(/([A-Z])/g, " $1") // Add a space before each uppercase letter
     .replace(/^./, (str) => str.toUpperCase()); // Capitalize the first letter
+};
+
+export const convertFiltersStateToRecord = (
+  filtersState: FiltersState
+): Record<string, string | null> => {
+  const { queuedUpFilters, ...rest } = filtersState;
+  return { ...queuedUpFilters, ...rest } as Record<string, string | null>;
 };
