@@ -191,12 +191,8 @@ function App() {
       {isFilterMenuOpen && <FiltersMenu />}
       {isBookmarkedEventsMenuOpen && <BookmarkedEventsContainer />}
       {!isFilterMenuOpen && !isBookmarkedEventsMenuOpen && (
-        <Box
-          sx={{
-            padding: "0 0.6em",
-          }}
-        >
-          <div className="events__container">
+        <Box>
+          <div>
             <SearchBarInput />
             <Box
               sx={{

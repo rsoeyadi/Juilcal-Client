@@ -34,7 +34,7 @@ export const SearchBarInput = () => {
         alignItems: "center",
         justifyContent: "center",
         fontSize: 20,
-        padding: "10px",
+        marginTop: 4,
       }}
     >
       <TextField

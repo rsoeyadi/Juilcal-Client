@@ -7,9 +7,10 @@ import {
 import { useSelector } from "react-redux";
 import { Event } from "../../types";
 import { formatDate, getVenuePhoto } from "../../utils";
-import { Box, IconButton } from "@mui/material";
+import { Box, IconButton, Snackbar } from "@mui/material";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import { useState } from "react";
 
 type EventCardProps = {
   event: Event;
@@ -26,19 +27,43 @@ export const BookmarkButton = ({ event }: BookmarkButtonProps) => {
   );
 
   const bookmarked = bookmarks.includes(event.id);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
 
   const handleClick = () => {
     if (bookmarked) {
       dispatch(removeEvent(event));
+      setSnackbarMessage("Event removed from bookmarks");
     } else {
       dispatch(addEvent(event));
+      setSnackbarMessage("Event added to bookmarks");
     }
+    setSnackbarOpen(true);
+  };
+
+  const handleSnackbarClose = (
+    event: React.SyntheticEvent | Event,
+    reason?: SnackbarCloseReason
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setSnackbarOpen(false);
   };
 
   return (
-    <IconButton onClick={handleClick} aria-label="bookmark">
-      {bookmarked ? <BookmarkIcon /> : <BookmarkBorderIcon />}
-    </IconButton>
+    <>
+      <IconButton onClick={handleClick} aria-label="bookmark">
+        {bookmarked ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+      </IconButton>
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={6000}
+        onClose={handleSnackbarClose}
+        message={snackbarMessage}
+        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+      />
+    </>
   );
 };
 

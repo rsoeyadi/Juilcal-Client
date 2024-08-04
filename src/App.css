@@ -1,5 +1,5 @@
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 /* Document
    ========================================================================== */
 
@@ -422,8 +422,4 @@ a.button:active {
   color: inherit; /* Inherit color from parent element */
   outline: none; /* Remove outline */
   cursor: pointer; /* Change cursor to pointer */
-}
-
-.events__container {
-  padding: 0.6em;
 }

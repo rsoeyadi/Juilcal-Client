@@ -30,7 +30,7 @@ type NotificationSnackbarProps = {
   undoAction?: () => void;
 };
 
-const NotificationSnackbar = ({
+export const NotificationSnackbar = ({
   open,
   message,
   onClose,

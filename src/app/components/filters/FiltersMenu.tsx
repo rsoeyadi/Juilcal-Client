@@ -1,4 +1,3 @@
-// FiltersMenu.tsx
 import { Filters } from "../../../features/filters/filtersSlice";
 import { DropDownInput } from "./DropDownInput";
 import { ModifyButton } from "./ModifyButton";
