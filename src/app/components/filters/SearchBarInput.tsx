@@ -2,6 +2,7 @@ import { Box, Button, TextField } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { setSearchbarValue } from "../../../features/search/searchbarSlice";
+import { setCurrentPage } from "../../../features/pagination/paginationSlice";
 
 export const SearchBarInput = () => {
   const dispatch = useAppDispatch();
@@ -9,6 +10,7 @@ export const SearchBarInput = () => {
   const textInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
+    dispatch(setCurrentPage(1));
     dispatch(setSearchbarValue(value));
   }, [value, dispatch]);
 
