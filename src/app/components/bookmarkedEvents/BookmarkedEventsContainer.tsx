@@ -24,6 +24,16 @@ export const BookmarkedEventsContainer = () => {
         description="Here are your bookmarked events. To remove a bookmark, click the bookmark icon on the event."
       />
       <ul>
+        {bookmarkedEventsIds.length === 0 && (
+          <Box
+            sx={{
+              textAlign: "center",
+              color: "#667085",
+            }}
+          >
+            <p>You do not have any bookmarked events.</p>
+          </Box>
+        )}
         {bookmarkedEventsIds.map((id: string) => {
           const event = bookmarkedEvents[id];
           if (event) {

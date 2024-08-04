@@ -55,7 +55,7 @@ export const EventCard = ({ event }: EventCardProps) => {
   return (
     <Box
       sx={{
-        padding: "0 0.6em",
+        
         marginBottom: "2.5em",
       }}
     >
