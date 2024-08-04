@@ -10,18 +10,19 @@ export const SearchBarInput = () => {
   const textInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    dispatch(setCurrentPage(1));
     dispatch(setSearchbarValue(value));
   }, [value, dispatch]);
 
   const handleButtonClick = () => {
     if (textInputRef.current) {
+      dispatch(setCurrentPage(1));
       setValue(textInputRef.current.value);
     }
   };
 
   const handleKeyPress = (event: React.KeyboardEvent) => {
     if (event.key === "Enter" && textInputRef.current) {
+      dispatch(setCurrentPage(1));
       setValue(textInputRef.current.value);
     }
   };
