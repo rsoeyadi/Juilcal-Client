@@ -1,4 +1,12 @@
-import { Box, Drawer, useMediaQuery, useTheme } from "@mui/material";
+import {
+  Box,
+  Drawer,
+  FormControl,
+  FormLabel,
+  Switch,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../store";
 import { BookmarkedEventsContainer } from "./bookmarkedEvents/BookmarkedEventsContainer";
@@ -25,8 +33,11 @@ type DesktopLayoutProps = {
 
 const DesktopLayout: React.FC<DesktopLayoutProps> = ({
   events,
+  totalResultsCount,
   totalEventsCount,
   filtersSliceValuesExcludingQueuedUpFilters,
+  handleSwitchClick,
+  isSortedByDescending,
 }) => {
   const dispatch = useDispatch();
   const theme = useTheme();
@@ -70,30 +81,47 @@ const DesktopLayout: React.FC<DesktopLayoutProps> = ({
         padding: 3,
       }}
     >
-      <Box sx={{ width: "100%", maxWidth: "1200px" }}>
+      <Box sx={{ width: "100%", maxWidth: "1200px", marginX: "auto" }}>
         <Header />
         <Box>
-          <Box>
-            <SearchBarInput />
-            <DisplayedFilterButtons />
+          <SearchBarInput />
+          <Box sx={{ marginTop: "1em" }}>
             <Box
-              display="grid"
-              gridTemplateColumns={getGridTemplateColumns()}
-              gap={2}
+              component="p"
+              sx={{ display: "inline-block", marginTop: "0.5em" }}
             >
-              {events?.map((event) => (
-                <Box key={event.id}>
-                  <EventCard event={event} />
-                </Box>
-              ))}
+              {totalResultsCount} results
             </Box>
-            <PaginationButton
-              totalEventsCount={totalEventsCount}
-              filtersSliceValuesExcludingQueuedUpFilters={
-                filtersSliceValuesExcludingQueuedUpFilters
-              }
-            />
+            <Box
+              sx={{
+                float: "right",
+              }}
+            >
+              <FormControl component="fieldset" variant="standard">
+                <FormLabel component="legend">Sort desc.</FormLabel>
+                <Switch onChange={handleSwitchClick} />
+              </FormControl>
+            </Box>
           </Box>
+          <DisplayedFilterButtons />
+          <Box
+            display="grid"
+            gridTemplateColumns={getGridTemplateColumns()}
+            gap={2}
+            marginTop={3}
+          >
+            {events?.map((event) => (
+              <Box key={event.id}>
+                <EventCard event={event} />
+              </Box>
+            ))}
+          </Box>
+          <PaginationButton
+            totalEventsCount={totalEventsCount}
+            filtersSliceValuesExcludingQueuedUpFilters={
+              filtersSliceValuesExcludingQueuedUpFilters
+            }
+          />
         </Box>
         <Drawer
           anchor="left"

@@ -99,8 +99,7 @@ export const EventCard = ({ event }: EventCardProps) => {
           order: 1,
           alignSelf: "stretch",
           flexGrow: 0,
-          width: "349px",
-          height: "20px",
+
           margin: "0.2em 0 0",
         }}
       >
