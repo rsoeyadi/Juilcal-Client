@@ -39,6 +39,10 @@ function App() {
     (state: RootState) => state.componentDisplaying.isBookmarkedEventsMenuOpen
   );
 
+  const currentPage = useSelector(
+    (state: RootState) => state.pagination.currentPage
+  );
+
   const isOnDesktop = useSelector(
     (state: RootState) => state.componentDisplaying.isOnDesktop
   );
@@ -67,6 +71,12 @@ function App() {
   useEffect(() => {
     setTotalResultsCount(totalFilteredEventsCount);
   }, [totalFilteredEventsCount]);
+
+  useEffect(() => {
+    if (!isOnDesktop) {
+      window.scrollTo(0, 0);
+    }
+  }, [currentPage]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -152,12 +162,13 @@ function App() {
         {isFilterMenuOpen && <FiltersMenu />}
         {isBookmarkedEventsMenuOpen && <BookmarkedEventsContainer />}
         {!isFilterMenuOpen && !isBookmarkedEventsMenuOpen && (
-          <Box sx={{
-            padding: "0 0.6em",
-          }}>
+          <Box
+            sx={{
+              padding: "0 0.6em",
+            }}
+          >
             <div className="events__container">
-              
-                <SearchBarInput />
+              <SearchBarInput />
               <p>{totalResultsCount} results</p>
               <ul>
                 {events?.map((event) => (
