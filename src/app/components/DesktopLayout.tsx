@@ -37,7 +37,6 @@ const DesktopLayout: React.FC<DesktopLayoutProps> = ({
   totalEventsCount,
   filtersSliceValuesExcludingQueuedUpFilters,
   handleSwitchClick,
-  isSortedByDescending,
 }) => {
   const dispatch = useDispatch();
   const theme = useTheme();
