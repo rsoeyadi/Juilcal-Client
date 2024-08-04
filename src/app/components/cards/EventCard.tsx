@@ -7,7 +7,7 @@ import {
 import { useSelector } from "react-redux";
 import { Event } from "../../types";
 import { formatDate, getVenuePhoto } from "../../utils";
-import { Box, IconButton, Snackbar } from "@mui/material";
+import { Box, IconButton, Snackbar, SnackbarCloseReason } from "@mui/material";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import { useState } from "react";
@@ -42,7 +42,7 @@ export const BookmarkButton = ({ event }: BookmarkButtonProps) => {
   };
 
   const handleSnackbarClose = (
-    event: React.SyntheticEvent | Event,
+    _event: React.SyntheticEvent | Event,
     reason?: SnackbarCloseReason
   ) => {
     if (reason === "clickaway") {
