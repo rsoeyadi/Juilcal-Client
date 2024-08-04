@@ -43,9 +43,7 @@ export const BookmarkedEventsContainer = () => {
           const event = bookmarkedEvents[id];
           if (event) {
             return (
-              <Box sx={{ marginBottom: 5 }}>
                 <EventCard key={id} event={event} />
-              </Box>
             );
           }
           return null;
