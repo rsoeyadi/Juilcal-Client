@@ -192,7 +192,11 @@ function App() {
       {isBookmarkedEventsMenuOpen && <BookmarkedEventsContainer />}
       {!isFilterMenuOpen && !isBookmarkedEventsMenuOpen && (
         <Box>
-          <div>
+          <Box
+            sx={{
+              mx: 2,
+            }}
+          >
             <SearchBarInput />
             <Box
               sx={{
@@ -238,7 +242,7 @@ function App() {
                 filtersSliceValuesExcludingQueuedUpFilters
               }
             />
-          </div>
+          </Box>
         </Box>
       )}
     </>
