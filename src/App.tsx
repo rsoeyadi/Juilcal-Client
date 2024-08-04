@@ -74,7 +74,10 @@ function App() {
 
   useEffect(() => {
     if (!isOnDesktop) {
-      window.scrollTo(0, 0);
+      if (!isFilterMenuOpen) {
+        // this shouldn't happen when you click the clear button
+        window.scrollTo(0, 0);
+      }
     }
   }, [currentPage]);
 
