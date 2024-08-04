@@ -3,29 +3,30 @@ import { selectFinalFilters } from "../../../features/filters/filtersSlice";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { RootState } from "../../store";
 import { Box, Button } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close"; 
+import CloseIcon from "@mui/icons-material/Close";
 import { ReducersMappingKeys, reducersMapping } from "../../types";
+import { Filters } from "../../../features/filters/filtersSlice";
 
 type DisplayedFilterButtonProps = {
   filterType: ReducersMappingKeys;
   value: string | null;
 };
 
-// const getDisplayText = (
-//   filterType: ReducersMappingKeys,
-//   value: string | null
-// ) => {
-//   switch (filterType) {
-//     case Filters.BEFORE_DATE:
-//     case Filters.BEFORE_TIME:
-//       return `Before ${value}`;
-//     case Filters.AFTER_DATE:
-//     case Filters.AFTER_TIME:
-//       return `After ${value}`;
-//     default:
-//       return value;
-//   }
-// };
+const getDisplayText = (
+  filterType: ReducersMappingKeys,
+  value: string | null
+) => {
+  switch (filterType) {
+    case Filters.BEFORE_DATE:
+    case Filters.BEFORE_TIME:
+      return `Before ${value}`;
+    case Filters.AFTER_DATE:
+    case Filters.AFTER_TIME:
+      return `After ${value}`;
+    default:
+      return value;
+  }
+};
 
 const DisplayedFilterButton = ({
   filterType,
@@ -40,7 +41,7 @@ const DisplayedFilterButton = ({
     }
   };
 
-  // const displayText = getDisplayText(filterType, value);
+  const displayText = getDisplayText(filterType, value);
 
   return (
     value && (
@@ -48,9 +49,9 @@ const DisplayedFilterButton = ({
         variant="contained"
         sx={{ margin: 0.3 }}
         onClick={() => handleRemoval(filterType)}
-        endIcon={<CloseIcon />} 
+        endIcon={<CloseIcon />}
       >
-        {value}
+        {displayText}
       </Button>
     )
   );

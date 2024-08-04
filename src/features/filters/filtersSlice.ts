@@ -69,7 +69,7 @@ export const filtersSlice = createSlice({
       }
     },
     setBeforeTime: (state, action) => {
-      if (action.payload === Filters.BEFORE_TIME) {
+      if (action.payload === null) {
         delete state.queuedUpFilters[Filters.BEFORE_TIME];
         state.beforeTime = null;
       } else {
@@ -77,7 +77,7 @@ export const filtersSlice = createSlice({
       }
     },
     setAfterTime: (state, action) => {
-      if (action.payload === Filters.AFTER_TIME) {
+      if (action.payload === null) {
         delete state.queuedUpFilters[Filters.AFTER_TIME];
         state.afterTime = null;
       } else {
@@ -85,7 +85,7 @@ export const filtersSlice = createSlice({
       }
     },
     setDay: (state, action) => {
-      if (action.payload === Filters.DAY) {
+      if (action.payload === null) {
         delete state.queuedUpFilters[Filters.DAY];
         state.day = null;
       } else {
@@ -93,7 +93,7 @@ export const filtersSlice = createSlice({
       }
     },
     setPerformanceType: (state, action) => {
-      if (action.payload === Filters.PERFORMANCE_TYPE) {
+      if (action.payload === null) {
         delete state.queuedUpFilters[Filters.PERFORMANCE_TYPE];
         state.performanceType = null;
       } else {
@@ -101,7 +101,7 @@ export const filtersSlice = createSlice({
       }
     },
     setMusicGenre: (state, action) => {
-      if (action.payload === Filters.MUSIC_GENRE) {
+      if (action.payload === null) {
         delete state.queuedUpFilters[Filters.MUSIC_GENRE];
         state.musicGenre = null;
       } else {
@@ -109,7 +109,7 @@ export const filtersSlice = createSlice({
       }
     },
     setEventFormat: (state, action) => {
-      if (action.payload === Filters.EVENT_FORMAT) {
+      if (action.payload === null) {
         delete state.queuedUpFilters[Filters.EVENT_FORMAT];
         state.eventFormat = null;
       } else {
@@ -117,7 +117,7 @@ export const filtersSlice = createSlice({
       }
     },
     setStreaming: (state, action) => {
-      if (action.payload === Filters.STREAMING) {
+      if (action.payload === null) {
         delete state.queuedUpFilters[Filters.STREAMING];
         state.streaming = null;
       } else {
@@ -125,7 +125,7 @@ export const filtersSlice = createSlice({
       }
     },
     setEducationalFocus: (state, action) => {
-      if (action.payload === Filters.EDUCATIONAL_FOCUS) {
+      if (action.payload === null) {
         delete state.queuedUpFilters[Filters.EDUCATIONAL_FOCUS];
         state.educationalFocus = null;
       } else {
@@ -133,7 +133,7 @@ export const filtersSlice = createSlice({
       }
     },
     setMiscellaneous: (state, action) => {
-      if (action.payload === Filters.MISCELLANEOUS) {
+      if (action.payload === null) {
         delete state.queuedUpFilters[Filters.MISCELLANEOUS];
         state.miscellaneous = null;
       } else {
@@ -141,7 +141,7 @@ export const filtersSlice = createSlice({
       }
     },
     setVenue: (state, action) => {
-      if (action.payload === Filters.VENUE) {
+      if (action.payload === null) {
         delete state.queuedUpFilters[Filters.VENUE];
         state.venue = null;
       } else {
