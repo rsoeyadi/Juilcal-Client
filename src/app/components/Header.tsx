@@ -6,7 +6,12 @@ import {
   setIsFilterMenuOpen,
 } from "../../features/componentDisplaying/componentDisplaying";
 import styles from "./Header.module.css";
-import { Box, TableSortLabel } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import FilterListIcon from "@mui/icons-material/FilterList";
+import FilterListOffIcon from "@mui/icons-material/FilterListOff";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 
 export const Header = () => {
   const dispatch = useAppDispatch();
@@ -40,12 +45,9 @@ export const Header = () => {
               marginTop: "5px",
             }}
           >
-            <button
-              onClick={() => handleClick("back")}
-              className={`${styles.header__button} ${styles["header__button--back"]}`}
-            >
-              <img src="./arrow_back.svg" alt="Back arrow" />
-            </button>
+            <IconButton onClick={() => handleClick("back")} aria-label="back">
+              <ArrowBackIcon />
+            </IconButton>
           </Box>
         ) : (
           <Box
@@ -61,37 +63,24 @@ export const Header = () => {
         )}
       </div>
       <div className={styles["header__button-container"]}>
-        <button
-          onClick={() => handleClick("filter")}
-          className={styles.header__button}
-        >
-          <img
-            src={
-              isFilterMenuOpen
-                ? "/filters-icon-filled.svg"
-                : "/filters-icon.svg"
-            }
-            alt="Filter list"
-          />
-        </button>
+        <IconButton onClick={() => handleClick("filter")} aria-label="filter">
+          {isFilterMenuOpen ? <FilterListOffIcon /> : <FilterListIcon />}
+        </IconButton>
         <Box
           sx={{
             marginLeft: "0.7em",
           }}
         >
-          <button
+          <IconButton
             onClick={() => handleClick("bookmark")}
-            className={styles.header__button}
+            aria-label="bookmark"
           >
-            <img
-              src={
-                isBookmarkedEventsMenuOpen
-                  ? "/bookmark-filled.svg"
-                  : "/bookmark.svg"
-              }
-              alt="Icon"
-            />
-          </button>
+            {isBookmarkedEventsMenuOpen ? (
+              <BookmarkIcon />
+            ) : (
+              <BookmarkBorderIcon />
+            )}
+          </IconButton>
         </Box>
       </div>
     </div>
