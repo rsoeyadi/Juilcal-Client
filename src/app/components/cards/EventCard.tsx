@@ -7,7 +7,9 @@ import {
 import { useSelector } from "react-redux";
 import { Event } from "../../types";
 import { formatDate, getVenuePhoto } from "../../utils";
-import { Box } from "@mui/material"; // Ensure this is imported
+import { Box, IconButton } from "@mui/material";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 
 type EventCardProps = {
   event: Event;
@@ -34,18 +36,9 @@ export const BookmarkButton = ({ event }: BookmarkButtonProps) => {
   };
 
   return (
-    <Box
-      component="button"
-      onClick={handleClick}
-      aria-pressed={bookmarked}
-      aria-label="Bookmark"
-      sx={{}}
-    >
-      <img
-        src={bookmarked ? "/bookmark-filled.svg" : "/bookmark.svg"}
-        alt="Icon"
-      />
-    </Box>
+    <IconButton onClick={handleClick} aria-label="bookmark">
+      {bookmarked ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+    </IconButton>
   );
 };
 
