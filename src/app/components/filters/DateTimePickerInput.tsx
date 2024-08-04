@@ -44,13 +44,14 @@ export const DateTimePickerInput = ({
 
   if (isDatePicker) {
     return (
-      <Box>
+      <Box sx={{}}>
         <DateTimePicker
           defaultValue={null}
           value={value}
           label={title}
           onChange={(newValue: Dayjs | null) => handleChange(newValue, title)}
           format="MM/DD/YYYY"
+          slotProps={{ textField: { fullWidth: true } }}
         />
       </Box>
     );

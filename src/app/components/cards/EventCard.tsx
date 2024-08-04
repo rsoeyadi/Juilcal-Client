@@ -55,7 +55,6 @@ export const EventCard = ({ event }: EventCardProps) => {
   return (
     <Box
       sx={{
-        
         marginBottom: "2.5em",
       }}
     >
@@ -68,7 +67,7 @@ export const EventCard = ({ event }: EventCardProps) => {
           height: "auto",
           marginTop: "1em",
           borderRadius: "12px",
-          maxHeight: '350px',
+          maxHeight: "350px",
         }}
       />
       <Box
