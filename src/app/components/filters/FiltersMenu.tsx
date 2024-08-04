@@ -114,13 +114,13 @@ export const FiltersMenu = () => {
           gridGap: "0.5em",
         }}
       >
-        {dateTimePickerInputs.map((dateTimePickerInput) => (
+        {/* {dateTimePickerInputs.map((dateTimePickerInput) => (
           <DateTimePickerInput
             key={dateTimePickerInput.title}
             title={dateTimePickerInput.title}
             isDatePicker={dateTimePickerInput.isDatePicker}
           />
-        ))}
+        ))} */}
       </Box>
       <Box>
         {dropDownInputs.map((dropDownInput) => (

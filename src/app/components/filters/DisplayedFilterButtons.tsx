@@ -4,11 +4,28 @@ import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { RootState } from "../../store";
 import { Box, Button } from "@mui/material";
 import { ReducersMappingKeys, reducersMapping } from "../../types";
+import { Filters } from "../../../features/filters/filtersSlice"; // Ensure this import is correct
 
 type DisplayedFilterButtonProps = {
   filterType: ReducersMappingKeys;
   value: string | null;
 };
+
+// const getDisplayText = (
+//   filterType: ReducersMappingKeys,
+//   value: string | null
+// ) => {
+//   switch (filterType) {
+//     case Filters.BEFORE_DATE:
+//     case Filters.BEFORE_TIME:
+//       return `Before ${value}`;
+//     case Filters.AFTER_DATE:
+//     case Filters.AFTER_TIME:
+//       return `After ${value}`;
+//     default:
+//       return value;
+//   }
+// };
 
 const DisplayedFilterButton = ({
   filterType,
@@ -22,6 +39,8 @@ const DisplayedFilterButton = ({
       dispatch(action(null));
     }
   };
+
+  // const displayText = getDisplayText(filterType, value);
 
   return (
     value && (
