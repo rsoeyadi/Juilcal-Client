@@ -3,6 +3,7 @@ import { selectFinalFilters } from "../../../features/filters/filtersSlice";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { RootState } from "../../store";
 import { Box, Button } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close"; 
 import { ReducersMappingKeys, reducersMapping } from "../../types";
 
 type DisplayedFilterButtonProps = {
@@ -47,8 +48,9 @@ const DisplayedFilterButton = ({
         variant="contained"
         sx={{ margin: 0.3 }}
         onClick={() => handleRemoval(filterType)}
+        endIcon={<CloseIcon />} 
       >
-        {`${value} (Remove)`}
+        {value}
       </Button>
     )
   );
