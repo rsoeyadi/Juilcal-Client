@@ -1,3 +1,4 @@
+// DateTimePickerInput.tsx
 import dayjs, { Dayjs } from "dayjs";
 import { DateTimePicker } from "@mui/x-date-pickers";
 import { addFilter } from "../../../features/filters/filtersSlice";
@@ -24,12 +25,12 @@ export const DateTimePickerInput = ({
   const [value, setValue] = useState<Dayjs | null>(null);
 
   useEffect(() => {
-    if (!filterValue || filterValue === "None") {
+    if (!filterValue || filterValue === title) {
       setValue(null);
     } else {
       setValue(dayjs(filterValue));
     }
-  }, [filterValue]);
+  }, [filterValue, title]);
 
   const handleChange = (
     newValue: Dayjs | string | null,
@@ -43,9 +44,7 @@ export const DateTimePickerInput = ({
 
   if (isDatePicker) {
     return (
-      <Box
-       
-      >
+      <Box>
         <DateTimePicker
           defaultValue={null}
           value={value}

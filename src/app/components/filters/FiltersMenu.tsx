@@ -1,3 +1,4 @@
+// FiltersMenu.tsx
 import { Filters } from "../../../features/filters/filtersSlice";
 import { DateTimePickerInput } from "./DateTimePickerInput";
 import { DropDownInput } from "./DropDownInput";
@@ -16,7 +17,6 @@ const dropDownInputs = [
   {
     title: Filters.DAY,
     values: [
-      "None",
       "Monday",
       "Tuesday",
       "Wednesday",
@@ -29,7 +29,6 @@ const dropDownInputs = [
   {
     title: Filters.PERFORMANCE_TYPE,
     values: [
-      "None",
       "Opera / Voice",
       "Master Class",
       "Recital",
@@ -42,33 +41,27 @@ const dropDownInputs = [
   },
   {
     title: Filters.MUSIC_GENRE,
-    values: ["None", "Classical", "Contemporary / New Work", "Jazz"],
+    values: ["Classical", "Contemporary / New Work", "Jazz"],
   },
   {
     title: Filters.EVENT_FORMAT,
-    values: [
-      "None",
-      "Live Streaming",
-      "Historical Performance",
-      "Special Event",
-    ],
+    values: ["Live Streaming", "Historical Performance", "Special Event"],
   },
   {
     title: Filters.STREAMING,
-    values: ["None", "Live Streaming"],
+    values: ["Live Streaming"],
   },
   {
     title: Filters.EDUCATIONAL_FOCUS,
-    values: ["None", "Master Class", "Preparatory Education"],
+    values: ["Master Class", "Preparatory Education"],
   },
   {
     title: Filters.MISCELLANEOUS,
-    values: ["None", "Membership Event", "Relaxed Performance", "Free"],
+    values: ["Membership Event", "Relaxed Performance", "Free"],
   },
   {
     title: Filters.VENUE,
     values: [
-      "None",
       "Weill Recital Hall",
       "Room 305 - Ellen and James Marcus Vocal Arts Studio",
       "ARRAY Creative Campus",

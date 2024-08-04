@@ -1,3 +1,4 @@
+// DropDownInput.tsx
 import { useEffect, useState } from "react";
 import { addFilter } from "../../../features/filters/filtersSlice";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
@@ -21,18 +22,18 @@ type DropDownInputProps = {
 
 const SelectInputBox = ({ title, values, className }: DropDownInputProps) => {
   const dispatch = useAppDispatch();
-  const [value, setValue] = useState<string>("None");
+  const [value, setValue] = useState<string>(title);
   const filterValue = useSelector(
     (state: RootState) => state.filters.queuedUpFilters[title]
   );
 
   useEffect(() => {
-    if (!filterValue || filterValue === "None") {
-      setValue("None");
+    if (!filterValue || filterValue === title) {
+      setValue(title);
     } else {
       setValue(filterValue);
     }
-  }, [filterValue]);
+  }, [filterValue, title]);
 
   const handleChange = (
     event: SelectChangeEvent,
@@ -56,7 +57,15 @@ const SelectInputBox = ({ title, values, className }: DropDownInputProps) => {
           }
           className={className}
           fullWidth
+          sx={{
+            "& .MuiSelect-select": {
+              fontStyle: value === title ? "italic" : "normal",
+            },
+          }}
         >
+          <MenuItem value={title}>
+            <em>{title}</em>
+          </MenuItem>
           {values.map((type) => (
             <MenuItem key={type} value={type}>
               <div style={{ overflow: "hidden", textOverflow: "ellipsis" }}>
