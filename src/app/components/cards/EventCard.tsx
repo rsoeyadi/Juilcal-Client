@@ -33,10 +33,10 @@ export const BookmarkButton = ({ event }: BookmarkButtonProps) => {
   const handleClick = () => {
     if (bookmarked) {
       dispatch(removeEvent(event));
-      setSnackbarMessage(`${event.title} removed from bookmarks`);
+      setSnackbarMessage("Event removed from bookmarks");
     } else {
       dispatch(addEvent(event));
-      setSnackbarMessage(`${event.title} added to bookmarks`);
+      setSnackbarMessage("Event added to bookmarks");
     }
     setSnackbarOpen(true);
   };
