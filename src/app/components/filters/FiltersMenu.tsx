@@ -1,8 +1,11 @@
-import { Filters } from "../../../features/filters/filtersSlice";
+import { Filters, setEducationalFocus } from "../../../features/filters/filtersSlice";
 import { DropDownInput } from "./DropDownInput";
 import { ModifyButton } from "./ModifyButton";
-import { Box } from "@mui/material";
+import { Box, Checkbox, FormControlLabel } from "@mui/material";
 import MenuHeaderCard from "../MenuHeaderCard";
+import { useAppDispatch } from "../../hooks/useAppDispatch";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 // const dateTimePickerInputs = [
 //   { title: Filters.BEFORE_DATE, isDatePicker: true },
@@ -65,6 +68,15 @@ const dropDownInputs = [
 ];
 
 export const FiltersMenu = () => {
+  const dispatch = useAppDispatch();
+  const educationalFocus = useSelector(
+    (state: RootState) => state.filters.educationalFocus
+  );
+
+  const handleMasterclassChange = (event: { target: { checked: boolean } }) => {
+    dispatch(setEducationalFocus(event.target.checked ? "Master Class" : ""));
+  };
+
   return (
     <Box
       sx={{
@@ -100,11 +112,25 @@ export const FiltersMenu = () => {
           />
         ))}
       </Box>
+      <Box>
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={educationalFocus === "Master Class"}
+              onChange={handleMasterclassChange}
+              name="masterclass"
+              color="primary"
+            />
+          }
+          label="Master Class"
+        />
+      </Box>
       <Box
         sx={{
           display: "grid",
           gridTemplateColumns: "repeat(2, 1fr)",
           gridGap: "0.5em",
+          marginTop: 2,
         }}
       >
         <ModifyButton isSaveButton />
