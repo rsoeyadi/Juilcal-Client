@@ -80,7 +80,6 @@ function App() {
   useEffect(() => {
     if (!isOnDesktop) {
       if (!isFilterMenuOpen) {
-        // this shouldn't happen when you click the clear button
         window.scrollTo(0, 0);
       }
     }
@@ -91,7 +90,6 @@ function App() {
       dispatch(setIsOnDesktop(window.matchMedia("(min-width: 768px)").matches));
     };
 
-    // Initial check
     handleResize();
     window.addEventListener("resize", handleResize);
 
@@ -106,7 +104,10 @@ function App() {
         .order("dateTime", { ascending: !isSortedByDescending });
 
       if (searchValue) {
-        query = query.ilike("title", `%${searchValue}%`);
+        const searchTerms = searchValue.split(" ").map((term) => `%${term}%`);
+        searchTerms.forEach((term) => {
+          query = query.or(`title.ilike.${term},tags.ilike.${term}`);
+        });
       }
 
       filters.forEach(([key, value]: [string, string]) => {
@@ -168,7 +169,6 @@ function App() {
   }, [debouncedGetCount]);
 
   useEffect(() => {
-    // set them to page 1 initially
     dispatch(setCurrentPage(1));
   }, []);
 
