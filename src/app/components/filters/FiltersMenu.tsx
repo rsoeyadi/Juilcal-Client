@@ -86,7 +86,7 @@ export const FiltersMenu = () => {
       <MenuHeaderCard
         iconSrc="./filters-header-icon.svg"
         title="Filter your search"
-        description="Search Juilliard's performance calendar using search terms and advanced filters. Click the save button to enable the selected filters."
+        description="Click the save button to enable the selected filters."
       />
       <Box
         sx={{
