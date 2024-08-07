@@ -40,17 +40,13 @@ function App() {
   const isBookmarkedEventsMenuOpen = useSelector(
     (state: RootState) => state.componentDisplaying.isBookmarkedEventsMenuOpen
   );
-
   const currentPage = useSelector(
     (state: RootState) => state.pagination.currentPage
   );
-
   const isOnDesktop = useSelector(
     (state: RootState) => state.componentDisplaying.isOnDesktop
   );
-
   const dispatch = useAppDispatch();
-
   const totalFilteredEventsCount = useSelector(
     (state: RootState) => state.pagination.totalFilteredEventsCount
   );
@@ -59,7 +55,6 @@ function App() {
   );
   const [isSortedByDescending, setIsSortedByDescending] =
     useState<boolean>(false);
-
   const paginationValue = useSelector((state: RootState) => state.pagination);
   const filtersSliceValues = useSelector((state: RootState) => state.filters);
 
@@ -80,7 +75,6 @@ function App() {
   useEffect(() => {
     if (!isOnDesktop) {
       if (!isFilterMenuOpen) {
-        // this shouldn't happen when you click the clear button
         window.scrollTo(0, 0);
       }
     }
@@ -91,7 +85,6 @@ function App() {
       dispatch(setIsOnDesktop(window.matchMedia("(min-width: 768px)").matches));
     };
 
-    // Initial check
     handleResize();
     window.addEventListener("resize", handleResize);
 
@@ -100,13 +93,21 @@ function App() {
 
   const getEvents = useCallback(
     async (searchValue: string | null, filters: any) => {
+      if (searchValue && searchValue.toLowerCase().includes("precollege")) {
+        searchValue = searchValue
+          .toLowerCase()
+          .replace("precollege", "preparatory");
+      }
+
       let query = supabase
         .from("Events")
         .select("*", { count: "exact" })
         .order("dateTime", { ascending: !isSortedByDescending });
 
       if (searchValue) {
-        query = query.ilike("title", `%${searchValue}%`);
+        query = query.or(
+          `title.ilike.%${searchValue}%, tags.ilike.%${searchValue}%`
+        );
       }
 
       filters.forEach(([key, value]: [string, string]) => {
@@ -168,14 +169,11 @@ function App() {
   }, [debouncedGetCount]);
 
   useEffect(() => {
-    // set them to page 1 initially
     dispatch(setCurrentPage(1));
   }, []);
 
   const handleSwitchClick = () => {
-    setIsSortedByDescending((prevValue) => {
-      return !prevValue;
-    });
+    setIsSortedByDescending((prevValue) => !prevValue);
   };
 
   if (isOnDesktop) {
@@ -199,7 +197,7 @@ function App() {
       {isFilterMenuOpen && <FiltersMenu />}
       {isBookmarkedEventsMenuOpen && <BookmarkedEventsContainer />}
       {!isFilterMenuOpen && !isBookmarkedEventsMenuOpen && (
-        <Box>
+        <Box className="content-wrapper">
           <Box
             sx={{
               mx: 2,
@@ -239,7 +237,7 @@ function App() {
             </Box>
             <DisplayedFilterButtons />
 
-            <ul>
+            <ul className="events-list">
               {events?.map((event) => (
                 <EventCard event={event} key={event.id} />
               ))}
