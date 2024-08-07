@@ -9,7 +9,7 @@ The project is live at [www.juilcal.com](http://www.juilcal.com)
 ## Features
 
 - Browse performance events
-- Advanced filtering options
+- Filtering options
 - Save and clear filters with undo functionality
 - Pagination for easy navigation through events
 
