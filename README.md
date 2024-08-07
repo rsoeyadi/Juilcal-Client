@@ -1,6 +1,6 @@
 # Juilcal
 
-Juilcal is a web application for browsing and filtering performance events at Juilliard. This project provides an intuitive interface for users to search and manage their event preferences.
+Juilcal is a web application for browsing and filtering performance events at Juilliard. I was unhappy with the state of the current Juilliard performance calendar so I wrote a web scraper to save the events and display them here.
 
 ## URL
 
