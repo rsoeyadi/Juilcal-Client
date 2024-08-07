@@ -7,7 +7,7 @@ export enum Filters {
   BEFORE_TIME = "beforeTime",
   AFTER_TIME = "afterTime",
   DAY = "day",
-  PERFORMANCE_TYPE = "performanceType",
+  DIVISION = "division",
   MUSIC_GENRE = "musicGenre",
   EVENT_FORMAT = "eventFormat",
   STREAMING = "streaming",
@@ -22,7 +22,7 @@ interface FiltersState {
   beforeTime: string | null;
   afterTime: string | null;
   day: string | null;
-  performanceType: string | null;
+  division: string | null;
   musicGenre: string | null;
   eventFormat: string | null;
   streaming: string | null;
@@ -38,7 +38,7 @@ const initialState: FiltersState = {
   beforeTime: null,
   afterTime: null,
   day: null,
-  performanceType: null,
+  division: null,
   musicGenre: null,
   eventFormat: null,
   streaming: null,
@@ -92,12 +92,12 @@ export const filtersSlice = createSlice({
         state.day = action.payload;
       }
     },
-    setPerformanceType: (state, action) => {
+    setDivision: (state, action) => {
       if (action.payload === null) {
-        delete state.queuedUpFilters[Filters.PERFORMANCE_TYPE];
-        state.performanceType = null;
+        delete state.queuedUpFilters[Filters.DIVISION];
+        state.division = null;
       } else {
-        state.performanceType = action.payload;
+        state.division = action.payload;
       }
     },
     setMusicGenre: (state, action) => {
@@ -162,7 +162,7 @@ export const filtersSlice = createSlice({
       state.beforeTime = null;
       state.afterTime = null;
       state.day = null;
-      state.performanceType = null;
+      state.division = null;
       state.musicGenre = null;
       state.eventFormat = null;
       state.streaming = null;
@@ -185,7 +185,7 @@ export const {
   setBeforeTime,
   setAfterTime,
   setDay,
-  setPerformanceType,
+  setDivision,
   setMusicGenre,
   setEventFormat,
   setStreaming,

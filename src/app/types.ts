@@ -9,7 +9,7 @@ import {
   setEventFormat,
   setMiscellaneous,
   setMusicGenre,
-  setPerformanceType,
+  setDivision,
   setStreaming,
   setVenue,
 } from "../features/filters/filtersSlice";
@@ -30,7 +30,7 @@ export const reducersMapping = {
   [Filters.BEFORE_TIME]: setBeforeTime,
   [Filters.AFTER_TIME]: setAfterTime,
   [Filters.DAY]: setDay,
-  [Filters.PERFORMANCE_TYPE]: setPerformanceType,
+  [Filters.DIVISION]: setDivision,
   [Filters.MUSIC_GENRE]: setMusicGenre,
   [Filters.EVENT_FORMAT]: setEventFormat,
   [Filters.STREAMING]: setStreaming,

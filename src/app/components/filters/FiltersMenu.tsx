@@ -25,39 +25,6 @@ const dropDownInputs = [
     ],
   },
   {
-    title: Filters.PERFORMANCE_TYPE,
-    values: [
-      "Opera / Voice",
-      "Master Class",
-      "Recital",
-      "Orchestra",
-      "Drama",
-      "Dance",
-      "Chamber Music",
-      "Jazz",
-    ],
-  },
-  {
-    title: Filters.MUSIC_GENRE,
-    values: ["Classical", "Contemporary / New Work", "Jazz"],
-  },
-  {
-    title: Filters.EVENT_FORMAT,
-    values: ["Live Streaming", "Historical Performance", "Special Event"],
-  },
-  {
-    title: Filters.STREAMING,
-    values: ["Live Streaming"],
-  },
-  {
-    title: Filters.EDUCATIONAL_FOCUS,
-    values: ["Master Class", "Preparatory Education"],
-  },
-  {
-    title: Filters.MISCELLANEOUS,
-    values: ["Membership Event", "Relaxed Performance", "Free"],
-  },
-  {
     title: Filters.VENUE,
     values: [
       "Weill Recital Hall",
@@ -90,6 +57,10 @@ const dropDownInputs = [
       "The Cathedral Church of St. John the Divine",
       "Chelsea Factory",
     ],
+  },
+  {
+    title: Filters.DIVISION,
+    values: ["Dance", "Drama", "Classical Music", "Jazz"],
   },
 ];
 

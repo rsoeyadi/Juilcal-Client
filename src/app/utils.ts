@@ -6,7 +6,7 @@ import {
   setBeforeTime,
   setAfterTime,
   setDay,
-  setPerformanceType,
+  setDivision,
   setMusicGenre,
   setEventFormat,
   setStreaming,
@@ -38,8 +38,8 @@ export const applySavedFilters = (
       case Filters.DAY:
         dispatch(setDay(value));
         break;
-      case Filters.PERFORMANCE_TYPE:
-        dispatch(setPerformanceType(value));
+      case Filters.DIVISION:
+        dispatch(setDivision(value));
         break;
       case Filters.MUSIC_GENRE:
         dispatch(setMusicGenre(value));

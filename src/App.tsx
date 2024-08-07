@@ -119,6 +119,14 @@ function App() {
             query = query.ilike("dayOfWeek", `%${value}%`);
           } else if (key === "venue") {
             query = query.ilike("venue", `%${value}%`);
+          } else if (key === "division") {
+            if (value === "Classical Music") {
+              query = query.or(
+                `tags.ilike.%Classical%, tags.ilike.%Orchestra%, tags.ilike.%Recital%, tags.ilike.%Chamber Music%`
+              );
+            } else {
+              query = query.or(`tags.ilike.%${value}%, title.ilike.%${value}%`);
+            }
           } else {
             query = query.or(`tags.ilike.%${value}%, title.ilike.%${value}%`);
           }
