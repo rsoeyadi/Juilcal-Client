@@ -80,7 +80,7 @@ const DesktopLayout: React.FC<DesktopLayoutProps> = ({
         padding: 3,
       }}
     >
-      <Box sx={{ width: "100%", maxWidth: "1200px", marginX: "auto" }}>
+      <Box sx={{ width: "100%", maxWidth: "1200px", marginX: "auto", minHeight: '100vh'}}>
         <Header />
         <Box>
           <SearchBarInput />
